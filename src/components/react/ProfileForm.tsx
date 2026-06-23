@@ -30,11 +30,13 @@ export function ProfileForm(): React.JSX.Element {
     async function loadProfile(): Promise<void> {
       try {
         const response = await fetch('/api/profile');
-        const data = (await response.json()) as ProfileResponse;
 
         if (!response.ok) {
-          throw new Error('Error loading profile');
+          const text = await response.text();
+          throw new Error(text || `Error ${response.status}`);
         }
+
+        const data = (await response.json()) as ProfileResponse;
 
         setProfile(data.profile);
         setDisplayName(data.profile.display_name ?? '');

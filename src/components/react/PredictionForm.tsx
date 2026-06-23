@@ -12,6 +12,10 @@ interface Prediction {
   match_id: string;
   home_score: number | null;
   away_score: number | null;
+  extra_time_home: number | null;
+  extra_time_away: number | null;
+  penalties_home: number | null;
+  penalties_away: number | null;
 }
 
 interface MatchApiResponse {
@@ -95,7 +99,15 @@ export function PredictionForm(): React.JSX.Element {
 
         const predictionsMap: Record<string, Prediction> = {};
         for (const prediction of predictionsData?.predictions ?? []) {
-          predictionsMap[prediction.match_id] = prediction;
+          predictionsMap[prediction.match_id] = {
+            match_id: prediction.match_id,
+            home_score: prediction.home_score,
+            away_score: prediction.away_score,
+            extra_time_home: prediction.extra_time_home ?? null,
+            extra_time_away: prediction.extra_time_away ?? null,
+            penalties_home: prediction.penalties_home ?? null,
+            penalties_away: prediction.penalties_away ?? null
+          };
         }
 
         setMatches(matchesData?.matches ?? []);
@@ -112,17 +124,35 @@ export function PredictionForm(): React.JSX.Element {
     void loadData();
   }, []);
 
-  function handleScoreChange(matchId: string, field: 'home' | 'away', value: string): void {
+  function handleScoreChange(
+    matchId: string,
+    field: 'home' | 'away' | 'extraTimeHome' | 'extraTimeAway' | 'penaltiesHome' | 'penaltiesAway',
+    value: string
+  ): void {
     const numberValue = value === '' ? null : parseInt(value, 10);
 
-    setPredictions((previous) => ({
-      ...previous,
-      [matchId]: {
+    setPredictions((previous) => {
+      const current = previous[matchId] ?? {
         match_id: matchId,
-        home_score: field === 'home' ? numberValue : (previous[matchId]?.home_score ?? null),
-        away_score: field === 'away' ? numberValue : (previous[matchId]?.away_score ?? null)
-      }
-    }));
+        home_score: null,
+        away_score: null,
+        extra_time_home: null,
+        extra_time_away: null,
+        penalties_home: null,
+        penalties_away: null
+      };
+
+      const updated: Prediction = { ...current };
+
+      if (field === 'home') updated.home_score = numberValue;
+      if (field === 'away') updated.away_score = numberValue;
+      if (field === 'extraTimeHome') updated.extra_time_home = numberValue;
+      if (field === 'extraTimeAway') updated.extra_time_away = numberValue;
+      if (field === 'penaltiesHome') updated.penalties_home = numberValue;
+      if (field === 'penaltiesAway') updated.penalties_away = numberValue;
+
+      return { ...previous, [matchId]: updated };
+    });
   }
 
   async function savePrediction(matchId: string): Promise<void> {
@@ -142,7 +172,11 @@ export function PredictionForm(): React.JSX.Element {
         body: JSON.stringify({
           matchId,
           homeScore: prediction.home_score,
-          awayScore: prediction.away_score
+          awayScore: prediction.away_score,
+          extraTimeHome: prediction.extra_time_home,
+          extraTimeAway: prediction.extra_time_away,
+          penaltiesHome: prediction.penalties_home,
+          penaltiesAway: prediction.penalties_away
         })
       });
 
@@ -157,7 +191,15 @@ export function PredictionForm(): React.JSX.Element {
 
       const predictionsMap: Record<string, Prediction> = {};
       for (const p of predictionsData.predictions) {
-        predictionsMap[p.match_id] = p;
+        predictionsMap[p.match_id] = {
+          match_id: p.match_id,
+          home_score: p.home_score,
+          away_score: p.away_score,
+          extra_time_home: p.extra_time_home ?? null,
+          extra_time_away: p.extra_time_away ?? null,
+          penalties_home: p.penalties_home ?? null,
+          penalties_away: p.penalties_away ?? null
+        };
       }
       setPredictions(predictionsMap);
 
@@ -172,17 +214,12 @@ export function PredictionForm(): React.JSX.Element {
 
   function isLocked(match: Match): boolean {
     const now = new Date();
-    const matchTime = new Date(match.utc_minus_5_at);
+    const matchTime = new Date(match.scheduled_at);
     const lockTime = new Date(matchTime.getTime() - 60 * 60 * 1000);
 
     if (now >= lockTime) return true;
 
-    if (match.status !== 'SCHEDULED') return true;
-
-    if (match.stage === 'GROUP_STAGE') {
-      const cutoff = new Date('2026-06-10T23:59:00-05:00');
-      if (now >= cutoff) return true;
-    }
+    if (match.status !== 'TIMED') return true;
 
     return false;
   }
@@ -191,9 +228,9 @@ export function PredictionForm(): React.JSX.Element {
     let filtered = matches;
 
     if (activeTab === 'upcoming') {
-      filtered = matches.filter((m) => m.status === 'SCHEDULED' && !isLocked(m));
+      filtered = matches.filter((m) => m.status === 'TIMED' && !isLocked(m));
     } else if (activeTab === 'locked') {
-      filtered = matches.filter((m) => (m.status === 'SCHEDULED' && isLocked(m)) || m.status === 'IN_PLAY' || m.status === 'PAUSED');
+      filtered = matches.filter((m) => (m.status === 'TIMED' && isLocked(m)) || m.status === 'IN_PLAY' || m.status === 'PAUSED');
     } else if (activeTab === 'finished') {
       filtered = matches.filter((m) => m.status === 'FINISHED');
     }
@@ -206,7 +243,7 @@ export function PredictionForm(): React.JSX.Element {
   }, [matches, activeTab, stageFilter]);
 
   const pendingCount = useMemo(() => {
-    return matches.filter((m) => m.status === 'SCHEDULED' && !isLocked(m) && !predictions[m.id]).length;
+    return matches.filter((m) => m.status === 'TIMED' && !isLocked(m) && !predictions[m.id]).length;
   }, [matches, predictions]);
 
   const tabs: { key: TabType; label: string; count?: number }[] = [
@@ -325,7 +362,26 @@ export function PredictionForm(): React.JSX.Element {
             return match.stage === 'GROUP_STAGE' ? (
               <MatchCardGroup key={match.id} {...commonProps} />
             ) : (
-              <MatchCardKnockout key={match.id} {...commonProps} />
+              <MatchCardKnockout
+                key={match.id}
+                {...commonProps}
+                extraTimeHomePrediction={prediction?.extra_time_home ?? null}
+                extraTimeAwayPrediction={prediction?.extra_time_away ?? null}
+                penaltiesHomePrediction={prediction?.penalties_home ?? null}
+                penaltiesAwayPrediction={prediction?.penalties_away ?? null}
+                onExtraTimeHomeChange={(value: string) =>
+                  handleScoreChange(match.id, 'extraTimeHome', value)
+                }
+                onExtraTimeAwayChange={(value: string) =>
+                  handleScoreChange(match.id, 'extraTimeAway', value)
+                }
+                onPenaltiesHomeChange={(value: string) =>
+                  handleScoreChange(match.id, 'penaltiesHome', value)
+                }
+                onPenaltiesAwayChange={(value: string) =>
+                  handleScoreChange(match.id, 'penaltiesAway', value)
+                }
+              />
             );
           })}
         </div>

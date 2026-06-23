@@ -13,6 +13,9 @@ export interface Match {
   away_flag: string;
   home_score: number | null;
   away_score: number | null;
+  home_final_score: number | null;
+  away_final_score: number | null;
+  winner: 'HOME' | 'AWAY' | 'DRAW' | null;
   status: string;
   scheduled_at: string;
   utc_minus_5_at: string;
@@ -37,6 +40,7 @@ export function getMatchStatus(status: string): { label: string; variant: 'defau
     case 'POSTPONED':
       return { label: 'Postergado', variant: 'warning' };
     case 'SCHEDULED':
+    case 'TIMED':
     default:
       return { label: 'Pendiente', variant: 'default' };
   }
@@ -65,19 +69,40 @@ export function getStageLabel(stage: string): string {
 }
 
 /**
+ * Formats a group code into a short Spanish label.
+ * Example: GROUP_A -> A, GROUP_B -> B
+ */
+export function getGroupLabel(groupName: string | null | undefined): string {
+  if (!groupName) {
+    return '?';
+  }
+
+  const normalized = groupName.trim().toUpperCase();
+  const parts = normalized.split('_');
+
+  if (parts.length > 1) {
+    return parts[parts.length - 1];
+  }
+
+  return normalized;
+}
+
+/**
  * Base match card component with World Cup styling.
  */
 export function MatchCard({ match, children }: MatchCardProps): React.JSX.Element {
   const status = getMatchStatus(match.status);
   const stageLabel = getStageLabel(match.stage);
-  const hasScore = match.home_score !== null && match.away_score !== null;
+  const displayHomeScore = match.home_final_score ?? match.home_score;
+  const displayAwayScore = match.away_final_score ?? match.away_score;
+  const hasScore = displayHomeScore !== null && displayAwayScore !== null;
 
   return (
     <Card variant="default" className="overflow-hidden">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Badge variant="primary">{stageLabel}</Badge>
-          {match.group_name && <Badge variant="default">Grupo {match.group_name}</Badge>}
+          {match.group_name && <Badge variant="default">Grupo {getGroupLabel(match.group_name)}</Badge>}
         </div>
         <Badge variant={status.variant}>{status.label}</Badge>
       </div>
@@ -97,7 +122,7 @@ export function MatchCard({ match, children }: MatchCardProps): React.JSX.Elemen
         <div className="flex flex-col items-center px-4 min-w-[80px]">
           {hasScore || match.status === 'IN_PLAY' || match.status === 'PAUSED' ? (
             <span className="text-3xl font-extrabold tabular-nums text-[#1A1A2E] tracking-tight">
-              {match.home_score ?? '-'}:{match.away_score ?? '-'}
+              {displayHomeScore ?? '-'}:{displayAwayScore ?? '-'}
             </span>
           ) : (
             <span className="text-2xl font-black text-[#FFB703] tracking-wider">VS</span>

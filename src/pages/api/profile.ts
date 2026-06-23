@@ -29,10 +29,16 @@ export const GET: APIRoute = async ({ cookies }) => {
     return new Response('Unauthorized', { status: 401 });
   }
 
+  const userEmail = data.session.user.email;
+
+  if (!userEmail) {
+    return new Response(JSON.stringify({ error: 'User email not available' }), { status: 400 });
+  }
+
   const { data: profile, error } = await supabaseAdmin
     .from('profiles')
     .select('*')
-    .eq('id', data.session.user.id)
+    .eq('email', userEmail)
     .single() as { data: ProfileRecord | null; error: Error | null };
 
   if (error) {
@@ -72,10 +78,16 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     return new Response('Display name is required', { status: 400 });
   }
 
+  const userEmail = data.session.user.email;
+
+  if (!userEmail) {
+    return new Response(JSON.stringify({ error: 'User email not available' }), { status: 400 });
+  }
+
   const { error } = await supabaseAdmin
     .from('profiles')
     .update({ display_name: displayName.trim() })
-    .eq('id', data.session.user.id);
+    .eq('email', userEmail);
 
   if (error) {
     return new Response(JSON.stringify({ error: error.message }), { status: 500 });

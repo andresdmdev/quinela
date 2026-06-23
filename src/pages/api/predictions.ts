@@ -8,12 +8,16 @@ export interface PredictionRecord {
   match_id: string;
   home_score: number | null;
   away_score: number | null;
+  extra_time_home: number | null;
+  extra_time_away: number | null;
+  penalties_home: number | null;
+  penalties_away: number | null;
   locked_at: string | null;
   created_at: string;
   updated_at: string;
 }
 
-const GROUP_STAGE_CUTOFF_UTC_MINUS_5: string = '2026-06-10T23:59:00-05:00';
+
 
 /**
  * Returns the predictions for the authenticated user.
@@ -74,6 +78,10 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const matchId: string | undefined = body.matchId;
   const homeScore: number | undefined = body.homeScore;
   const awayScore: number | undefined = body.awayScore;
+  const extraTimeHome: number | null | undefined = body.extraTimeHome;
+  const extraTimeAway: number | null | undefined = body.extraTimeAway;
+  const penaltiesHome: number | null | undefined = body.penaltiesHome;
+  const penaltiesAway: number | null | undefined = body.penaltiesAway;
 
   if (!matchId || homeScore === undefined || awayScore === undefined) {
     return new Response('Missing fields', { status: 400 });
@@ -101,6 +109,10 @@ export const POST: APIRoute = async ({ request, cookies }) => {
         match_id: matchId,
         home_score: homeScore,
         away_score: awayScore,
+        extra_time_home: extraTimeHome ?? null,
+        extra_time_away: extraTimeAway ?? null,
+        penalties_home: penaltiesHome ?? null,
+        penalties_away: penaltiesAway ?? null,
         updated_at: new Date().toISOString()
       },
       { onConflict: 'user_id, match_id' }
@@ -115,22 +127,12 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
 /**
  * Determines whether a prediction for a match is locked.
+ * A prediction locks 1 hour before the match start time.
  */
 function isPredictionLocked(match: MatchRecord): boolean {
   const now: Date = new Date();
-  const matchTime: Date = new Date(match.utc_minus_5_at);
+  const matchTime: Date = new Date(match.scheduled_at);
   const lockTime: Date = new Date(matchTime.getTime() - 60 * 60 * 1000);
 
-  if (now >= lockTime) {
-    return true;
-  }
-
-  if (match.stage === 'GROUP_STAGE') {
-    const cutoff: Date = new Date(GROUP_STAGE_CUTOFF_UTC_MINUS_5);
-    if (now >= cutoff) {
-      return true;
-    }
-  }
-
-  return false;
+  return now >= lockTime;
 }

@@ -15,10 +15,28 @@ export interface FootballMatch {
     crest: string;
   };
   score: {
+    winner: 'HOME_TEAM' | 'AWAY_TEAM' | 'DRAW' | null;
+    duration: 'REGULAR' | 'EXTRA_TIME' | 'PENALTY_SHOOTOUT' | null;
     fullTime: {
       home: number | null;
       away: number | null;
     };
+    halfTime?: {
+      home: number | null;
+      away: number | null;
+    } | null;
+    regularTime?: {
+      home: number | null;
+      away: number | null;
+    } | null;
+    extraTime?: {
+      home: number | null;
+      away: number | null;
+    } | null;
+    penalties?: {
+      home: number | null;
+      away: number | null;
+    } | null;
   };
 }
 

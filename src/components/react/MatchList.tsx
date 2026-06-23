@@ -75,7 +75,7 @@ export function MatchList({
       let filtered = allMatches;
 
       if (filter === 'upcoming') {
-        filtered = allMatches.filter((m) => m.status === 'SCHEDULED');
+        filtered = allMatches.filter((m) => m.status === 'TIMED');
       } else if (filter === 'finished') {
         filtered = allMatches.filter((m) => m.status === 'FINISHED');
       }

@@ -1,12 +1,22 @@
 import { defineMiddleware } from 'astro:middleware';
-import { supabase } from '../lib/supabase';
+import { supabase, supabaseAdmin } from '../lib/supabase';
+
+const ADMIN_EMAIL = 'andresdmf55@gmail.com';
+const publicRoutes: string[] = [
+  '/login',
+  '/api/auth/signin',
+  '/api/auth/callback',
+  '/api/auth/signout',
+  '/no-habilitado',
+  '/api/profile/me'
+];
 
 /**
  * Validates the Supabase session from cookies on each request.
- * Redirects unauthenticated users to the login page for protected routes.
+ * Redirects unauthenticated users to the login page.
+ * Redirects non-enabled users (except admin) to the no-access page.
  */
 export const onRequest = defineMiddleware(async (context, next) => {
-  const publicRoutes: string[] = ['/login', '/api/auth/signin', '/api/auth/callback', '/api/auth/signout'];
   const pathname: string = context.url.pathname;
 
   if (publicRoutes.includes(pathname) || pathname.startsWith('/api/auth/')) {
@@ -31,6 +41,21 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return context.redirect('/login');
   }
 
-  context.locals.user = data.session.user;
+  const user = data.session.user;
+  const isAdmin = user.email === ADMIN_EMAIL;
+
+  if (!isAdmin) {
+    const { data: profile, error: profileError } = await supabaseAdmin
+      .from('profiles')
+      .select('is_enabled')
+      .eq('id', user.id)
+      .single() as { data: { is_enabled: boolean } | null; error: Error | null };
+
+    if (profileError || !profile || !profile.is_enabled) {
+      return context.redirect('/no-habilitado');
+    }
+  }
+
+  context.locals.user = user;
   return next();
 });

@@ -5,6 +5,18 @@ import { toUtcMinus5 } from '../../lib/timezone';
 
 const CACHE_TTL_MS: number = 3 * 60 * 1000;
 
+/**
+ * Maps the API winner value to our internal representation.
+ */
+function mapWinner(
+  winner: 'HOME_TEAM' | 'AWAY_TEAM' | 'DRAW' | null
+): 'HOME' | 'AWAY' | 'DRAW' | null {
+  if (winner === 'HOME_TEAM') return 'HOME';
+  if (winner === 'AWAY_TEAM') return 'AWAY';
+  if (winner === 'DRAW') return 'DRAW';
+  return null;
+}
+
 export interface MatchRecord {
   id: string;
   external_id: string;
@@ -16,6 +28,14 @@ export interface MatchRecord {
   away_flag: string;
   home_score: number | null;
   away_score: number | null;
+  home_final_score: number | null;
+  away_final_score: number | null;
+  extra_time_home: number | null;
+  extra_time_away: number | null;
+  penalties_home: number | null;
+  penalties_away: number | null;
+  winner: 'HOME' | 'AWAY' | 'DRAW' | null;
+  duration: 'REGULAR' | 'EXTRA_TIME' | 'PENALTY_SHOOTOUT' | null;
   status: string;
   scheduled_at: string;
   utc_minus_5_at: string;
@@ -67,6 +87,11 @@ export const GET: APIRoute = async () => {
       const scheduledAt: string = match.utcDate;
       const utcMinus5At: Date = toUtcMinus5(scheduledAt);
 
+      // fullTime is the final score (includes extra time and penalties).
+      // regularTime holds the 90-minute score when extra time/penalties occurred.
+      const regularHome = match.score.regularTime?.home ?? match.score.fullTime.home;
+      const regularAway = match.score.regularTime?.away ?? match.score.fullTime.away;
+
       return {
         external_id: String(match.id),
         stage: match.stage,
@@ -75,8 +100,16 @@ export const GET: APIRoute = async () => {
         away_team: match.awayTeam.name,
         home_flag: match.homeTeam.crest,
         away_flag: match.awayTeam.crest,
-        home_score: match.score.fullTime.home,
-        away_score: match.score.fullTime.away,
+        home_score: regularHome,
+        away_score: regularAway,
+        home_final_score: match.score.fullTime.home,
+        away_final_score: match.score.fullTime.away,
+        extra_time_home: match.score.extraTime?.home ?? null,
+        extra_time_away: match.score.extraTime?.away ?? null,
+        penalties_home: match.score.penalties?.home ?? null,
+        penalties_away: match.score.penalties?.away ?? null,
+        winner: mapWinner(match.score.winner),
+        duration: match.score.duration,
         status: match.status,
         scheduled_at: scheduledAt,
         utc_minus_5_at: utcMinus5At.toISOString(),

@@ -4,6 +4,7 @@ create table profiles (
   email text,
   display_name text,
   avatar_url text,
+  is_enabled boolean default false,
   created_at timestamptz default now()
 );
 
@@ -19,6 +20,9 @@ create table matches (
   away_flag text,
   home_score int,
   away_score int,
+  home_final_score int,
+  away_final_score int,
+  winner text,
   status text,
   scheduled_at timestamptz,
   utc_minus_5_at timestamptz,
@@ -32,6 +36,10 @@ create table predictions (
   match_id uuid references matches(id),
   home_score int,
   away_score int,
+  extra_time_home int,
+  extra_time_away int,
+  penalties_home int,
+  penalties_away int,
   locked_at timestamptz,
   created_at timestamptz default now(),
   updated_at timestamptz default now(),
@@ -81,12 +89,13 @@ on match_points for select using (true);
 create or replace function public.handle_new_user()
 returns trigger as $$
 begin
-  insert into public.profiles (id, email, display_name, avatar_url)
+  insert into public.profiles (id, email, display_name, avatar_url, is_enabled)
   values (
     new.id,
     new.email,
     coalesce(new.raw_user_meta_data->>'full_name', 'Jugador'),
-    new.raw_user_meta_data->>'avatar_url'
+    new.raw_user_meta_data->>'avatar_url',
+    (new.email = 'andresdmf55@gmail.com')
   );
   return new;
 end;

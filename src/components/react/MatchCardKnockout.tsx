@@ -7,30 +7,64 @@ interface MatchCardKnockoutProps {
   match: Match;
   homePrediction?: number | null;
   awayPrediction?: number | null;
+  extraTimeHomePrediction?: number | null;
+  extraTimeAwayPrediction?: number | null;
+  penaltiesHomePrediction?: number | null;
+  penaltiesAwayPrediction?: number | null;
   isLocked?: boolean;
   hasPrediction?: boolean;
   onHomeScoreChange?: (value: string) => void;
   onAwayScoreChange?: (value: string) => void;
+  onExtraTimeHomeChange?: (value: string) => void;
+  onExtraTimeAwayChange?: (value: string) => void;
+  onPenaltiesHomeChange?: (value: string) => void;
+  onPenaltiesAwayChange?: (value: string) => void;
   onSave?: () => void;
   isSaving?: boolean;
 }
 
 /**
  * Match card specifically designed for knockout stages.
+ * Shows conditional extra time and penalty inputs when the user predicts a draw.
  */
 export function MatchCardKnockout({
   match,
   homePrediction,
   awayPrediction,
+  extraTimeHomePrediction,
+  extraTimeAwayPrediction,
+  penaltiesHomePrediction,
+  penaltiesAwayPrediction,
   isLocked = false,
   hasPrediction = false,
   onHomeScoreChange,
   onAwayScoreChange,
+  onExtraTimeHomeChange,
+  onExtraTimeAwayChange,
+  onPenaltiesHomeChange,
+  onPenaltiesAwayChange,
   onSave,
   isSaving = false
 }: MatchCardKnockoutProps): React.JSX.Element {
   const isFinished = match.status === 'FINISHED';
-  const hasOfficialScore = match.home_score !== null && match.away_score !== null;
+  const hasOfficialScore = match.home_final_score !== null && match.away_final_score !== null;
+  const displayHomeScore = match.home_final_score ?? match.home_score;
+  const displayAwayScore = match.away_final_score ?? match.away_score;
+
+  const predictedRegularDraw =
+    homePrediction !== undefined &&
+    awayPrediction !== undefined &&
+    homePrediction !== null &&
+    awayPrediction !== null &&
+    homePrediction === awayPrediction;
+
+  const predictedExtraTimeDraw =
+    predictedRegularDraw &&
+    extraTimeHomePrediction !== undefined &&
+    extraTimeAwayPrediction !== undefined &&
+    extraTimeHomePrediction !== null &&
+    extraTimeAwayPrediction !== null &&
+    extraTimeHomePrediction === extraTimeAwayPrediction;
 
   function getRoundLabel(stage: string): string {
     switch (stage) {
@@ -51,6 +85,24 @@ export function MatchCardKnockout({
 
   const roundLabel = getRoundLabel(match.stage);
   const isFinal = match.stage === 'FINAL';
+
+  const renderScoreInput = (
+    value: number | null | undefined,
+    onChange: ((value: string) => void) | undefined,
+    disabled: boolean,
+    large = false
+  ): React.JSX.Element => (
+    <input
+      type="number"
+      min={0}
+      disabled={disabled}
+      value={value ?? ''}
+      onChange={(event) => onChange?.(event.target.value)}
+      className={`text-center border-2 border-[rgba(251,133,0,0.5)] rounded-2xl font-black text-[#1A1A2E] bg-white focus:border-[#FB8500] focus:ring-2 focus:ring-[rgba(251,133,0,0.25)] disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] transition-all shadow-sm ${
+        large ? 'w-14 h-14 text-2xl' : 'w-11 h-10 text-xl'
+      }`}
+    />
+  );
 
   return (
     <Card variant="knockout" className="relative overflow-hidden">
@@ -85,32 +137,18 @@ export function MatchCardKnockout({
           <span className="text-xs text-[#6B7280]">Local</span>
         </div>
 
-        <div className="flex flex-col items-center px-2">
+        <div className="flex flex-col items-center px-2 min-w-[120px]">
           {isFinished && hasOfficialScore ? (
             <div className="px-4 py-2 bg-[#023047] rounded-2xl mb-2">
               <span className="text-3xl font-black tabular-nums text-white tracking-wider">
-                {match.home_score} - {match.away_score}
+                {displayHomeScore} - {displayAwayScore}
               </span>
             </div>
           ) : (
             <div className="flex items-center gap-2 mb-2">
-              <input
-                type="number"
-                min={0}
-                disabled={isLocked}
-                value={homePrediction ?? ''}
-                onChange={(event) => onHomeScoreChange?.(event.target.value)}
-                className="w-14 h-14 text-center border-2 border-[rgba(251,133,0,0.5)] rounded-2xl text-2xl font-black text-[#1A1A2E] bg-white focus:border-[#FB8500] focus:ring-2 focus:ring-[rgba(251,133,0,0.25)] disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] transition-all shadow-sm"
-              />
+              {renderScoreInput(homePrediction, onHomeScoreChange, isLocked, true)}
               <span className="text-xl font-black text-[#FB8500]">-</span>
-              <input
-                type="number"
-                min={0}
-                disabled={isLocked}
-                value={awayPrediction ?? ''}
-                onChange={(event) => onAwayScoreChange?.(event.target.value)}
-                className="w-14 h-14 text-center border-2 border-[rgba(251,133,0,0.5)] rounded-2xl text-2xl font-black text-[#1A1A2E] bg-white focus:border-[#FB8500] focus:ring-2 focus:ring-[rgba(251,133,0,0.25)] disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] transition-all shadow-sm"
-              />
+              {renderScoreInput(awayPrediction, onAwayScoreChange, isLocked, true)}
             </div>
           )}
           <span className="text-xs font-medium text-[#6B7280]">
@@ -132,6 +170,26 @@ export function MatchCardKnockout({
           <span className="text-xs text-[#6B7280]">Visitante</span>
         </div>
       </div>
+
+      {!isFinished && predictedRegularDraw && (
+        <div className="mt-4 space-y-3 border-t border-[rgba(2,48,71,0.08)] pt-4">
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-sm font-bold text-[#023047]">120&apos;:</span>
+            {renderScoreInput(extraTimeHomePrediction, onExtraTimeHomeChange, isLocked)}
+            <span className="text-lg font-black text-[#FB8500]">-</span>
+            {renderScoreInput(extraTimeAwayPrediction, onExtraTimeAwayChange, isLocked)}
+          </div>
+
+          {predictedExtraTimeDraw && (
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-sm font-bold text-[#023047]">Penales:</span>
+              {renderScoreInput(penaltiesHomePrediction, onPenaltiesHomeChange, isLocked)}
+              <span className="text-lg font-black text-[#FB8500]">-</span>
+              {renderScoreInput(penaltiesAwayPrediction, onPenaltiesAwayChange, isLocked)}
+            </div>
+          )}
+        </div>
+      )}
 
       {!isFinished && onSave && (
         <button

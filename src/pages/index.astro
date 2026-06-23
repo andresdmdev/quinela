@@ -55,7 +55,7 @@ const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
     <MatchList filter="upcoming" limit={3} client:load />
   </section>
 
-  <section>
+  <section class="mb-6">
     <div class="flex items-center justify-between mb-4">
       <h2 class="text-lg font-black text-[#1A1A2E]">Tabla de posiciones</h2>
       <a href="/ranking" class="text-sm font-bold text-[#FB8500] hover:text-[#FFB703] transition-colors">
@@ -63,5 +63,67 @@ const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
       </a>
     </div>
     <Leaderboard client:load />
+  </section>
+
+  <section>
+    <h2 class="text-lg font-black text-[#1A1A2E] mb-4">¿Cómo se puntúa?</h2>
+    <div class="bg-white rounded-3xl p-5 shadow-sm shadow-[rgba(255,183,3,0.1)] border border-[rgba(2,48,71,0.06)] space-y-5">
+      <div>
+        <h3 class="font-bold text-[#023047] mb-2">Fase de Grupos</h3>
+        <p class="text-sm text-[#6B7280] mb-2">
+          Predices el marcador final del partido. Ganas puntos por acertar el resultado.
+        </p>
+        <div class="flex flex-wrap gap-3 text-sm">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[rgba(6,214,160,0.12)] text-[#06A77D] rounded-lg font-semibold">
+            Marcador exacto: 5 pts
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[rgba(255,183,3,0.15)] text-[#9a6b00] rounded-lg font-semibold">
+            Aciertas ganador/empate: 2 pts
+          </span>
+        </div>
+      </div>
+
+      <div class="border-t border-[rgba(2,48,71,0.06)] pt-4">
+        <h3 class="font-bold text-[#023047] mb-2">Eliminatorias - puntos por etapa</h3>
+        <p class="text-sm text-[#6B7280] mb-3">
+          En octavos, cuartos, semis y final ganas puntos por cada etapa que aciertes.
+          Si el partido se define antes, solo suman las etapas que ocurrieron.
+        </p>
+
+        <div class="space-y-3 text-sm">
+          <div class="flex items-start gap-3 p-3 bg-[rgba(2,48,71,0.04)] rounded-xl">
+            <span class="text-lg">⏱️</span>
+            <div>
+              <p class="font-bold text-[#1A1A2E]">90 minutos</p>
+              <p class="text-[#6B7280]">Exacto: 5 pts · Tendencia: 2 pts</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 bg-[rgba(2,48,71,0.04)] rounded-xl">
+            <span class="text-lg">⏱️⏱️</span>
+            <div>
+              <p class="font-bold text-[#1A1A2E]">Tiempo extra (120')</p>
+              <p class="text-[#6B7280]">Exacto: 3 pts · Solo si el partido llega a prórrogas</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3 p-3 bg-[rgba(2,48,71,0.04)] rounded-xl">
+            <span class="text-lg">🥅</span>
+            <div>
+              <p class="font-bold text-[#1A1A2E]">Penales</p>
+              <p class="text-[#6B7280]">Exacto: 6 pts · Solo si el partido se define en penales</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 bg-[rgba(255,183,3,0.1)] rounded-xl text-sm">
+          <p class="font-bold text-[#9a6b00] mb-1">Ejemplo</p>
+          <p class="text-[#6B7280]">
+            Si predices 1-1 en 90', 2-1 en 120' y el partido termina exactamente así, sumas 5 + 3 = 8 puntos.
+            Si además hubo penales y los acertaste, sumas 6 pts más.
+          </p>
+        </div>
+      </div>
+    </div>
   </section>
 </LayoutApp>

@@ -1,7 +1,7 @@
 import { formatUtcMinus5 } from '../../lib/timezone';
 import { Badge } from './ui/Badge';
 import { Card } from './ui/Card';
-import type { Match } from './MatchCard';
+import { getGroupLabel, type Match } from './MatchCard';
 
 interface MatchCardGroupProps {
   match: Match;
@@ -36,7 +36,7 @@ export function MatchCardGroup({
     <Card variant="group" className="relative overflow-hidden">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <Badge variant="primary">Grupo {match.group_name ?? '?'}</Badge>
+          <Badge variant="primary">Grupo {getGroupLabel(match.group_name)}</Badge>
           {isLocked && <Badge variant="danger">Bloqueado</Badge>}
           {hasPrediction && !isLocked && <Badge variant="success">Pronosticado</Badge>}
           {!hasPrediction && !isLocked && <Badge variant="warning">Pendiente</Badge>}

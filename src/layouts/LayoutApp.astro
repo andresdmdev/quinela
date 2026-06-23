@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import BottomNav from '../components/astro/BottomNav.astro';
+import { BottomNav } from '../components/react/BottomNav';
 
 interface Props {
   title?: string;
@@ -28,7 +28,7 @@ const { title = 'Quiniela Mundial 2026' } = Astro.props;
     <main class="max-w-md mx-auto px-4 py-6 pb-28">
       <slot />
     </main>
-    <BottomNav />
+    <BottomNav client:load />
   </body>
 </html>
 
