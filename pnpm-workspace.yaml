@@ -1,0 +1,5 @@
+nodeLinker: hoisted
+
+onlyBuiltDependencies: esbuild,sharp
+
+storeDir: ./.pnpm-store

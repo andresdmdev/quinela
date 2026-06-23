@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+import BottomNav from '../components/astro/BottomNav.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Quiniela Mundial 2026' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#FFFCF9] text-[#1A1A2E] font-sans antialiased min-h-screen">
+    <main class="max-w-md mx-auto px-4 py-6 pb-28">
+      <slot />
+    </main>
+    <BottomNav />
+  </body>
+</html>
+
+<style>
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+</style>

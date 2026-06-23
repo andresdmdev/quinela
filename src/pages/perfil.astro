@@ -1,0 +1,16 @@
+---
+import LayoutApp from '../layouts/LayoutApp.astro';
+import { ProfileForm } from '../components/react/ProfileForm';
+---
+
+<LayoutApp title="Perfil - Quiniela Mundial 2026">
+  <header class="mb-6">
+    <p class="text-sm font-medium text-[#FB8500] mb-1">Configuración</p>
+    <h1 class="text-2xl font-black text-[#1A1A2E]">Tu perfil</h1>
+    <p class="text-sm text-[#6B7280] mt-1">
+      Personaliza tu nombre y avatar para que todos te reconozcan.
+    </p>
+  </header>
+
+  <ProfileForm client:load />
+</LayoutApp>
