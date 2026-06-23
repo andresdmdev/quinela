@@ -2,12 +2,25 @@ import type { APIRoute } from 'astro';
 import { supabase } from '../../../lib/supabase';
 
 /**
+ * Returns a safe redirect path for use after OAuth.
+ * Only relative paths starting with '/' are allowed.
+ */
+function getSafeRedirectPath(redirectTo: string | null): string {
+  if (!redirectTo || !redirectTo.startsWith('/')) {
+    return '/';
+  }
+
+  return redirectTo;
+}
+
+/**
  * Initiates the Google OAuth sign-in flow.
  */
 export const POST: APIRoute = async ({ request, redirect }) => {
   const formData: FormData = await request.formData();
   const provider: string | null = formData.get('provider')?.toString() ?? null;
-  const redirectTo: string = formData.get('redirectTo')?.toString() ?? '/';
+  const rawRedirectTo: string | null = formData.get('redirectTo')?.toString() ?? null;
+  const redirectTo: string = getSafeRedirectPath(rawRedirectTo);
 
   if (provider !== 'google') {
     return new Response('Invalid provider', { status: 400 });

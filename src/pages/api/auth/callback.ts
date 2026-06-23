@@ -4,12 +4,39 @@ import { supabase, supabaseAdmin } from '../../../lib/supabase';
 const ADMIN_EMAIL = 'andresdmf55@gmail.com';
 
 /**
+ * Returns a safe redirect path.
+ * Rejects absolute URLs and localhost redirects in production.
+ */
+function getSafeRedirectPath(redirectTo: string | null, isProduction: boolean): string {
+  const fallback = '/';
+
+  if (!redirectTo) {
+    return fallback;
+  }
+
+  // Only allow relative paths.
+  if (!redirectTo.startsWith('/')) {
+    return fallback;
+  }
+
+  // In production, block any path that points to localhost.
+  if (isProduction && redirectTo.includes('localhost')) {
+    console.warn('Blocked localhost redirect in production:', redirectTo);
+    return fallback;
+  }
+
+  return redirectTo;
+}
+
+/**
  * Handles the OAuth callback from Google and creates a session.
  * Also ensures a profile exists in Supabase for the authenticated user.
  */
 export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   const authCode: string | null = url.searchParams.get('code');
-  const redirectTo: string = url.searchParams.get('redirectTo') ?? '/';
+  const rawRedirectTo: string | null = url.searchParams.get('redirectTo');
+  const isProduction = import.meta.env.PROD;
+  const redirectTo = getSafeRedirectPath(rawRedirectTo, isProduction);
 
   if (!authCode) {
     return new Response('No code provided', { status: 400 });
@@ -28,14 +55,14 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   cookies.set('sb-access-token', accessToken, {
     path: '/',
     httpOnly: true,
-    secure: import.meta.env.PROD,
+    secure: isProduction,
     sameSite: 'lax'
   });
 
   cookies.set('sb-refresh-token', refreshToken, {
     path: '/',
     httpOnly: true,
-    secure: import.meta.env.PROD,
+    secure: isProduction,
     sameSite: 'lax'
   });
 
