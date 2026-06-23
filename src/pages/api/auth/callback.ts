@@ -66,19 +66,26 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
     sameSite: 'lax'
   });
 
-  // Ensure profile exists. Admins are enabled by default, everyone else disabled.
+  // Ensure profile exists. Preserve existing is_enabled status on subsequent logins
+  // so admin activations are not reset. New profiles are enabled only for admins.
   const isAdmin = user.email === ADMIN_EMAIL;
   const displayName = (user.user_metadata?.full_name as string | undefined)
     ?? (user.user_metadata?.name as string | undefined)
     ?? 'Jugador';
   const avatarUrl = (user.user_metadata?.avatar_url as string | undefined) ?? null;
 
+  const { data: existingProfile } = await supabaseAdmin
+    .from('profiles')
+    .select('is_enabled')
+    .eq('id', user.id)
+    .maybeSingle() as { data: { is_enabled: boolean } | null; error: Error | null };
+
   await supabaseAdmin.from('profiles').upsert({
     id: user.id,
     email: user.email,
     display_name: displayName,
     avatar_url: avatarUrl,
-    is_enabled: isAdmin
+    is_enabled: existingProfile?.is_enabled ?? isAdmin
   }, { onConflict: 'id' });
 
   return redirect(redirectTo);
