@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MatchCard, type Match } from './MatchCard';
 import { EmptyState } from './ui/EmptyState';
+import { PredictionModal } from './PredictionModal';
 
 interface MatchListProps {
   filter?: 'upcoming' | 'finished' | 'all';
@@ -31,6 +32,7 @@ export function MatchList({
   const [loading, setLoading] = useState<boolean>(true);
   const [rateLimited, setRateLimited] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
   useEffect((): void => {
     async function loadMatches(): Promise<void> {
@@ -122,8 +124,20 @@ export function MatchList({
           icon="⚽"
         />
       ) : (
-        matches.map((match) => <MatchCard key={match.id} match={match} />)
+        matches.map((match) => (
+          <MatchCard
+            key={match.id}
+            match={match}
+            onClick={() => setSelectedMatch(match)}
+          />
+        ))
       )}
+
+      <PredictionModal
+        match={selectedMatch}
+        isOpen={selectedMatch !== null}
+        onClose={() => setSelectedMatch(null)}
+      />
     </div>
   );
 }

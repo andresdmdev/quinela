@@ -132,7 +132,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 function isPredictionLocked(match: MatchRecord): boolean {
   const now: Date = new Date();
   const matchTime: Date = new Date(match.scheduled_at);
-  const lockTime: Date = new Date(matchTime.getTime() - 60 * 60 * 1000);
+  const lockTime: Date = new Date(matchTime.getTime() - 10 * 60 * 1000);
 
   return now >= lockTime;
 }

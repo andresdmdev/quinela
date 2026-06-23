@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { MatchCardGroup } from './MatchCardGroup';
 import { MatchCardKnockout } from './MatchCardKnockout';
+import { MyPredictionCard } from './MyPredictionCard';
 import { EmptyState } from './ui/EmptyState';
 import { Toast } from './ui/Toast';
+import { PredictionModal } from './PredictionModal';
 import type { Match } from './MatchCard';
 
-type TabType = 'upcoming' | 'locked' | 'finished';
+type TabType = 'upcoming' | 'locked' | 'finished' | 'my_predictions';
 type StageFilter = 'all' | 'GROUP_STAGE' | 'ROUND_OF_16' | 'QUARTER_FINAL' | 'SEMI_FINAL' | 'FINAL';
 
 interface Prediction {
@@ -27,6 +29,18 @@ interface PredictionsApiResponse {
   predictions: Prediction[];
 }
 
+interface PredictionWithPoints {
+  prediction: Prediction;
+  match: Match;
+  points: number;
+  exactScore: boolean;
+  trend: boolean;
+}
+
+interface PredictionsWithPointsApiResponse {
+  predictions_with_points: PredictionWithPoints[];
+}
+
 const MATCHES_CACHE_KEY = 'quinela_matches_cache';
 const PREDICTIONS_CACHE_KEY = 'quinela_predictions_cache';
 const CACHE_TTL_MS = 3 * 60 * 1000;
@@ -40,10 +54,11 @@ export function PredictionForm(): React.JSX.Element {
   const [activeTab, setActiveTab] = useState<TabType>('upcoming');
   const [stageFilter, setStageFilter] = useState<StageFilter>('all');
   const [loading, setLoading] = useState<boolean>(true);
-  const [saving, setSaving] = useState<Record<string, boolean>>({});
   const [rateLimited, setRateLimited] = useState<boolean>(false);
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+  const [predictionsWithPoints, setPredictionsWithPoints] = useState<PredictionWithPoints[]>([]);
 
   useEffect((): void => {
     async function loadData(): Promise<void> {
@@ -95,6 +110,15 @@ export function PredictionForm(): React.JSX.Element {
           );
         }
 
+        promises.push(
+          (async () => {
+            const response = await fetch('/api/predictions/with-points');
+            if (!response.ok) throw new Error('Error loading predictions with points');
+            const data = (await response.json()) as PredictionsWithPointsApiResponse;
+            setPredictionsWithPoints(data.predictions_with_points);
+          })()
+        );
+
         await Promise.all(promises);
 
         const predictionsMap: Record<string, Prediction> = {};
@@ -124,73 +148,25 @@ export function PredictionForm(): React.JSX.Element {
     void loadData();
   }, []);
 
-  function handleScoreChange(
-    matchId: string,
-    field: 'home' | 'away' | 'extraTimeHome' | 'extraTimeAway' | 'penaltiesHome' | 'penaltiesAway',
-    value: string
-  ): void {
-    const numberValue = value === '' ? null : parseInt(value, 10);
-
-    setPredictions((previous) => {
-      const current = previous[matchId] ?? {
-        match_id: matchId,
-        home_score: null,
-        away_score: null,
-        extra_time_home: null,
-        extra_time_away: null,
-        penalties_home: null,
-        penalties_away: null
-      };
-
-      const updated: Prediction = { ...current };
-
-      if (field === 'home') updated.home_score = numberValue;
-      if (field === 'away') updated.away_score = numberValue;
-      if (field === 'extraTimeHome') updated.extra_time_home = numberValue;
-      if (field === 'extraTimeAway') updated.extra_time_away = numberValue;
-      if (field === 'penaltiesHome') updated.penalties_home = numberValue;
-      if (field === 'penaltiesAway') updated.penalties_away = numberValue;
-
-      return { ...previous, [matchId]: updated };
-    });
+  function handleOpenPrediction(match: Match): void {
+    setSelectedMatch(match);
   }
 
-  async function savePrediction(matchId: string): Promise<void> {
-    const prediction = predictions[matchId];
-
-    if (!prediction || prediction.home_score === null || prediction.away_score === null) {
-      setToast({ message: 'Ingresa ambos marcadores', type: 'error' });
-      return;
-    }
-
-    setSaving((previous) => ({ ...previous, [matchId]: true }));
-
+  async function handleSaved(): Promise<void> {
     try {
-      const response = await fetch('/api/predictions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          matchId,
-          homeScore: prediction.home_score,
-          awayScore: prediction.away_score,
-          extraTimeHome: prediction.extra_time_home,
-          extraTimeAway: prediction.extra_time_away,
-          penaltiesHome: prediction.penalties_home,
-          penaltiesAway: prediction.penalties_away
-        })
-      });
+      const [response, withPointsResponse] = await Promise.all([
+        fetch('/api/predictions'),
+        fetch('/api/predictions/with-points')
+      ]);
 
-      if (!response.ok) {
-        const data = (await response.json()) as { error?: string };
-        throw new Error(data.error ?? 'Error saving prediction');
-      }
+      if (!response.ok) throw new Error('Error refreshing predictions');
+      if (!withPointsResponse.ok) throw new Error('Error refreshing predictions with points');
 
-      const predictionsResponse = await fetch('/api/predictions');
-      const predictionsData = (await predictionsResponse.json()) as PredictionsApiResponse;
-      sessionStorage.setItem(PREDICTIONS_CACHE_KEY, JSON.stringify(predictionsData));
+      const data = (await response.json()) as PredictionsApiResponse;
+      sessionStorage.setItem(PREDICTIONS_CACHE_KEY, JSON.stringify(data));
 
       const predictionsMap: Record<string, Prediction> = {};
-      for (const p of predictionsData.predictions) {
+      for (const p of data.predictions) {
         predictionsMap[p.match_id] = {
           match_id: p.match_id,
           home_score: p.home_score,
@@ -203,19 +179,20 @@ export function PredictionForm(): React.JSX.Element {
       }
       setPredictions(predictionsMap);
 
+      const withPointsData = (await withPointsResponse.json()) as PredictionsWithPointsApiResponse;
+      setPredictionsWithPoints(withPointsData.predictions_with_points);
+
       setToast({ message: 'Pronóstico guardado', type: 'success' });
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error desconocido';
       setToast({ message, type: 'error' });
-    } finally {
-      setSaving((previous) => ({ ...previous, [matchId]: false }));
     }
   }
 
   function isLocked(match: Match): boolean {
     const now = new Date();
     const matchTime = new Date(match.scheduled_at);
-    const lockTime = new Date(matchTime.getTime() - 60 * 60 * 1000);
+    const lockTime = new Date(matchTime.getTime() - 10 * 60 * 1000);
 
     if (now >= lockTime) return true;
 
@@ -242,12 +219,19 @@ export function PredictionForm(): React.JSX.Element {
     return filtered.sort((a, b) => new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime());
   }, [matches, activeTab, stageFilter]);
 
+  const filteredMyPredictions = useMemo(() => {
+    return predictionsWithPoints
+      .filter((pw) => stageFilter === 'all' || pw.match.stage === stageFilter)
+      .sort((a, b) => new Date(b.match.scheduled_at).getTime() - new Date(a.match.scheduled_at).getTime());
+  }, [predictionsWithPoints, stageFilter]);
+
   const pendingCount = useMemo(() => {
     return matches.filter((m) => m.status === 'TIMED' && !isLocked(m) && !predictions[m.id]).length;
   }, [matches, predictions]);
 
   const tabs: { key: TabType; label: string; count?: number }[] = [
     { key: 'upcoming', label: 'Próximos', count: pendingCount },
+    { key: 'my_predictions', label: 'Mis Pronósticos' },
     { key: 'locked', label: 'Bloqueados' },
     { key: 'finished', label: 'Finalizados' }
   ];
@@ -328,7 +312,29 @@ export function PredictionForm(): React.JSX.Element {
         </div>
       </div>
 
-      {filteredMatches.length === 0 ? (
+      {activeTab === 'my_predictions' ? (
+        filteredMyPredictions.length === 0 ? (
+          <EmptyState
+            title="No tienes pronósticos"
+            description="Aún no has realizado ningún pronóstico. Ve a la pestaña Próximos para empezar."
+            icon="⚽"
+          />
+        ) : (
+          <div className="space-y-4">
+            {filteredMyPredictions.map((pw) => (
+              <MyPredictionCard
+                key={pw.match.id}
+                match={pw.match}
+                prediction={pw.prediction}
+                points={pw.points}
+                exactScore={pw.exactScore}
+                trend={pw.trend}
+                onClick={() => handleOpenPrediction(pw.match)}
+              />
+            ))}
+          </div>
+        )
+      ) : filteredMatches.length === 0 ? (
         <EmptyState
           title="No hay partidos en esta sección"
           description={
@@ -353,10 +359,7 @@ export function PredictionForm(): React.JSX.Element {
               awayPrediction: prediction?.away_score ?? null,
               isLocked: locked,
               hasPrediction,
-              onHomeScoreChange: (value: string) => handleScoreChange(match.id, 'home', value),
-              onAwayScoreChange: (value: string) => handleScoreChange(match.id, 'away', value),
-              onSave: () => void savePrediction(match.id),
-              isSaving: saving[match.id] ?? false
+              onClick: () => handleOpenPrediction(match)
             };
 
             return match.stage === 'GROUP_STAGE' ? (
@@ -369,23 +372,18 @@ export function PredictionForm(): React.JSX.Element {
                 extraTimeAwayPrediction={prediction?.extra_time_away ?? null}
                 penaltiesHomePrediction={prediction?.penalties_home ?? null}
                 penaltiesAwayPrediction={prediction?.penalties_away ?? null}
-                onExtraTimeHomeChange={(value: string) =>
-                  handleScoreChange(match.id, 'extraTimeHome', value)
-                }
-                onExtraTimeAwayChange={(value: string) =>
-                  handleScoreChange(match.id, 'extraTimeAway', value)
-                }
-                onPenaltiesHomeChange={(value: string) =>
-                  handleScoreChange(match.id, 'penaltiesHome', value)
-                }
-                onPenaltiesAwayChange={(value: string) =>
-                  handleScoreChange(match.id, 'penaltiesAway', value)
-                }
               />
             );
           })}
         </div>
       )}
+
+      <PredictionModal
+        match={selectedMatch}
+        isOpen={selectedMatch !== null}
+        onClose={() => setSelectedMatch(null)}
+        onSaved={handleSaved}
+      />
     </div>
   );
 }

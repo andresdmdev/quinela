@@ -24,6 +24,7 @@ export interface Match {
 interface MatchCardProps {
   match: Match;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 /**
@@ -90,7 +91,8 @@ export function getGroupLabel(groupName: string | null | undefined): string {
 /**
  * Base match card component with World Cup styling.
  */
-export function MatchCard({ match, children }: MatchCardProps): React.JSX.Element {
+export function MatchCard({ match, children, onClick }: MatchCardProps): React.JSX.Element {
+  const clickable = onClick !== undefined;
   const status = getMatchStatus(match.status);
   const stageLabel = getStageLabel(match.stage);
   const displayHomeScore = match.home_final_score ?? match.home_score;
@@ -98,7 +100,13 @@ export function MatchCard({ match, children }: MatchCardProps): React.JSX.Elemen
   const hasScore = displayHomeScore !== null && displayAwayScore !== null;
 
   return (
-    <Card variant="default" className="overflow-hidden">
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={!clickable}
+      className={`w-full text-left ${clickable ? 'cursor-pointer' : 'cursor-default'}`}
+    >
+      <Card variant="default" className={`overflow-hidden ${clickable ? 'hover:shadow-lg hover:border-[rgba(255,183,3,0.3)] transition-all' : ''}`}>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <Badge variant="primary">{stageLabel}</Badge>
@@ -146,5 +154,6 @@ export function MatchCard({ match, children }: MatchCardProps): React.JSX.Elemen
 
       {children && <div className="mt-4 pt-4 border-t border-[rgba(2,48,71,0.06)]">{children}</div>}
     </Card>
+    </button>
   );
 }
