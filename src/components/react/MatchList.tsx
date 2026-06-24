@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MatchCard, type Match } from './MatchCard';
 import { EmptyState } from './ui/EmptyState';
 import { PredictionModal } from './PredictionModal';
@@ -8,6 +8,7 @@ interface MatchListProps {
   limit?: number;
   emptyTitle?: string;
   emptyDescription?: string;
+  showSearch?: boolean;
 }
 
 interface MatchApiResponse {
@@ -26,13 +27,15 @@ export function MatchList({
   filter = 'all',
   limit,
   emptyTitle = 'No hay partidos disponibles',
-  emptyDescription = 'Vuelve más tarde para ver los próximos encuentros.'
+  emptyDescription = 'Vuelve más tarde para ver los próximos encuentros.',
+  showSearch = false
 }: MatchListProps): React.JSX.Element {
   const [matches, setMatches] = useState<Match[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [rateLimited, setRateLimited] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   useEffect((): void => {
     async function loadMatches(): Promise<void> {
@@ -92,6 +95,16 @@ export function MatchList({
     void loadMatches();
   }, [filter, limit]);
 
+  const filteredMatches = useMemo(() => {
+    if (!searchQuery.trim()) return matches;
+    const query = searchQuery.toLowerCase();
+    return matches.filter(
+      (m) =>
+        m.home_team.toLowerCase().includes(query) ||
+        m.away_team.toLowerCase().includes(query)
+    );
+  }, [matches, searchQuery]);
+
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -117,14 +130,39 @@ export function MatchList({
         </div>
       )}
 
-      {matches.length === 0 ? (
+      {showSearch && (
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Buscar por equipo..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full px-4 py-3 pl-10 rounded-xl border border-[rgba(2,48,71,0.12)] bg-white text-sm font-medium text-[#1A1A2E] placeholder-[#9CA3AF] focus:border-[#FFB703] focus:ring-2 focus:ring-[rgba(255,183,3,0.25)]"
+          />
+          <svg
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#9CA3AF]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+        </div>
+      )}
+
+      {filteredMatches.length === 0 ? (
         <EmptyState
-          title={emptyTitle}
-          description={emptyDescription}
+          title={searchQuery ? 'Sin resultados' : emptyTitle}
+          description={searchQuery ? `No hay partidos que coincidan con "${searchQuery}"` : emptyDescription}
           icon="⚽"
         />
       ) : (
-        matches.map((match) => (
+        filteredMatches.map((match) => (
           <MatchCard
             key={match.id}
             match={match}
