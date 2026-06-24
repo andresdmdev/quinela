@@ -9,6 +9,7 @@ interface MatchCardGroupProps {
   awayPrediction?: number | null;
   isLocked?: boolean;
   hasPrediction?: boolean;
+  showOpen?: boolean;
   onClick?: () => void;
 }
 
@@ -21,6 +22,7 @@ export function MatchCardGroup({
   awayPrediction,
   isLocked = false,
   hasPrediction = false,
+  showOpen = false,
   onClick
 }: MatchCardGroupProps): React.JSX.Element {
   const isFinished = match.status === 'FINISHED';
@@ -30,6 +32,22 @@ export function MatchCardGroup({
   const displayHomeScore = isFinished && hasOfficialScore ? match.home_score : hasPrediction ? homePrediction : null;
   const displayAwayScore = isFinished && hasOfficialScore ? match.away_score : hasPrediction ? awayPrediction : null;
   const hasDisplayScore = displayHomeScore !== null && displayAwayScore !== null;
+
+  function getStatusBadge(): React.JSX.Element {
+    if (isFinished) {
+      return <Badge variant="default">Finalizado</Badge>;
+    }
+    if (isLocked) {
+      return <Badge variant="danger">Bloqueado</Badge>;
+    }
+    if (showOpen && hasPrediction) {
+      return <Badge variant="success">Abierto</Badge>;
+    }
+    if (hasPrediction) {
+      return <Badge variant="success">Pronosticado</Badge>;
+    }
+    return <Badge variant="warning">Sin pronóstico</Badge>;
+  }
 
   return (
     <button
@@ -45,9 +63,7 @@ export function MatchCardGroup({
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <Badge variant="primary">Grupo {getGroupLabel(match.group_name)}</Badge>
-            {isLocked && <Badge variant="danger">Bloqueado</Badge>}
-            {hasPrediction && !isLocked && <Badge variant="success">Pronosticado</Badge>}
-            {!hasPrediction && !isLocked && <Badge variant="warning">Pendiente</Badge>}
+            {getStatusBadge()}
           </div>
           <span className="text-xs font-medium text-[#6B7280]">
             {formatUtcMinus5(match.scheduled_at)}

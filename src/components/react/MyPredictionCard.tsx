@@ -18,6 +18,7 @@ interface MyPredictionCardProps {
   points: number;
   exactScore: boolean;
   trend: boolean;
+  isLocked?: boolean;
   onClick: () => void;
 }
 
@@ -31,6 +32,7 @@ export function MyPredictionCard({
   points,
   exactScore,
   trend,
+  isLocked = false,
   onClick
 }: MyPredictionCardProps): React.JSX.Element {
   const isFinished = match.status === 'FINISHED';
@@ -41,6 +43,16 @@ export function MyPredictionCard({
 
   const predictedHomeScore = prediction.home_score ?? 0;
   const predictedAwayScore = prediction.away_score ?? 0;
+
+  function getStatusBadge(): React.JSX.Element {
+    if (isFinished) {
+      return <Badge variant="default">Finalizado</Badge>;
+    }
+    if (isLocked) {
+      return <Badge variant="danger">Bloqueado</Badge>;
+    }
+    return <Badge variant="success">Abierto</Badge>;
+  }
 
   function getPointsBadge(): { label: string; variant: 'default' | 'primary' | 'success' | 'warning' | 'danger' } {
     if (!isFinished) {
@@ -73,6 +85,7 @@ export function MyPredictionCard({
             ) : (
               <Badge variant="secondary">{getStageLabel(match.stage)}</Badge>
             )}
+            {getStatusBadge()}
           </div>
           <Badge variant={pointsBadge.variant}>{pointsBadge.label}</Badge>
         </div>

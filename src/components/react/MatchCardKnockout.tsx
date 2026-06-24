@@ -13,6 +13,7 @@ interface MatchCardKnockoutProps {
   penaltiesAwayPrediction?: number | null;
   isLocked?: boolean;
   hasPrediction?: boolean;
+  showOpen?: boolean;
   onClick?: () => void;
 }
 
@@ -29,6 +30,7 @@ export function MatchCardKnockout({
   penaltiesAwayPrediction,
   isLocked = false,
   hasPrediction = false,
+  showOpen = false,
   onClick
 }: MatchCardKnockoutProps): React.JSX.Element {
   const isFinished = match.status === 'FINISHED';
@@ -61,6 +63,22 @@ export function MatchCardKnockout({
     }
   }
 
+  function getStatusBadge(): React.JSX.Element {
+    if (isFinished) {
+      return <Badge variant="default">Finalizado</Badge>;
+    }
+    if (isLocked) {
+      return <Badge variant="danger">Bloqueado</Badge>;
+    }
+    if (showOpen && hasPrediction) {
+      return <Badge variant="success">Abierto</Badge>;
+    }
+    if (hasPrediction) {
+      return <Badge variant="success">Pronosticado</Badge>;
+    }
+    return <Badge variant="warning">Sin pronóstico</Badge>;
+  }
+
   const roundLabel = getRoundLabel(match.stage);
   const isFinal = match.stage === 'FINAL';
 
@@ -85,9 +103,7 @@ export function MatchCardKnockout({
             {roundLabel}
           </Badge>
           <div className="flex items-center gap-2">
-            {isLocked && <Badge variant="danger">Bloqueado</Badge>}
-            {hasPrediction && !isLocked && <Badge variant="success">Pronosticado</Badge>}
-            {!hasPrediction && !isLocked && <Badge variant="warning">Pendiente</Badge>}
+            {getStatusBadge()}
           </div>
         </div>
 

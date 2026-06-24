@@ -329,6 +329,7 @@ export function PredictionForm(): React.JSX.Element {
                 points={pw.points}
                 exactScore={pw.exactScore}
                 trend={pw.trend}
+                isLocked={isLocked(pw.match)}
                 onClick={() => handleOpenPrediction(pw.match)}
               />
             ))}

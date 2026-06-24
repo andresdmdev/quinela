@@ -285,7 +285,7 @@ export function PredictionModal({
   }
 
   const scoreInputClass =
-    'w-14 h-14 text-center border-2 border-[rgba(255,183,3,0.5)] rounded-2xl text-2xl font-black text-[#1A1A2E] bg-white focus:border-[#FFB703] focus:ring-2 focus:ring-[rgba(255,183,3,0.25)] disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] transition-all';
+    'w-14 h-14 text-center border-2 border-[rgba(255,183,3,0.5)] rounded-xl text-2xl font-black text-[#1A1A2E] bg-white focus:border-[#FFB703] focus:ring-2 focus:ring-[rgba(255,183,3,0.25)] disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] transition-all';
 
   if (!isOpen || !match) {
     return null;
@@ -330,9 +330,9 @@ export function PredictionModal({
             </span>
           </div>
 
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-center gap-4">
             <div className="flex flex-col items-center flex-1 min-w-0">
-              <div className="w-16 h-16 rounded-2xl bg-white shadow-sm shadow-[rgba(2,48,71,0.08)] p-2 mb-2 border border-[rgba(2,48,71,0.06)]">
+              <div className="w-16 h-16 rounded-xl bg-white shadow-sm shadow-[rgba(2,48,71,0.08)] p-2 mb-2 border border-[rgba(2,48,71,0.06)]">
                 <img
                   src={match.home_flag}
                   alt={match.home_team}
@@ -350,7 +350,7 @@ export function PredictionModal({
             </div>
 
             <div className="flex flex-col items-center flex-1 min-w-0">
-              <div className="w-16 h-16 rounded-2xl bg-white shadow-sm shadow-[rgba(2,48,71,0.08)] p-2 mb-2 border border-[rgba(2,48,71,0.06)]">
+              <div className="w-16 h-16 rounded-xl bg-white shadow-sm shadow-[rgba(2,48,71,0.08)] p-2 mb-2 border border-[rgba(2,48,71,0.06)]">
                 <img
                   src={match.away_flag}
                   alt={match.away_team}
@@ -381,25 +381,8 @@ export function PredictionModal({
             </div>
           ) : (
             <>
-              {details && hasLineupData(details.homeTeam, details.awayTeam) ? (
+              {details && hasLineupData(details.homeTeam, details.awayTeam) && (
                 <LineupSection homeTeam={details.homeTeam} awayTeam={details.awayTeam} />
-              ) : details ? (
-                <div className="bg-[rgba(2,48,71,0.04)] rounded-xl p-4 text-center">
-                  <p className="text-sm text-[#6B7280]">
-                    Alineaciones no publicadas aún. football-data.org solo las libera cerca del horario del partido.
-                  </p>
-                  {details.venue && (
-                    <p className="text-sm text-[#6B7280] mt-2">
-                      <span className="font-semibold">Estadio:</span> {details.venue}
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <div className="bg-[rgba(2,48,71,0.04)] rounded-xl p-4 text-center">
-                  <p className="text-sm text-[#6B7280]">
-                    No se pudieron cargar los detalles del partido.
-                  </p>
-                </div>
               )}
 
               {details && details.referees && details.referees.length > 0 && (
@@ -412,9 +395,9 @@ export function PredictionModal({
                 </h3>
 
                 {locked ? (
-                  <div className="text-center py-4">
-                    <p className="text-[#6B7280] font-medium">
-                      Las predicciones para este partido están cerradas.
+                  <div className="text-center py-3">
+                    <p className="text-xs text-[#9CA3AF] italic">
+                      Pronóstico bloqueado
                     </p>
                   </div>
                 ) : (
