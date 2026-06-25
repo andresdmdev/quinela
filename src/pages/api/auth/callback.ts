@@ -67,18 +67,22 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
   });
 
   // Ensure profile exists. Preserve existing is_enabled status on subsequent logins
-  // so admin activations are not reset. New profiles are enabled only for admins.
+  // so admin activations are not reset. Only set display_name on first login.
   const isAdmin = user.email === ADMIN_EMAIL;
-  const displayName = (user.user_metadata?.full_name as string | undefined)
-    ?? (user.user_metadata?.name as string | undefined)
-    ?? 'Jugador';
   const avatarUrl = (user.user_metadata?.avatar_url as string | undefined) ?? null;
 
   const { data: existingProfile } = await supabaseAdmin
     .from('profiles')
-    .select('is_enabled')
+    .select('is_enabled, display_name')
     .eq('id', user.id)
-    .maybeSingle() as { data: { is_enabled: boolean } | null; error: Error | null };
+    .maybeSingle() as { data: { is_enabled: boolean; display_name: string | null } | null; error: Error | null };
+
+  const isNewUser = !existingProfile;
+  const displayName = isNewUser
+    ? ((user.user_metadata?.full_name as string | undefined)
+        ?? (user.user_metadata?.name as string | undefined)
+        ?? 'Jugador')
+    : existingProfile.display_name;
 
   await supabaseAdmin.from('profiles').upsert({
     id: user.id,
