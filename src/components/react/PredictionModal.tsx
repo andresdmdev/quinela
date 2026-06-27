@@ -63,11 +63,13 @@ function isMatchLocked(match: Match): boolean {
  */
 function getRoundLabel(stage: string): string {
   switch (stage) {
-    case 'ROUND_OF_16':
+    case 'LAST_32':
+      return 'Ronda de 32';
+    case 'LAST_16':
       return 'Octavos de Final';
-    case 'QUARTER_FINAL':
+    case 'QUARTER_FINALS':
       return 'Cuartos de Final';
-    case 'SEMI_FINAL':
+    case 'SEMI_FINALS':
       return 'Semifinal';
     case 'THIRD_PLACE':
       return 'Tercer Lugar';

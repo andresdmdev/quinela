@@ -8,7 +8,7 @@ import { PredictionModal } from './PredictionModal';
 import type { Match } from './MatchCard';
 
 type TabType = 'upcoming' | 'locked' | 'finished' | 'my_predictions';
-type StageFilter = 'all' | 'GROUP_STAGE' | 'ROUND_OF_16' | 'QUARTER_FINAL' | 'SEMI_FINAL' | 'FINAL';
+type StageFilter = 'all' | 'GROUP_STAGE' | 'LAST_32' | 'LAST_16' | 'QUARTER_FINALS' | 'SEMI_FINALS' | 'FINAL';
 
 interface Prediction {
   match_id: string;
@@ -239,9 +239,10 @@ export function PredictionForm(): React.JSX.Element {
   const stageOptions: { value: StageFilter; label: string }[] = [
     { value: 'all', label: 'Todas las fases' },
     { value: 'GROUP_STAGE', label: 'Fase de Grupos' },
-    { value: 'ROUND_OF_16', label: 'Octavos' },
-    { value: 'QUARTER_FINAL', label: 'Cuartos' },
-    { value: 'SEMI_FINAL', label: 'Semis' },
+    { value: 'LAST_32', label: 'Ronda de 32' },
+    { value: 'LAST_16', label: 'Octavos' },
+    { value: 'QUARTER_FINALS', label: 'Cuartos' },
+    { value: 'SEMI_FINALS', label: 'Semis' },
     { value: 'FINAL', label: 'Final' }
   ];
 
