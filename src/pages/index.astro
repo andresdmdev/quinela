@@ -84,40 +84,40 @@ const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
             Tendencia: 2 pts
           </span>
         </div>
-        <div class="overflow-x-auto">
-          <table class="w-full text-sm">
+        <div class="overflow-x-auto -mx-5 px-5">
+          <table class="w-full min-w-[400px] text-sm">
             <thead>
               <tr class="border-b border-[rgba(2,48,71,0.08)]">
-                <th class="text-left py-2 font-semibold text-[#1A1A2E]">Tu prediction</th>
-                <th class="text-left py-2 font-semibold text-[#1A1A2E]">Resultado real</th>
-                <th class="text-center py-2 font-semibold text-[#1A1A2E]">Puntos</th>
+                <th class="text-left py-2 font-semibold text-[#1A1A2E] whitespace-nowrap">Tu prónostico</th>
+                <th class="text-left py-2 font-semibold text-[#1A1A2E] whitespace-nowrap">Resultado</th>
+                <th class="text-center py-2 font-semibold text-[#1A1A2E]">Pts</th>
                 <th class="text-left py-2 font-semibold text-[#1A1A2E]">Razón</th>
               </tr>
             </thead>
             <tbody class="text-[#6B7280]">
               <tr class="border-b border-[rgba(2,48,71,0.04)]">
-                <td class="py-2 font-mono">2-1</td>
-                <td class="py-2 font-mono">2-1</td>
-                <td class="py-2 text-center"><span class="font-bold text-[#06A77D]">5 pts</span></td>
+                <td class="py-2 font-mono whitespace-nowrap">2-1</td>
+                <td class="py-2 font-mono whitespace-nowrap">2-1</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#06A77D]">5</span></td>
                 <td class="py-2">Marcador exacto</td>
               </tr>
               <tr class="border-b border-[rgba(2,48,71,0.04)]">
-                <td class="py-2 font-mono">2-1</td>
-                <td class="py-2 font-mono">1-0</td>
-                <td class="py-2 text-center"><span class="font-bold text-[#9a6b00]">2 pts</span></td>
-                <td class="py-2">Acertaste que Local gana</td>
+                <td class="py-2 font-mono whitespace-nowrap">2-1</td>
+                <td class="py-2 font-mono whitespace-nowrap">1-0</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#9a6b00]">2</span></td>
+                <td class="py-2">Acertaste Local gana</td>
               </tr>
               <tr class="border-b border-[rgba(2,48,71,0.04)]">
-                <td class="py-2 font-mono">2-1</td>
-                <td class="py-2 font-mono">2-2</td>
-                <td class="py-2 text-center"><span class="font-bold text-[#9a6b00]">2 pts</span></td>
-                <td class="py-2">Acertaste que hay empate</td>
+                <td class="py-2 font-mono whitespace-nowrap">2-1</td>
+                <td class="py-2 font-mono whitespace-nowrap">2-2</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#9a6b00]">2</span></td>
+                <td class="py-2">Acertaste empate</td>
               </tr>
               <tr>
-                <td class="py-2 font-mono">2-1</td>
-                <td class="py-2 font-mono">3-1</td>
-                <td class="py-2 text-center"><span class="font-bold text-[#EF476F]">0 pts</span></td>
-                <td class="py-2">Fallaste - predijiste Local pero Visitante ganó</td>
+                <td class="py-2 font-mono whitespace-nowrap">2-1</td>
+                <td class="py-2 font-mono whitespace-nowrap">3-1</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#EF476F]">0</span></td>
+                <td class="py-2">Fallaste</td>
               </tr>
             </tbody>
           </table>
