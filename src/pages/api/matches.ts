@@ -83,27 +83,41 @@ export const GET: APIRoute = async () => {
       );
     }
 
-    const upsertPayload = apiResponse.matches.map((match: FootballMatch): MatchPayload => {
+    const existingByExternalId = new Map<string, MatchRecord>();
+    if (cachedMatches) {
+      for (const m of cachedMatches) {
+        existingByExternalId.set(m.external_id, m);
+      }
+    }
+
+    const upsertPayload: MatchPayload[] = [];
+
+    for (const match of apiResponse.matches) {
       const scheduledAt: string = match.utcDate;
       const utcMinus5At: Date = toUtcMinus5(scheduledAt);
 
-      if (!match.homeTeam || !match.awayTeam) {
+      const apiHomeTeam = match.homeTeam?.name ?? null;
+      const apiAwayTeam = match.awayTeam?.name ?? null;
+      const apiHomeFlag = match.homeTeam?.crest ?? null;
+      const apiAwayFlag = match.awayTeam?.crest ?? null;
+
+      const existing = existingByExternalId.get(String(match.id));
+
+      if (!apiHomeTeam || !apiAwayTeam) {
         console.warn(`Teams not yet defined for match ${match.id}, stage: ${match.stage}`);
       }
 
-      // fullTime is the final score (includes extra time and penalties).
-      // regularTime holds the 90-minute score when extra time/penalties occurred.
       const regularHome = match.score.regularTime?.home ?? match.score.fullTime.home;
       const regularAway = match.score.regularTime?.away ?? match.score.fullTime.away;
 
-      return {
+      upsertPayload.push({
         external_id: String(match.id),
         stage: match.stage,
         group_name: match.group,
-        home_team: match.homeTeam?.name ?? null,
-        away_team: match.awayTeam?.name ?? null,
-        home_flag: match.homeTeam?.crest ?? null,
-        away_flag: match.awayTeam?.crest ?? null,
+        home_team: apiHomeTeam ?? existing?.home_team ?? null,
+        away_team: apiAwayTeam ?? existing?.away_team ?? null,
+        home_flag: apiHomeFlag ?? existing?.home_flag ?? null,
+        away_flag: apiAwayFlag ?? existing?.away_flag ?? null,
         home_score: regularHome,
         away_score: regularAway,
         home_final_score: match.score.fullTime.home,
@@ -118,8 +132,8 @@ export const GET: APIRoute = async () => {
         scheduled_at: scheduledAt,
         utc_minus_5_at: utcMinus5At.toISOString(),
         last_synced_at: new Date().toISOString()
-      };
-    });
+      });
+    }
 
     const { data: freshMatches, error: upsertError } = await supabaseAdmin
       .from('matches')
