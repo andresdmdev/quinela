@@ -66,62 +66,196 @@ const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
   </section>
 
   <section>
-    <h2 class="text-lg font-black text-[#1A1A2E] mb-4">¿Cómo se puntúa?</h2>
-    <div class="bg-white rounded-3xl p-5 shadow-sm shadow-[rgba(255,183,3,0.1)] border border-[rgba(2,48,71,0.06)] space-y-5">
+    <h2 class="text-lg font-black text-[#1A1A2E] mb-4">Reglas de puntuación</h2>
+    <div class="bg-white rounded-3xl p-5 shadow-sm shadow-[rgba(255,183,3,0.1)] border border-[rgba(2,48,71,0.06)] space-y-6">
       <div>
-        <h3 class="font-bold text-[#023047] mb-2">Fase de Grupos</h3>
-        <p class="text-sm text-[#6B7280] mb-2">
-          Predices el marcador final del partido. Ganas puntos por acertar el resultado.
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xl">⚽</span>
+          <h3 class="font-bold text-[#023047] text-base">Fase de Grupos</h3>
+        </div>
+        <p class="text-sm text-[#6B7280] mb-3">
+          Solo se evalúa el resultado de los <strong>90 minutos</strong>.
         </p>
-        <div class="flex flex-wrap gap-3 text-sm">
+        <div class="flex flex-wrap gap-3 text-sm mb-4">
           <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[rgba(6,214,160,0.12)] text-[#06A77D] rounded-lg font-semibold">
             Marcador exacto: 5 pts
           </span>
           <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[rgba(255,183,3,0.15)] text-[#9a6b00] rounded-lg font-semibold">
-            Aciertas ganador/empate: 2 pts
+            Tendencia: 2 pts
           </span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="border-b border-[rgba(2,48,71,0.08)]">
+                <th class="text-left py-2 font-semibold text-[#1A1A2E]">Tu prediction</th>
+                <th class="text-left py-2 font-semibold text-[#1A1A2E]">Resultado real</th>
+                <th class="text-center py-2 font-semibold text-[#1A1A2E]">Puntos</th>
+                <th class="text-left py-2 font-semibold text-[#1A1A2E]">Razón</th>
+              </tr>
+            </thead>
+            <tbody class="text-[#6B7280]">
+              <tr class="border-b border-[rgba(2,48,71,0.04)]">
+                <td class="py-2 font-mono">2-1</td>
+                <td class="py-2 font-mono">2-1</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#06A77D]">5 pts</span></td>
+                <td class="py-2">Marcador exacto</td>
+              </tr>
+              <tr class="border-b border-[rgba(2,48,71,0.04)]">
+                <td class="py-2 font-mono">2-1</td>
+                <td class="py-2 font-mono">1-0</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#9a6b00]">2 pts</span></td>
+                <td class="py-2">Acertaste que Local gana</td>
+              </tr>
+              <tr class="border-b border-[rgba(2,48,71,0.04)]">
+                <td class="py-2 font-mono">2-1</td>
+                <td class="py-2 font-mono">2-2</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#9a6b00]">2 pts</span></td>
+                <td class="py-2">Acertaste que hay empate</td>
+              </tr>
+              <tr>
+                <td class="py-2 font-mono">2-1</td>
+                <td class="py-2 font-mono">3-1</td>
+                <td class="py-2 text-center"><span class="font-bold text-[#EF476F]">0 pts</span></td>
+                <td class="py-2">Fallaste - predijiste Local pero Visitante ganó</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <div class="border-t border-[rgba(2,48,71,0.06)] pt-4">
-        <h3 class="font-bold text-[#023047] mb-2">Eliminatorias - puntos por etapa</h3>
-        <p class="text-sm text-[#6B7280] mb-3">
-          En octavos, cuartos, semis y final ganas puntos por cada etapa que aciertes.
-          Si el partido se define antes, solo suman las etapas que ocurrieron.
+      <div class="border-t border-[rgba(2,48,71,0.06)] pt-5">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="text-xl">🏆</span>
+          <h3 class="font-bold text-[#023047] text-base">Eliminatorias</h3>
+        </div>
+        <p class="text-sm text-[#6B7280] mb-4">
+          Se evalúa <strong>cada etapa</strong> independientemente. Solo suman las etapas que el partido alcanzó.
         </p>
 
-        <div class="space-y-3 text-sm">
-          <div class="flex items-start gap-3 p-3 bg-[rgba(2,48,71,0.04)] rounded-xl">
-            <span class="text-lg">⏱️</span>
-            <div>
-              <p class="font-bold text-[#1A1A2E]">90 minutos</p>
-              <p class="text-[#6B7280]">Exacto: 5 pts · Tendencia: 2 pts</p>
-            </div>
+        <div class="grid grid-cols-3 gap-3 text-sm mb-5">
+          <div class="p-3 bg-[rgba(2,48,71,0.04)] rounded-xl text-center">
+            <p class="text-2xl mb-1">⏱️</p>
+            <p class="font-bold text-[#1A1A2E]">90 min</p>
+            <p class="text-[#06A77D] font-semibold">Exacto: 5 pts</p>
+            <p class="text-[#6B7280]">Tendencia: 2 pts</p>
           </div>
-
-          <div class="flex items-start gap-3 p-3 bg-[rgba(2,48,71,0.04)] rounded-xl">
-            <span class="text-lg">⏱️⏱️</span>
-            <div>
-              <p class="font-bold text-[#1A1A2E]">Tiempo extra (120')</p>
-              <p class="text-[#6B7280]">Exacto: 3 pts · Solo si el partido llega a prórrogas</p>
-            </div>
+          <div class="p-3 bg-[rgba(2,48,71,0.04)] rounded-xl text-center">
+            <p class="text-2xl mb-1">⏱️⏱️</p>
+            <p class="font-bold text-[#1A1A2E]">120 min</p>
+            <p class="text-[#06A77D] font-semibold">Exacto: 3 pts</p>
+            <p class="text-[#6B7280]">Tendencia: 2 pts</p>
           </div>
-
-          <div class="flex items-start gap-3 p-3 bg-[rgba(2,48,71,0.04)] rounded-xl">
-            <span class="text-lg">🥅</span>
-            <div>
-              <p class="font-bold text-[#1A1A2E]">Penales</p>
-              <p class="text-[#6B7280]">Exacto: 6 pts · Solo si el partido se define en penales</p>
-            </div>
+          <div class="p-3 bg-[rgba(2,48,71,0.04)] rounded-xl text-center">
+            <p class="text-2xl mb-1">🥅</p>
+            <p class="font-bold text-[#1A1A2E]">Penales</p>
+            <p class="text-[#06A77D] font-semibold">Exacto: 6 pts</p>
+            <p class="text-[#6B7280]">Tendencia: 2 pts</p>
           </div>
         </div>
 
-        <div class="mt-4 p-3 bg-[rgba(255,183,3,0.1)] rounded-xl text-sm">
-          <p class="font-bold text-[#9a6b00] mb-1">Ejemplo</p>
-          <p class="text-[#6B7280]">
-            Si predices 1-1 en 90', 2-1 en 120' y el partido termina exactamente así, sumas 5 + 3 = 8 puntos.
-            Si además hubo penales y los acertaste, sumas 6 pts más.
-          </p>
+        <div class="space-y-4">
+          <p class="font-bold text-[#9a6b00] text-sm">Ejemplos prácticos:</p>
+
+          <div class="p-4 bg-[rgba(6,214,160,0.08)] rounded-xl">
+            <div class="flex items-start gap-3 mb-2">
+              <span class="text-lg mt-0.5">✅</span>
+              <div>
+                <p class="font-semibold text-[#1A1A2E]">Partido termina 1-1 en 90', 2-1 en 120'</p>
+                <p class="text-sm text-[#6B7280]">Predicción: 1-1 (90') y 2-1 (120')</p>
+              </div>
+            </div>
+            <div class="ml-8 flex items-center gap-2 text-sm">
+              <span class="font-mono text-[#6B7280]">5 + 3</span>
+              <span class="text-[#6B7280]">=</span>
+              <span class="font-bold text-[#06A77D]">8 pts</span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-[rgba(6,214,160,0.08)] rounded-xl">
+            <div class="flex items-start gap-3 mb-2">
+              <span class="text-lg mt-0.5">🏆</span>
+              <div>
+                <p class="font-semibold text-[#1A1A2E]">Partido llega a penales: 1-1 (90'), 1-1 (120'), 4-2</p>
+                <p class="text-sm text-[#6B7280]">Predicción: 1-1, 1-1, 4-2</p>
+              </div>
+            </div>
+            <div class="ml-8 flex items-center gap-2 text-sm">
+              <span class="font-mono text-[#6B7280]">5 + 3 + 6</span>
+              <span class="text-[#6B7280]">=</span>
+              <span class="font-bold text-[#06A77D]">14 pts</span>
+              <span class="text-xs text-[#6B7280]">(máximo posible)</span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-[rgba(255,183,3,0.08)] rounded-xl">
+            <div class="flex items-start gap-3 mb-2">
+              <span class="text-lg mt-0.5">⚠️</span>
+              <div>
+                <p class="font-semibold text-[#1A1A2E]">No acertaste exacto en 120'</p>
+                <p class="text-sm text-[#6B7280]">Predicción: 1-1 (90') y 1-0 (120') · Resultado: 1-1 (90'), 2-1 (120')</p>
+              </div>
+            </div>
+            <div class="ml-8 flex items-center gap-2 text-sm">
+              <span class="font-mono text-[#6B7280]">5 (90') + 2 (tendencia 120')</span>
+              <span class="text-[#6B7280]">=</span>
+              <span class="font-bold text-[#9a6b00]">7 pts</span>
+              <span class="text-xs text-[#6B7280]">(120': acertaste ganador pero no score)</span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-[rgba(255,183,3,0.08)] rounded-xl">
+            <div class="flex items-start gap-3 mb-2">
+              <span class="text-lg mt-0.5">🟡</span>
+              <div>
+                <p class="font-semibold text-[#1A1A2E]">Partido termina en 90' (no llegó a 120')</p>
+                <p class="text-sm text-[#6B7280]">Predicción: 2-1 (90') · Resultado: 2-1</p>
+              </div>
+            </div>
+            <div class="ml-8 flex items-center gap-2 text-sm">
+              <span class="font-mono text-[#6B7280]">5</span>
+              <span class="text-[#6B7280]">=</span>
+              <span class="font-bold text-[#06A77D]">5 pts</span>
+              <span class="text-xs text-[#6B7280]">(120' y penales no cuentan)</span>
+            </div>
+          </div>
+
+          <div class="p-4 bg-[rgba(239,71,111,0.08)] rounded-xl">
+            <div class="flex items-start gap-3 mb-2">
+              <span class="text-lg mt-0.5">❌</span>
+              <div>
+                <p class="font-semibold text-[#1A1A2E]">Fallaste penales</p>
+                <p class="text-sm text-[#6B7280]">Predicción: 1-1, 1-1, 5-4 · Resultado: 1-1, 1-1, 5-3</p>
+              </div>
+            </div>
+            <div class="ml-8 flex items-center gap-2 text-sm">
+              <span class="font-mono text-[#6B7280]">5 + 3 + 0</span>
+              <span class="text-[#6B7280]">=</span>
+              <span class="font-bold text-[#EF476F]">8 pts</span>
+              <span class="text-xs text-[#6B7280]">(90' y 120' exactos, penales fallados)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-[rgba(2,48,71,0.06)] pt-5">
+        <h4 class="font-bold text-[#023047] mb-3 text-sm">¿Qué es "Tendencia"?</h4>
+        <p class="text-sm text-[#6B7280] mb-3">
+          <strong>Tendencia</strong> significa acertar quién gana o si hay empate, sin importar el marcador exacto.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+          <div class="p-3 bg-[rgba(6,214,160,0.08)] rounded-lg">
+            <p class="font-semibold text-[#06A77D] mb-1">Local gana</p>
+            <p class="text-[#6B7280] text-xs">Predijiste Local &gt; Visitante y acertaste</p>
+          </div>
+          <div class="p-3 bg-[rgba(239,71,111,0.08)] rounded-lg">
+            <p class="font-semibold text-[#EF476F] mb-1">Visitante gana</p>
+            <p class="text-[#6B7280] text-xs">Predijiste Visitante &gt; Local y acertaste</p>
+          </div>
+          <div class="p-3 bg-[rgba(255,183,3,0.12)] rounded-lg">
+            <p class="font-semibold text-[#9a6b00] mb-1">Empate</p>
+            <p class="text-[#6B7280] text-xs">Predijiste Local = Visitante y hubo empate</p>
+          </div>
         </div>
       </div>
     </div>
