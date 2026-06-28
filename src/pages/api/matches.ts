@@ -22,10 +22,10 @@ export interface MatchRecord {
   external_id: string;
   stage: string;
   group_name: string | null;
-  home_team: string;
-  away_team: string;
-  home_flag: string;
-  away_flag: string;
+  home_team: string | null;
+  away_team: string | null;
+  home_flag: string | null;
+  away_flag: string | null;
   home_score: number | null;
   away_score: number | null;
   home_final_score: number | null;
@@ -87,6 +87,10 @@ export const GET: APIRoute = async () => {
       const scheduledAt: string = match.utcDate;
       const utcMinus5At: Date = toUtcMinus5(scheduledAt);
 
+      if (!match.homeTeam || !match.awayTeam) {
+        console.warn(`Teams not yet defined for match ${match.id}, stage: ${match.stage}`);
+      }
+
       // fullTime is the final score (includes extra time and penalties).
       // regularTime holds the 90-minute score when extra time/penalties occurred.
       const regularHome = match.score.regularTime?.home ?? match.score.fullTime.home;
@@ -96,10 +100,10 @@ export const GET: APIRoute = async () => {
         external_id: String(match.id),
         stage: match.stage,
         group_name: match.group,
-        home_team: match.homeTeam.name,
-        away_team: match.awayTeam.name,
-        home_flag: match.homeTeam.crest,
-        away_flag: match.awayTeam.crest,
+        home_team: match.homeTeam?.name ?? null,
+        away_team: match.awayTeam?.name ?? null,
+        home_flag: match.homeTeam?.crest ?? null,
+        away_flag: match.awayTeam?.crest ?? null,
         home_score: regularHome,
         away_score: regularAway,
         home_final_score: match.score.fullTime.home,

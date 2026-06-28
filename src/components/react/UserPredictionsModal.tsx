@@ -209,12 +209,12 @@ function PredictionSummaryCard({ item }: PredictionSummaryCardProps): React.JSX.
       <div className="flex items-center justify-between gap-3 mb-3">
         <div className="flex flex-col items-center flex-1 min-w-0">
           <img
-            src={match.home_flag}
-            alt={match.home_team}
+            src={match.home_flag ?? 'https://via.placeholder.com/40?text=?'}
+            alt={match.home_team ?? 'TBD'}
             className="w-10 h-10 object-contain drop-shadow-sm mb-1"
           />
           <span className="text-xs font-semibold text-[#1A1A2E] text-center truncate w-full">
-            {match.home_team}
+            {match.home_team ?? 'TBD'}
           </span>
         </div>
 
@@ -233,12 +233,12 @@ function PredictionSummaryCard({ item }: PredictionSummaryCardProps): React.JSX.
 
         <div className="flex flex-col items-center flex-1 min-w-0">
           <img
-            src={match.away_flag}
-            alt={match.away_team}
+            src={match.away_flag ?? 'https://via.placeholder.com/40?text=?'}
+            alt={match.away_team ?? 'TBD'}
             className="w-10 h-10 object-contain drop-shadow-sm mb-1"
           />
           <span className="text-xs font-semibold text-[#1A1A2E] text-center truncate w-full">
-            {match.away_team}
+            {match.away_team ?? 'TBD'}
           </span>
         </div>
       </div>

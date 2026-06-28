@@ -73,11 +73,11 @@ export function MatchCardGroup({
         <div className="flex items-center gap-3">
           <div className="flex-1 flex items-center gap-3 min-w-0">
             <img
-              src={match.home_flag}
-              alt={match.home_team}
+              src={match.home_flag ?? 'https://via.placeholder.com/40?text=?'}
+              alt={match.home_team ?? 'TBD'}
               className="w-10 h-10 object-contain drop-shadow-sm"
             />
-            <span className="font-semibold text-[#1A1A2E] truncate">{match.home_team}</span>
+            <span className="font-semibold text-[#1A1A2E] truncate">{match.home_team ?? 'TBD'}</span>
           </div>
 
           <div className="flex flex-col items-center min-w-[80px]">
@@ -101,11 +101,11 @@ export function MatchCardGroup({
 
           <div className="flex-1 flex items-center gap-3 justify-end min-w-0">
             <span className="font-semibold text-[#1A1A2E] truncate text-right">
-              {match.away_team}
+              {match.away_team ?? 'TBD'}
             </span>
             <img
-              src={match.away_flag}
-              alt={match.away_team}
+              src={match.away_flag ?? 'https://via.placeholder.com/40?text=?'}
+              alt={match.away_team ?? 'TBD'}
               className="w-10 h-10 object-contain drop-shadow-sm"
             />
           </div>

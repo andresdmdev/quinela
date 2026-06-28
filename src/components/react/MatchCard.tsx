@@ -7,10 +7,10 @@ export interface Match {
   external_id: string;
   stage: string;
   group_name: string | null;
-  home_team: string;
-  away_team: string;
-  home_flag: string;
-  away_flag: string;
+  home_team: string | null;
+  away_team: string | null;
+  home_flag: string | null;
+  away_flag: string | null;
   home_score: number | null;
   away_score: number | null;
   home_final_score: number | null;
@@ -120,12 +120,12 @@ export function MatchCard({ match, children, onClick }: MatchCardProps): React.J
       <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
           <img
-            src={match.home_flag}
-            alt={match.home_team}
+            src={match.home_flag ?? 'https://via.placeholder.com/48?text=?'}
+            alt={match.home_team ?? 'TBD'}
             className="w-12 h-12 object-contain drop-shadow-sm"
           />
           <span className="text-sm font-semibold text-[#1A1A2E] text-center truncate w-full">
-            {match.home_team}
+            {match.home_team ?? 'TBD'}
           </span>
         </div>
 
@@ -144,12 +144,12 @@ export function MatchCard({ match, children, onClick }: MatchCardProps): React.J
 
         <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
           <img
-            src={match.away_flag}
-            alt={match.away_team}
+            src={match.away_flag ?? 'https://via.placeholder.com/48?text=?'}
+            alt={match.away_team ?? 'TBD'}
             className="w-12 h-12 object-contain drop-shadow-sm"
           />
           <span className="text-sm font-semibold text-[#1A1A2E] text-center truncate w-full">
-            {match.away_team}
+            {match.away_team ?? 'TBD'}
           </span>
         </div>
       </div>

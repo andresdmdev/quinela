@@ -127,9 +127,20 @@ function calculateKnockoutPoints(
         prediction.extra_time_home === match.extra_time_home &&
         prediction.extra_time_away === match.extra_time_away;
 
+      const extraTrend = isTrendCorrect(
+        prediction.extra_time_home,
+        prediction.extra_time_away,
+        match.extra_time_home,
+        match.extra_time_away
+      );
+
       if (extraExact) {
         totalPoints += 3;
         exactScoreCount += 1;
+        trendCount += 1;
+      } else if (extraTrend) {
+        totalPoints += 2;
+        trendCount += 1;
       }
     }
   }
@@ -146,9 +157,20 @@ function calculateKnockoutPoints(
         prediction.penalties_home === match.penalties_home &&
         prediction.penalties_away === match.penalties_away;
 
+      const penaltiesTrend = isTrendCorrect(
+        prediction.penalties_home,
+        prediction.penalties_away,
+        match.penalties_home,
+        match.penalties_away
+      );
+
       if (penaltiesExact) {
         totalPoints += 6;
         exactScoreCount += 1;
+        trendCount += 1;
+      } else if (penaltiesTrend) {
+        totalPoints += 2;
+        trendCount += 1;
       }
     }
   }

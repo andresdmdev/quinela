@@ -8,12 +8,12 @@ export interface FootballMatch {
     id: number;
     name: string;
     crest: string;
-  };
+  } | null;
   awayTeam: {
     id: number;
     name: string;
     crest: string;
-  };
+  } | null;
   score: {
     winner: 'HOME_TEAM' | 'AWAY_TEAM' | 'DRAW' | null;
     duration: 'REGULAR' | 'EXTRA_TIME' | 'PENALTY_SHOOTOUT' | null;

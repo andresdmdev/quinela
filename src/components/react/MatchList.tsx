@@ -100,8 +100,8 @@ export function MatchList({
     const query = searchQuery.toLowerCase();
     return matches.filter(
       (m) =>
-        m.home_team.toLowerCase().includes(query) ||
-        m.away_team.toLowerCase().includes(query)
+        (m.home_team?.toLowerCase().includes(query) ?? false) ||
+        (m.away_team?.toLowerCase().includes(query) ?? false)
     );
   }, [matches, searchQuery]);
 

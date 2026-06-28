@@ -88,7 +88,7 @@ export const GET: APIRoute = async () => {
         if (entry) {
           entry.totalPoints += result.points;
           if (result.exactScore) entry.exactScores += 1;
-          if (result.trend) entry.trends += 1;
+          if (result.trend && !result.exactScore) entry.trends += 1;
         }
       }
     }

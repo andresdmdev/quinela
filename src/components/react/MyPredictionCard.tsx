@@ -93,12 +93,12 @@ export function MyPredictionCard({
         <div className="flex items-center justify-between gap-3 mb-4">
           <div className="flex flex-col items-center flex-1 min-w-0">
             <img
-              src={match.home_flag}
-              alt={match.home_team}
+              src={match.home_flag ?? 'https://via.placeholder.com/48?text=?'}
+              alt={match.home_team ?? 'TBD'}
               className="w-12 h-12 object-contain drop-shadow-sm mb-2"
             />
             <span className="text-sm font-semibold text-[#1A1A2E] text-center truncate w-full">
-              {match.home_team}
+              {match.home_team ?? 'TBD'}
             </span>
           </div>
 
@@ -117,12 +117,12 @@ export function MyPredictionCard({
 
           <div className="flex flex-col items-center flex-1 min-w-0">
             <img
-              src={match.away_flag}
-              alt={match.away_team}
+              src={match.away_flag ?? 'https://via.placeholder.com/48?text=?'}
+              alt={match.away_team ?? 'TBD'}
               className="w-12 h-12 object-contain drop-shadow-sm mb-2"
             />
             <span className="text-sm font-semibold text-[#1A1A2E] text-center truncate w-full">
-              {match.away_team}
+              {match.away_team ?? 'TBD'}
             </span>
           </div>
         </div>

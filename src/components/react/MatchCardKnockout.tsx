@@ -113,13 +113,13 @@ export function MatchCardKnockout({
           <div className="flex flex-col items-center flex-1 min-w-0">
             <div className="w-16 h-16 rounded-2xl bg-white shadow-sm shadow-[rgba(2,48,71,0.08)] p-2 mb-2">
               <img
-                src={match.home_flag}
-                alt={match.home_team}
+                src={match.home_flag ?? 'https://via.placeholder.com/64?text=?'}
+                alt={match.home_team ?? 'TBD'}
                 className="w-full h-full object-contain"
               />
             </div>
             <span className="font-bold text-[#1A1A2E] text-center text-sm truncate w-full">
-              {match.home_team}
+              {match.home_team ?? 'TBD'}
             </span>
             <span className="text-xs text-[#6B7280]">Local</span>
           </div>
@@ -142,13 +142,13 @@ export function MatchCardKnockout({
           <div className="flex flex-col items-center flex-1 min-w-0">
             <div className="w-16 h-16 rounded-2xl bg-white shadow-sm shadow-[rgba(2,48,71,0.08)] p-2 mb-2">
               <img
-                src={match.away_flag}
-                alt={match.away_team}
+                src={match.away_flag ?? 'https://via.placeholder.com/64?text=?'}
+                alt={match.away_team ?? 'TBD'}
                 className="w-full h-full object-contain"
               />
             </div>
             <span className="font-bold text-[#1A1A2E] text-center text-sm truncate w-full">
-              {match.away_team}
+              {match.away_team ?? 'TBD'}
             </span>
             <span className="text-xs text-[#6B7280]">Visitante</span>
           </div>
