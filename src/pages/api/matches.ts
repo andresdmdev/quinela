@@ -110,6 +110,17 @@ export const GET: APIRoute = async () => {
       const regularHome = match.score.regularTime?.home ?? match.score.fullTime.home;
       const regularAway = match.score.regularTime?.away ?? match.score.fullTime.away;
 
+      const extraTimeHome = match.score.extraTime?.home ?? null;
+      const extraTimeAway = match.score.extraTime?.away ?? null;
+
+      let penaltiesHome: number | null = null;
+      let penaltiesAway: number | null = null;
+
+      if (match.score.duration === 'PENALTY_SHOOTOUT') {
+        penaltiesHome = (match.score.fullTime.home ?? 0) - (regularHome ?? 0) - (extraTimeHome ?? 0);
+        penaltiesAway = (match.score.fullTime.away ?? 0) - (regularAway ?? 0) - (extraTimeAway ?? 0);
+      }
+
       upsertPayload.push({
         external_id: String(match.id),
         stage: match.stage,
@@ -122,10 +133,10 @@ export const GET: APIRoute = async () => {
         away_score: regularAway,
         home_final_score: match.score.fullTime.home,
         away_final_score: match.score.fullTime.away,
-        extra_time_home: match.score.extraTime?.home ?? null,
-        extra_time_away: match.score.extraTime?.away ?? null,
-        penalties_home: match.score.penalties?.home ?? null,
-        penalties_away: match.score.penalties?.away ?? null,
+        extra_time_home: extraTimeHome,
+        extra_time_away: extraTimeAway,
+        penalties_home: penaltiesHome,
+        penalties_away: penaltiesAway,
         winner: mapWinner(match.score.winner),
         duration: match.score.duration,
         status: match.status,
