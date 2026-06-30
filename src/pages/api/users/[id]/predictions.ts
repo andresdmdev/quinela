@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import { supabase, supabaseAdmin } from '../../../../lib/supabase';
-import { calculatePoints } from '../../../../lib/points';
+import { calculatePoints, type StageBreakdown } from '../../../../lib/points';
 import type { PredictionRecord } from '../../predictions';
 import type { MatchRecord } from '../../matches';
 
@@ -13,6 +13,7 @@ export interface UserPrediction {
   exactScore: boolean;
   trend: boolean;
   isLocked: boolean;
+  stageBreakdown?: StageBreakdown;
 }
 
 interface UserPredictionsResponse {
@@ -118,7 +119,8 @@ export const GET: APIRoute = async ({ params, cookies }) => {
           points: result.points,
           exactScore: result.exactScore,
           trend: result.trend,
-          isLocked: locked
+          isLocked: locked,
+          stageBreakdown: result.breakdown
         };
       })
       .filter((item: UserPrediction | null): item is UserPrediction => item !== null)

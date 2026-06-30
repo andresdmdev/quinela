@@ -1,10 +1,24 @@
 import type { MatchRecord } from '../pages/api/matches';
 import type { PredictionRecord } from '../pages/api/predictions';
 
+export interface StageResult {
+  points: number;
+  exact: boolean;
+  trend: boolean;
+  label: string;
+}
+
+export interface StageBreakdown {
+  ninety: StageResult;
+  extraTime?: StageResult;
+  penalties?: StageResult;
+}
+
 export interface PointsResult {
   points: number;
   exactScore: boolean;
   trend: boolean;
+  breakdown: StageBreakdown;
 }
 
 /**
@@ -24,7 +38,14 @@ export interface PointsResult {
  */
 export function calculatePoints(match: MatchRecord, prediction: PredictionRecord): PointsResult {
   if (match.status !== 'FINISHED') {
-    return { points: 0, exactScore: false, trend: false };
+    return {
+      points: 0,
+      exactScore: false,
+      trend: false,
+      breakdown: {
+        ninety: { points: 0, exact: false, trend: false, label: "90'" }
+      }
+    };
   }
 
   if (
@@ -33,10 +54,16 @@ export function calculatePoints(match: MatchRecord, prediction: PredictionRecord
     match.home_score === null ||
     match.away_score === null
   ) {
-    return { points: 0, exactScore: false, trend: false };
+    return {
+      points: 0,
+      exactScore: false,
+      trend: false,
+      breakdown: {
+        ninety: { points: 0, exact: false, trend: false, label: "90'" }
+      }
+    };
   }
 
-  // Group stage uses the 90-minute result only.
   if (match.stage === 'GROUP_STAGE') {
     return calculateGroupStagePoints(match, prediction);
   }
@@ -54,7 +81,14 @@ function calculateGroupStagePoints(
     match.home_score === null ||
     match.away_score === null
   ) {
-    return { points: 0, exactScore: false, trend: false };
+    return {
+      points: 0,
+      exactScore: false,
+      trend: false,
+      breakdown: {
+        ninety: { points: 0, exact: false, trend: false, label: "90'" }
+      }
+    };
   }
 
   const exactScore =
@@ -67,15 +101,21 @@ function calculateGroupStagePoints(
     match.away_score
   );
 
-  if (exactScore) {
-    return { points: 5, exactScore: true, trend: true };
-  }
+  const ninetyPoints = exactScore ? 5 : trendCorrect ? 2 : 0;
 
-  if (trendCorrect) {
-    return { points: 2, exactScore: false, trend: true };
-  }
-
-  return { points: 0, exactScore: false, trend: false };
+  return {
+    points: ninetyPoints,
+    exactScore: exactScore,
+    trend: trendCorrect,
+    breakdown: {
+      ninety: {
+        points: ninetyPoints,
+        exact: exactScore,
+        trend: trendCorrect,
+        label: "90'"
+      }
+    }
+  };
 }
 
 function calculateKnockoutPoints(
@@ -86,36 +126,46 @@ function calculateKnockoutPoints(
   let exactScoreCount = 0;
   let trendCount = 0;
 
-  // 90 minutes - always evaluated.
   if (
     prediction.home_score === null ||
     prediction.away_score === null ||
     match.home_score === null ||
     match.away_score === null
   ) {
-    return { points: 0, exactScore: false, trend: false };
+    return {
+      points: 0,
+      exactScore: false,
+      trend: false,
+      breakdown: {
+        ninety: { points: 0, exact: false, trend: false, label: "90'" }
+      }
+    };
   }
 
-  const regularExact =
+  const ninetyExact =
     prediction.home_score === match.home_score && prediction.away_score === match.away_score;
 
-  const regularTrend = isTrendCorrect(
+  const ninetyTrend = isTrendCorrect(
     prediction.home_score,
     prediction.away_score,
     match.home_score,
     match.away_score
   );
 
-  if (regularExact) {
-    totalPoints += 5;
-    exactScoreCount += 1;
-    trendCount += 1;
-  } else if (regularTrend) {
-    totalPoints += 2;
-    trendCount += 1;
-  }
+  const ninetyPoints = ninetyExact ? 5 : ninetyTrend ? 2 : 0;
+  totalPoints += ninetyPoints;
+  if (ninetyExact) exactScoreCount += 1;
+  if (ninetyTrend) trendCount += 1;
 
-  // Extra time - evaluated only if the match reached extra time or penalties.
+  const ninetyResult: StageResult = {
+    points: ninetyPoints,
+    exact: ninetyExact,
+    trend: ninetyTrend,
+    label: "90'"
+  };
+
+  let extraTimeResult: StageResult | undefined;
+
   if (match.duration === 'EXTRA_TIME' || match.duration === 'PENALTY_SHOOTOUT') {
     if (
       prediction.extra_time_home !== null &&
@@ -134,18 +184,22 @@ function calculateKnockoutPoints(
         match.extra_time_away
       );
 
-      if (extraExact) {
-        totalPoints += 3;
-        exactScoreCount += 1;
-        trendCount += 1;
-      } else if (extraTrend) {
-        totalPoints += 2;
-        trendCount += 1;
-      }
+      const extraPoints = extraExact ? 3 : extraTrend ? 2 : 0;
+      totalPoints += extraPoints;
+      if (extraExact) exactScoreCount += 1;
+      if (extraTrend) trendCount += 1;
+
+      extraTimeResult = {
+        points: extraPoints,
+        exact: extraExact,
+        trend: extraTrend,
+        label: "120'"
+      };
     }
   }
 
-  // Penalties - evaluated only if the match reached penalties.
+  let penaltiesResult: StageResult | undefined;
+
   if (match.duration === 'PENALTY_SHOOTOUT') {
     if (
       prediction.penalties_home !== null &&
@@ -164,21 +218,29 @@ function calculateKnockoutPoints(
         match.penalties_away
       );
 
-      if (penaltiesExact) {
-        totalPoints += 6;
-        exactScoreCount += 1;
-        trendCount += 1;
-      } else if (penaltiesTrend) {
-        totalPoints += 2;
-        trendCount += 1;
-      }
+      const penaltiesPoints = penaltiesExact ? 6 : penaltiesTrend ? 2 : 0;
+      totalPoints += penaltiesPoints;
+      if (penaltiesExact) exactScoreCount += 1;
+      if (penaltiesTrend) trendCount += 1;
+
+      penaltiesResult = {
+        points: penaltiesPoints,
+        exact: penaltiesExact,
+        trend: penaltiesTrend,
+        label: "Penales"
+      };
     }
   }
 
   return {
     points: totalPoints,
     exactScore: exactScoreCount > 0,
-    trend: trendCount > 0
+    trend: trendCount > 0,
+    breakdown: {
+      ninety: ninetyResult,
+      ...(extraTimeResult && { extraTime: extraTimeResult }),
+      ...(penaltiesResult && { penalties: penaltiesResult })
+    }
   };
 }
 

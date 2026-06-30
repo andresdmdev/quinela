@@ -149,7 +149,9 @@ export function UserPredictionsModal({
             />
           ) : (
             <div className="space-y-4">
-              {predictions.map((item) => (
+              {predictions
+              .filter((item) => item.isLocked || item.match.status === 'FINISHED')
+              .map((item) => (
                 <PredictionSummaryCard key={item.prediction.id} item={item} />
               ))}
             </div>
@@ -271,13 +273,46 @@ interface KnockoutCardProps {
   pointsBadge: { label: string; variant: 'default' | 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' };
 }
 
-function KnockoutCard({ item, pointsBadge }: KnockoutCardProps): React.JSX.Element {
-  const { prediction, match } = item;
-  const isFinished = match.status === 'FINISHED';
-  const duration = match.duration;
+function StageRow({
+  label,
+  predictedHome,
+  predictedAway,
+  actualHome,
+  actualAway,
+  result
+}: {
+  label: string;
+  predictedHome: number | null;
+  predictedAway: number | null;
+  actualHome: number | null;
+  actualAway: number | null;
+  result: { points: number; exact: boolean; trend: boolean };
+}): React.JSX.Element {
+  const statusColor = result.exact ? 'text-[#06D6A0]' : result.trend ? 'text-[#9a6b00]' : 'text-[#6B7280]';
+  const statusIcon = result.exact ? '✓' : result.trend ? '→' : '✗';
+  const statusText = result.exact ? 'Exacto' : result.trend ? 'Tendencia' : 'Fallado';
 
-  const hasExtraTime = duration === 'EXTRA_TIME' || duration === 'PENALTY_SHOOTOUT';
-  const hasPenalties = duration === 'PENALTY_SHOOTOUT';
+  return (
+    <div className="py-2 border-b border-[rgba(2,48,71,0.06)] last:border-b-0">
+      <div className="flex justify-between text-sm mb-1">
+        <span className="text-[#6B7280]">{label} Resultado:</span>
+        <span className="font-bold text-[#1A1A2E]">
+          {actualHome !== null && actualAway !== null ? `${actualHome}-${actualAway}` : '-'}
+        </span>
+      </div>
+      <div className="flex justify-between text-sm">
+        <span className="text-[#6B7280]">Tu: {predictedHome ?? '-'}-{predictedAway ?? '-'}</span>
+        <span className={`font-bold ${statusColor}`}>
+          {statusIcon} {statusText} +{result.points}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function KnockoutCard({ item, pointsBadge }: KnockoutCardProps): React.JSX.Element {
+  const { prediction, match, stageBreakdown } = item;
+  const breakdown = stageBreakdown;
 
   return (
     <div className="bg-[rgba(2,48,71,0.03)] rounded-2xl p-4 border border-[rgba(2,48,71,0.06)]">
@@ -298,24 +333,6 @@ function KnockoutCard({ item, pointsBadge }: KnockoutCardProps): React.JSX.Eleme
           </span>
         </div>
 
-        <div className="flex flex-col items-center">
-          <span className="text-xs text-[#6B7280] mb-1">90&apos;</span>
-          <div className="flex items-center gap-1 px-2 py-1 bg-white rounded-lg border border-[rgba(2,48,71,0.08)]">
-            <span className="text-lg font-bold tabular-nums text-[#1A1A2E]">
-              {prediction.home_score ?? '-'}
-            </span>
-            <span className="text-[#6B7280] font-bold">-</span>
-            <span className="text-lg font-bold tabular-nums text-[#1A1A2E]">
-              {prediction.away_score ?? '-'}
-            </span>
-          </div>
-          {isFinished && (
-            <span className="text-[10px] text-[#6B7280] mt-1">
-              {match.home_score !== null ? `${match.home_score}-${match.away_score}` : '-'}
-            </span>
-          )}
-        </div>
-
         <div className="flex flex-col items-center flex-1 min-w-0">
           <img
             src={match.away_flag ?? 'https://via.placeholder.com/40?text=?'}
@@ -328,53 +345,43 @@ function KnockoutCard({ item, pointsBadge }: KnockoutCardProps): React.JSX.Eleme
         </div>
       </div>
 
-      {hasExtraTime && (
-        <div className="flex items-center justify-center gap-4 py-2 border-t border-[rgba(2,48,71,0.06)]">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] text-[#6B7280]">120&apos;:</span>
-            <div className="flex items-center gap-1 px-2 py-0.5 bg-[rgba(255,183,3,0.1)] rounded border border-[rgba(255,183,3,0.2)]">
-              <span className="text-sm font-bold tabular-nums text-[#1A1A2E]">
-                {prediction.extra_time_home ?? '-'}
-              </span>
-              <span className="text-[#6B7280] font-bold">-</span>
-              <span className="text-sm font-bold tabular-nums text-[#1A1A2E]">
-                {prediction.extra_time_away ?? '-'}
-              </span>
-            </div>
-            {isFinished && (
-              <span className="text-[10px] text-[#6B7280]">
-                ({match.extra_time_home !== null ? `${match.extra_time_home}-${match.extra_time_away}` : '-'})
-              </span>
+      <div className="bg-white rounded-xl p-3 space-y-0">
+        {breakdown && (
+          <>
+            <StageRow
+              label={breakdown.ninety.label}
+              predictedHome={prediction.home_score}
+              predictedAway={prediction.away_score}
+              actualHome={match.home_score}
+              actualAway={match.away_score}
+              result={breakdown.ninety}
+            />
+            {breakdown.extraTime && (
+              <StageRow
+                label={breakdown.extraTime.label}
+                predictedHome={prediction.extra_time_home}
+                predictedAway={prediction.extra_time_away}
+                actualHome={match.extra_time_home}
+                actualAway={match.extra_time_away}
+                result={breakdown.extraTime}
+              />
             )}
-          </div>
-        </div>
-      )}
-
-      {hasPenalties && (
-        <div className="flex items-center justify-center gap-4 py-2 border-t border-[rgba(2,48,71,0.06)]">
-          <div className="flex items-center gap-2">
-            <span className="text-[10px] text-[#6B7280]">Penales:</span>
-            <div className="flex items-center gap-1 px-2 py-0.5 bg-[rgba(239,71,111,0.1)] rounded border border-[rgba(239,71,111,0.2)]">
-              <span className="text-sm font-bold tabular-nums text-[#1A1A2E]">
-                {prediction.penalties_home ?? '-'}
-              </span>
-              <span className="text-[#6B7280] font-bold">-</span>
-              <span className="text-sm font-bold tabular-nums text-[#1A1A2E]">
-                {prediction.penalties_away ?? '-'}
-              </span>
-            </div>
-            {isFinished && (
-              <span className="text-[10px] text-[#6B7280]">
-                ({match.penalties_home !== null ? `${match.penalties_home}-${match.penalties_away}` : '-'})
-              </span>
+            {breakdown.penalties && (
+              <StageRow
+                label={breakdown.penalties.label}
+                predictedHome={prediction.penalties_home}
+                predictedAway={prediction.penalties_away}
+                actualHome={match.penalties_home}
+                actualAway={match.penalties_away}
+                result={breakdown.penalties}
+              />
             )}
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </div>
 
-      <div className="mt-3 flex items-center justify-between text-xs">
-        <span className="text-[#6B7280]">{formatUtcMinus5(match.scheduled_at)}</span>
-        {!isFinished && <span className="text-[#B45309] font-bold">🔒 Bloqueado</span>}
+      <div className="mt-3 text-center">
+        <span className="text-xs text-[#6B7280]">{formatUtcMinus5(match.scheduled_at)}</span>
       </div>
     </div>
   );
