@@ -90,6 +90,8 @@ export const GET: APIRoute = async ({ params, cookies }) => {
       (matches ?? []).map((match: MatchRecord) => [match.id, match])
     );
 
+    const requestingUserId: string | undefined = data.session?.user.id;
+
     const userPredictions: UserPrediction[] = predictions
       .map((prediction: PredictionRecord): UserPrediction | null => {
         const match: MatchRecord | undefined = matchesMap.get(prediction.match_id);
@@ -98,9 +100,13 @@ export const GET: APIRoute = async ({ params, cookies }) => {
           return null;
         }
 
+        const isOwner: boolean = requestingUserId === userId;
         const locked: boolean = match.status !== 'TIMED' || isPredictionLocked(match);
 
-        if (!locked && match.status !== 'FINISHED') {
+        const showPrediction: boolean =
+          match.status === 'FINISHED' || locked || isOwner;
+
+        if (!showPrediction) {
           return null;
         }
 
