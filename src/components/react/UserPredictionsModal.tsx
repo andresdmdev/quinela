@@ -279,7 +279,8 @@ function StageRow({
   predictedAway,
   actualHome,
   actualAway,
-  result
+  result,
+  reached
 }: {
   label: string;
   predictedHome: number | null;
@@ -287,6 +288,7 @@ function StageRow({
   actualHome: number | null;
   actualAway: number | null;
   result: { points: number; exact: boolean; trend: boolean };
+  reached: boolean;
 }): React.JSX.Element {
   const statusColor = result.exact ? 'text-[#06D6A0]' : result.trend ? 'text-[#9a6b00]' : 'text-[#6B7280]';
   const statusIcon = result.exact ? '✓' : result.trend ? '→' : '✗';
@@ -302,9 +304,13 @@ function StageRow({
       </div>
       <div className="flex justify-between text-sm">
         <span className="text-[#6B7280]">Tu: {predictedHome ?? '-'}-{predictedAway ?? '-'}</span>
-        <span className={`font-bold ${statusColor}`}>
-          {statusIcon} {statusText} +{result.points}
-        </span>
+        {reached ? (
+          <span className={`font-bold ${statusColor}`}>
+            {statusIcon} {statusText} +{result.points}
+          </span>
+        ) : (
+          <span className="text-[#B45309] text-xs font-bold">No llegó</span>
+        )}
       </div>
     </div>
   );
@@ -313,6 +319,18 @@ function StageRow({
 function KnockoutCard({ item, pointsBadge }: KnockoutCardProps): React.JSX.Element {
   const { prediction, match, stageBreakdown } = item;
   const breakdown = stageBreakdown;
+  const duration = match.duration;
+
+  const predictedDrawIn90 = prediction.home_score !== null &&
+    prediction.away_score !== null &&
+    prediction.home_score === prediction.away_score;
+
+  const predictedDrawIn120 = prediction.extra_time_home !== null &&
+    prediction.extra_time_away !== null &&
+    prediction.extra_time_home === prediction.extra_time_away;
+
+  const reachedExtraTime = duration === 'EXTRA_TIME' || duration === 'PENALTY_SHOOTOUT';
+  const reachedPenalties = duration === 'PENALTY_SHOOTOUT';
 
   return (
     <div className="bg-[rgba(2,48,71,0.03)] rounded-2xl p-4 border border-[rgba(2,48,71,0.06)]">
@@ -355,25 +373,28 @@ function KnockoutCard({ item, pointsBadge }: KnockoutCardProps): React.JSX.Eleme
               actualHome={match.home_score}
               actualAway={match.away_score}
               result={breakdown.ninety}
+              reached={true}
             />
-            {breakdown.extraTime && (
+            {predictedDrawIn90 && prediction.extra_time_home !== null && (
               <StageRow
-                label={breakdown.extraTime.label}
+                label={breakdown.extraTime?.label ?? "120'"}
                 predictedHome={prediction.extra_time_home}
                 predictedAway={prediction.extra_time_away}
                 actualHome={match.extra_time_home}
                 actualAway={match.extra_time_away}
-                result={breakdown.extraTime}
+                result={breakdown.extraTime ?? { points: 0, exact: false, trend: false }}
+                reached={reachedExtraTime}
               />
             )}
-            {breakdown.penalties && (
+            {predictedDrawIn90 && predictedDrawIn120 && prediction.penalties_home !== null && (
               <StageRow
-                label={breakdown.penalties.label}
+                label={breakdown.penalties?.label ?? "Penales"}
                 predictedHome={prediction.penalties_home}
                 predictedAway={prediction.penalties_away}
                 actualHome={match.penalties_home}
                 actualAway={match.penalties_away}
-                result={breakdown.penalties}
+                result={breakdown.penalties ?? { points: 0, exact: false, trend: false }}
+                reached={reachedPenalties}
               />
             )}
           </>
