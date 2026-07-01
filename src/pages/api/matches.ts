@@ -109,6 +109,7 @@ export const GET: APIRoute = async () => {
 
       let regularHome: number | null;
       let regularAway: number | null;
+      let matchDuration = match.score.duration;
 
       if (match.score.regularTime?.home !== null && match.score.regularTime?.away !== null) {
         regularHome = match.score.regularTime!.home;
@@ -119,6 +120,21 @@ export const GET: APIRoute = async () => {
       } else if (match.score.duration === 'EXTRA_TIME') {
         regularHome = (match.score.fullTime.home ?? 0) - (match.score.extraTime?.home ?? 0);
         regularAway = (match.score.fullTime.away ?? 0) - (match.score.extraTime?.away ?? 0);
+      } else if (
+        match.score.duration === 'REGULAR' &&
+        match.score.extraTime?.home !== null &&
+        match.score.extraTime?.away !== null
+      ) {
+        const calculatedHome = (match.score.fullTime.home ?? 0) - (match.score.extraTime!.home ?? 0);
+        const calculatedAway = (match.score.fullTime.away ?? 0) - (match.score.extraTime!.away ?? 0);
+        if (calculatedHome >= 0 && calculatedAway >= 0 && (calculatedHome !== (match.score.fullTime.home ?? 0) || calculatedAway !== (match.score.fullTime.away ?? 0))) {
+          regularHome = calculatedHome;
+          regularAway = calculatedAway;
+          matchDuration = 'EXTRA_TIME';
+        } else {
+          regularHome = match.score.fullTime.home;
+          regularAway = match.score.fullTime.away;
+        }
       } else {
         regularHome = match.score.fullTime.home;
         regularAway = match.score.fullTime.away;
@@ -152,7 +168,7 @@ export const GET: APIRoute = async () => {
         penalties_home: penaltiesHome,
         penalties_away: penaltiesAway,
         winner: mapWinner(match.score.winner),
-        duration: match.score.duration,
+        duration: matchDuration,
         status: match.status,
         scheduled_at: scheduledAt,
         utc_minus_5_at: utcMinus5At.toISOString(),
