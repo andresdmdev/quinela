@@ -107,8 +107,22 @@ export const GET: APIRoute = async () => {
         console.warn(`Teams not yet defined for match ${match.id}, stage: ${match.stage}`);
       }
 
-      const regularHome = match.score.regularTime?.home ?? match.score.fullTime.home;
-      const regularAway = match.score.regularTime?.away ?? match.score.fullTime.away;
+      let regularHome: number | null;
+      let regularAway: number | null;
+
+      if (match.score.regularTime?.home !== null && match.score.regularTime?.away !== null) {
+        regularHome = match.score.regularTime!.home;
+        regularAway = match.score.regularTime!.away;
+      } else if (match.score.duration === 'PENALTY_SHOOTOUT') {
+        regularHome = (match.score.fullTime.home ?? 0) - (match.score.extraTime?.home ?? 0) - (match.score.penalties?.home ?? 0);
+        regularAway = (match.score.fullTime.away ?? 0) - (match.score.extraTime?.away ?? 0) - (match.score.penalties?.away ?? 0);
+      } else if (match.score.duration === 'EXTRA_TIME') {
+        regularHome = (match.score.fullTime.home ?? 0) - (match.score.extraTime?.home ?? 0);
+        regularAway = (match.score.fullTime.away ?? 0) - (match.score.extraTime?.away ?? 0);
+      } else {
+        regularHome = match.score.fullTime.home;
+        regularAway = match.score.fullTime.away;
+      }
 
       const extraTimeHome = match.score.extraTime?.home ?? null;
       const extraTimeAway = match.score.extraTime?.away ?? null;
