@@ -111,44 +111,49 @@ export const GET: APIRoute = async () => {
       let regularAway: number | null;
       let matchDuration = match.score.duration;
 
-      if (match.score.regularTime?.home !== null && match.score.regularTime?.away !== null) {
-        regularHome = match.score.regularTime!.home;
-        regularAway = match.score.regularTime!.away;
+      const regularTime = match.score.regularTime;
+      const fullTime = match.score.fullTime;
+      const extraTime = match.score.extraTime;
+      const penalties = match.score.penalties;
+
+      if (regularTime && regularTime.home !== null && regularTime.away !== null) {
+        regularHome = regularTime.home;
+        regularAway = regularTime.away;
       } else if (match.score.duration === 'PENALTY_SHOOTOUT') {
-        regularHome = (match.score.fullTime?.home ?? 0) - (match.score.extraTime?.home ?? 0) - (match.score.penalties?.home ?? 0);
-        regularAway = (match.score.fullTime?.away ?? 0) - (match.score.extraTime?.away ?? 0) - (match.score.penalties?.away ?? 0);
+        regularHome = (fullTime?.home ?? 0) - (extraTime?.home ?? 0) - (penalties?.home ?? 0);
+        regularAway = (fullTime?.away ?? 0) - (extraTime?.away ?? 0) - (penalties?.away ?? 0);
       } else if (match.score.duration === 'EXTRA_TIME') {
-        regularHome = (match.score.fullTime?.home ?? 0) - (match.score.extraTime?.home ?? 0);
-        regularAway = (match.score.fullTime?.away ?? 0) - (match.score.extraTime?.away ?? 0);
+        regularHome = (fullTime?.home ?? 0) - (extraTime?.home ?? 0);
+        regularAway = (fullTime?.away ?? 0) - (extraTime?.away ?? 0);
       } else if (
         match.score.duration === 'REGULAR' &&
-        match.score.extraTime?.home !== null &&
-        match.score.extraTime?.away !== null
+        extraTime?.home !== null &&
+        extraTime?.away !== null
       ) {
-        const calculatedHome = (match.score.fullTime?.home ?? 0) - (match.score.extraTime!.home ?? 0);
-        const calculatedAway = (match.score.fullTime?.away ?? 0) - (match.score.extraTime!.away ?? 0);
-        if (calculatedHome >= 0 && calculatedAway >= 0 && (calculatedHome !== (match.score.fullTime?.home ?? 0) || calculatedAway !== (match.score.fullTime?.away ?? 0))) {
+        const calculatedHome = (fullTime?.home ?? 0) - (extraTime?.home ?? 0);
+        const calculatedAway = (fullTime?.away ?? 0) - (extraTime?.away ?? 0);
+        if (calculatedHome >= 0 && calculatedAway >= 0 && (calculatedHome !== (fullTime?.home ?? 0) || calculatedAway !== (fullTime?.away ?? 0))) {
           regularHome = calculatedHome;
           regularAway = calculatedAway;
           matchDuration = 'EXTRA_TIME';
         } else {
-          regularHome = match.score.fullTime?.home ?? 0;
-          regularAway = match.score.fullTime?.away ?? 0;
+          regularHome = fullTime?.home ?? 0;
+          regularAway = fullTime?.away ?? 0;
         }
       } else {
-        regularHome = match.score.fullTime?.home ?? 0;
-        regularAway = match.score.fullTime?.away ?? 0;
+        regularHome = fullTime?.home ?? 0;
+        regularAway = fullTime?.away ?? 0;
       }
 
-      const extraTimeHome = match.score.extraTime?.home ?? null;
-      const extraTimeAway = match.score.extraTime?.away ?? null;
+      const extraTimeHome = extraTime?.home ?? null;
+      const extraTimeAway = extraTime?.away ?? null;
 
       let penaltiesHome: number | null = null;
       let penaltiesAway: number | null = null;
 
       if (match.score.duration === 'PENALTY_SHOOTOUT') {
-        penaltiesHome = (match.score.fullTime?.home ?? 0) - (regularHome ?? 0) - (extraTimeHome ?? 0);
-        penaltiesAway = (match.score.fullTime?.away ?? 0) - (regularAway ?? 0) - (extraTimeAway ?? 0);
+        penaltiesHome = (fullTime?.home ?? 0) - (regularHome ?? 0) - (extraTimeHome ?? 0);
+        penaltiesAway = (fullTime?.away ?? 0) - (regularAway ?? 0) - (extraTimeAway ?? 0);
       }
 
       upsertPayload.push({
@@ -161,8 +166,8 @@ export const GET: APIRoute = async () => {
         away_flag: apiAwayFlag ?? existing?.away_flag ?? null,
         home_score: regularHome,
         away_score: regularAway,
-        home_final_score: match.score.fullTime?.home ?? null,
-        away_final_score: match.score.fullTime?.away ?? null,
+        home_final_score: fullTime?.home ?? null,
+        away_final_score: fullTime?.away ?? null,
         extra_time_home: extraTimeHome,
         extra_time_away: extraTimeAway,
         penalties_home: penaltiesHome,
