@@ -33,15 +33,11 @@ interface StatusResponse {
   nowTimestamp: number;
 }
 
-interface ProfileResponse {
-  id?: string;
-  available_points: number;
-}
-
 interface AwardPredictionFormProps {
+  availablePoints: number;
   onPredictionMade?: () => void;
-  onPointsChange?: (pointsWagered: Record<string, number>, availablePoints: number) => void;
-  onProfileLoaded?: (availablePoints: number) => void;
+  onPointsChange?: (pointsWagered: Record<string, number>) => void;
+  onProfileLoaded?: () => void;
 }
 
 interface PointsSelectorProps {
@@ -98,10 +94,14 @@ function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): Re
 /**
  * Form for making award predictions (champion, top scorer, best goalkeeper).
  */
-export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfileLoaded }: AwardPredictionFormProps): React.JSX.Element {
+export function AwardPredictionForm({
+  availablePoints,
+  onPredictionMade,
+  onPointsChange,
+  onProfileLoaded
+}: AwardPredictionFormProps): React.JSX.Element {
   const [teams, setTeams] = useState<Team[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
-  const [availablePoints, setAvailablePoints] = useState<number>(0);
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
   const [submitting, setSubmitting] = useState<boolean>(false);
@@ -122,25 +122,22 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfil
   useEffect((): void => {
     async function loadData(): Promise<void> {
       try {
-        const [teamsRes, playersRes, statusRes, predictionsRes, profileRes] = await Promise.all([
+        const [teamsRes, playersRes, statusRes, predictionsRes] = await Promise.all([
           fetch('/api/awards/teams'),
           fetch('/api/awards/players'),
           fetch('/api/awards/status'),
-          fetch('/api/awards/predictions'),
-          fetch('/api/profile/me')
+          fetch('/api/awards/predictions')
         ]);
 
         const teamsData = (await teamsRes.json()) as { teams: Team[] };
         const playersData = (await playersRes.json()) as { players: Player[] };
         const statusData = (await statusRes.json()) as StatusResponse;
         const predictionsData = (await predictionsRes.json()) as { predictions: ExistingPrediction[] };
-        const profileData = (await profileRes.json()) as ProfileResponse;
 
         setTeams(teamsData.teams);
         setPlayers(playersData.players);
         setIsOpen(statusData.isOpen);
-        setAvailablePoints(profileData.available_points ?? 0);
-        onProfileLoaded?.(profileData.available_points ?? 0);
+        onProfileLoaded?.();
 
         const predictionsMap: Record<string, ExistingPrediction> = {};
         for (const pred of predictionsData.predictions) {
@@ -174,7 +171,7 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfil
   const handlePointsChange = (awardType: string, points: number): void => {
     const newPoints = { ...pointsWagered, [awardType]: points };
     setPointsWagered(newPoints);
-    onPointsChange?.(newPoints, availablePoints);
+    onPointsChange?.(newPoints);
   };
 
   const handleSubmit = async (awardType: string, prediction: string): Promise<void> => {
@@ -214,13 +211,7 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfil
       }
       setExistingPredictions(predictionsMap);
 
-      const profileRes = await fetch('/api/profile/me');
-      const profileData = (await profileRes.json()) as ProfileResponse;
-      const newAvailablePoints = profileData.available_points ?? 0;
-      setAvailablePoints(newAvailablePoints);
-      onPointsChange?.(pointsWagered, newAvailablePoints);
-      onProfileLoaded?.(newAvailablePoints);
-
+      onPointsChange?.(pointsWagered);
       onPredictionMade?.();
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Error desconocido';

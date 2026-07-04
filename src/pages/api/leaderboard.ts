@@ -84,11 +84,12 @@ export const GET: APIRoute = async () => {
 
     for (const profile of allProfiles) {
       const awardPoints = awardPointsByUser[profile.id] ?? 0;
+      const activeWagers = activeWagersByUser[profile.id] ?? 0;
       scoreByUser[profile.id] = {
         userId: profile.id,
         displayName: profile.display_name ?? 'Jugador',
         avatarUrl: profile.avatar_url,
-        totalPoints: awardPoints,
+        totalPoints: awardPoints - activeWagers,
         matchPoints: 0,
         awardPoints: awardPoints,
         exactScores: 0,
