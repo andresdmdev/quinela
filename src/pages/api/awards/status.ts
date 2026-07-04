@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-const WINDOW_CLOSE_TIMESTAMP = new Date('2026-07-05T00:00:00Z').getTime();
+const WINDOW_CLOSE_TIMESTAMP = new Date('2026-07-04T18:00:00Z').getTime();
 
 interface StatusResponse {
   isOpen: boolean;

@@ -4,9 +4,9 @@ import { AwardPredictionForm } from './AwardPredictionForm';
 
 const INITIAL_POINTS = 15;
 const INITIAL_WAGERED = {
-  champion: 2,
-  top_scorer: 2,
-  best_goalkeeper: 2
+  champion: 0,
+  top_scorer: 0,
+  best_goalkeeper: 0
 };
 
 export function AwardBettingPage(): React.JSX.Element {

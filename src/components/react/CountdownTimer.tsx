@@ -16,9 +16,15 @@ interface CountdownTimerProps {
  * Only renders when the window is open.
  */
 export function CountdownTimer({ className = '' }: CountdownTimerProps): React.JSX.Element | null {
-  const [isOpen, setIsOpen] = useState<boolean | null>(null);
-  const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number } | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [status, setStatus] = useState<{
+    isOpen: boolean;
+    closesAtTimestamp: number;
+  } | null>(null);
+  const [timeLeft, setTimeLeft] = useState<{ hours: number; minutes: number; seconds: number }>({
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> | null = null;
@@ -30,7 +36,7 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
           throw new Error('Failed to fetch status');
         }
         const data = (await response.json()) as StatusResponse;
-        setIsOpen(data.isOpen);
+        setStatus({ isOpen: data.isOpen, closesAtTimestamp: data.closesAtTimestamp });
 
         if (data.isOpen) {
           const updateCountdown = (): void => {
@@ -38,8 +44,12 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
             const diff = data.closesAtTimestamp - now;
 
             if (diff <= 0) {
-              setIsOpen(false);
+              setStatus((prev) => prev ? { ...prev, isOpen: false } : null);
               setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+              if (interval) {
+                clearInterval(interval);
+                interval = null;
+              }
               return;
             }
 
@@ -55,8 +65,6 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
         }
       } catch (error) {
         console.error('Error checking award status:', error);
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -69,15 +77,15 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
     };
   }, []);
 
-  if (loading) {
+  if (!status) {
     return (
-      <a href="/premios" className={`bg-gradient-to-r from-[#DC2626] to-[#F97316] rounded-2xl p-4 ${className}`}>
-        <div className="animate-pulse h-12 bg-white/10 rounded-lg" />
-      </a>
+      <div className={`bg-gradient-to-r from-[#DC2626] to-[#F97316] rounded-2xl p-4 animate-pulse ${className}`}>
+        <div className="h-12 bg-white/10 rounded-lg" />
+      </div>
     );
   }
 
-  if (isOpen === false) {
+  if (!status.isOpen) {
     return (
       <div
         className={`bg-[rgba(2,48,71,0.08)] border border-[rgba(2,48,71,0.12)] rounded-2xl p-4 ${className}`}
@@ -91,10 +99,6 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
         </div>
       </div>
     );
-  }
-
-  if (!timeLeft) {
-    return null;
   }
 
   const formatNumber = (n: number): string => n.toString().padStart(2, '0');
@@ -127,7 +131,7 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
         </div>
         <div className="bg-white/20 rounded-xl px-3 py-2">
           <p className="text-white text-xs font-medium">16avos</p>
-          <p className="text-white/80 text-[10px]">4 Jul 00:00</p>
+          <p className="text-white/80 text-[10px]">4 Jul 18:00</p>
         </div>
       </div>
     </a>
