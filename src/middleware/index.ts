@@ -7,8 +7,7 @@ const publicRoutes: string[] = [
   '/api/auth/signin',
   '/api/auth/callback',
   '/api/auth/signout',
-  '/no-habilitado',
-  '/api/profile/me'
+  '/no-habilitado'
 ];
 
 /**
