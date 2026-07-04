@@ -1,142 +1,167 @@
 {
   "teams": [
     {
-      "id": "CZE",
-      "name": "Czech Republic",
-      "group": "A",
-      "flag": "🇨🇿",
-      "players": [
-        { "id": "KOVAR-M", "name": "Matej Kovar", "position": "GK", "isGoalkeeper": true },
-        { "id": "STANEK", "name": "Jindrich Stanek", "position": "GK", "isGoalkeeper": true },
-        { "id": "ZIMA", "name": "David Zima", "position": "DF", "isGoalkeeper": false },
-        { "id": "HOLE", "name": "Tomas Holes", "position": "DF", "isGoalkeeper": false },
-        { "id": "HRANAC", "name": "Robin Hranac", "position": "DF", "isGoalkeeper": false },
-        { "id": "COUFAL", "name": "Vladimir Coufal", "position": "DF", "isGoalkeeper": false },
-        { "id": "CHALUPEK", "name": "Stepan Chaloupek", "position": "DF", "isGoalkeeper": false },
-        { "id": "KREJCI", "name": "Ladislav Krejci", "position": "MF", "isGoalkeeper": false },
-        { "id": "DARIDA", "name": "Vladimir Darida", "position": "MF", "isGoalkeeper": false },
-        { "id": "PROVOD", "name": "Lukas Provod", "position": "MF", "isGoalkeeper": false },
-        { "id": "SADILEK", "name": "Michal Sadilek", "position": "MF", "isGoalkeeper": false },
-        { "id": "SOUCEK", "name": "Tomas Soucek", "position": "MF", "isGoalkeeper": false },
-        { "id": "HLOZEK", "name": "Adam Hlozek", "position": "FW", "isGoalkeeper": false },
-        { "id": "SCHICK", "name": "Patrik Schick", "position": "FW", "isGoalkeeper": false },
-        { "id": "KUCHTA", "name": "Jan Kuchta", "position": "FW", "isGoalkeeper": false },
-        { "id": "CHYTIL", "name": "Mojmir Chytil", "position": "FW", "isGoalkeeper": false },
-        { "id": "SULC", "name": "Pavel Sulc", "position": "FW", "isGoalkeeper": false },
-        { "id": "CHORY", "name": "Tomas Chory", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
       "id": "MEX",
       "name": "Mexico",
       "group": "A",
       "flag": "🇲🇽",
       "players": [
-        { "id": "OCHOA", "name": "Guillermo Ochoa", "position": "GK", "isGoalkeeper": true },
-        { "id": "RANGEL", "name": "Raul Rangel", "position": "GK", "isGoalkeeper": true },
-        { "id": "ACEVEDO", "name": "Carlos Acevedo", "position": "GK", "isGoalkeeper": true },
-        { "id": "SANCHEZ-J", "name": "Jorge Sanchez", "position": "DF", "isGoalkeeper": false },
-        { "id": "MONTES", "name": "Cesar Montes", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALVAREZ-E", "name": "Edson Alvarez", "position": "DF", "isGoalkeeper": false },
-        { "id": "VASQUEZ", "name": "Johan Vasquez", "position": "DF", "isGoalkeeper": false },
-        { "id": "GALLARDO", "name": "Jesus Gallardo", "position": "DF", "isGoalkeeper": false },
-        { "id": "REYES", "name": "Israel Reyes", "position": "DF", "isGoalkeeper": false },
-        { "id": "CHAVEZ-M", "name": "Mateo Chavez", "position": "DF", "isGoalkeeper": false },
-        { "id": "LIRA", "name": "Erik Lira", "position": "MF", "isGoalkeeper": false },
-        { "id": "ROMO", "name": "Luis Romo", "position": "MF", "isGoalkeeper": false },
-        { "id": "FIDALGO", "name": "Alvaro Fidalgo", "position": "MF", "isGoalkeeper": false },
-        { "id": "PINEDA", "name": "Orbelin Pineda", "position": "MF", "isGoalkeeper": false },
-        { "id": "VARGAS", "name": "Obed Vargas", "position": "MF", "isGoalkeeper": false },
-        { "id": "MORA-G", "name": "Gilberto Mora", "position": "MF", "isGoalkeeper": false },
-        { "id": "CHAVEZ-L", "name": "Luis Chavez", "position": "MF", "isGoalkeeper": false },
-        { "id": "GUTIERREZ-B", "name": "Brian Gutierrez", "position": "MF", "isGoalkeeper": false },
-        { "id": "JIMENEZ", "name": "Raul Jimenez", "position": "FW", "isGoalkeeper": false },
-        { "id": "VEGA", "name": "Alexis Vega", "position": "FW", "isGoalkeeper": false },
-        { "id": "GIMENEZ", "name": "Santiago Gimenez", "position": "FW", "isGoalkeeper": false },
-        { "id": "GONZALEZ-A", "name": "Armando Gonzalez", "position": "FW", "isGoalkeeper": false },
-        { "id": "QUINONES", "name": "Julian Quinones", "position": "FW", "isGoalkeeper": false },
-        { "id": "HUERTA", "name": "Cesar Huerta", "position": "FW", "isGoalkeeper": false },
-        { "id": "MARTINEZ-G", "name": "Guillermo Martinez", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALVARADO", "name": "Roberto Alvarado", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "RSA",
-      "name": "South Africa",
-      "group": "A",
-      "flag": "🇿🇦",
-      "players": [
-        { "id": "WILLIAMS-R", "name": "Ronwen Williams", "position": "GK", "isGoalkeeper": true },
-        { "id": "SINGH", "name": "Veli Khan", "position": "GK", "isGoalkeeper": true },
-        { "id": "MATULUDI", "name": "Thabang Matuludi", "position": "DF", "isGoalkeeper": false },
-        { "id": "KHOZA", "name": "Nhlakanipho", "position": "DF", "isGoalkeeper": false },
-        { "id": "MOKOENA", "name": "Mfundo Mokoena", "position": "DF", "isGoalkeeper": false },
-        { "id": "MABASA", "name": "Themba Mabasa", "position": "DF", "isGoalkeeper": false },
-        { "id": "NDULULA", "name": "Luka Modrich", "position": "DF", "isGoalkeeper": false },
-        { "id": "MOTAUNG", "name": "Koketso Motaung", "position": "MF", "isGoalkeeper": false },
-        { "id": "MHLONGO", "name": "Thabo Mhlongo", "position": "MF", "isGoalkeeper": false },
-        { "id": "MOSIYA", "name": "Sibusiso Mosiya", "position": "MF", "isGoalkeeper": false },
-        { "id": "SIBEKO", "name": "Siyabonga Sibeko", "position": "MF", "isGoalkeeper": false },
-        { "id": "MAIMANE", "name": "Teboho Maimane", "position": "MF", "isGoalkeeper": false },
-        { "id": "ZWANE", "name": "Lukhona Zwane", "position": "MF", "isGoalkeeper": false },
-        { "id": "MAFANYA", "name": "Tshepang Mafanya", "position": "FW", "isGoalkeeper": false },
-        { "id": "MAHLANGU", "name": "Luke Mahlangu", "position": "FW", "isGoalkeeper": false },
-        { "id": "VILAKAZI", "name": "Percy Vilakazi", "position": "FW", "isGoalkeeper": false },
-        { "id": "NENE", "name": "Bongani Nene", "position": "FW", "isGoalkeeper": false },
-        { "id": "MTHEMBU", "name": "Lelethe Mthembu", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "KOR",
-      "name": "South Korea",
-      "group": "A",
-      "flag": "🇰🇷",
-      "players": [
-        { "id": "KIM-S", "name": "Seung-gyu Kim", "position": "GK", "isGoalkeeper": true },
-        { "id": "JO-H", "name": "Hyeon-woo Jo", "position": "GK", "isGoalkeeper": true },
-        { "id": "LEE-G", "name": "Geum-hwan Lee", "position": "GK", "isGoalkeeper": true },
-        { "id": "KIM-J", "name": "Jang-gyu Kim", "position": "DF", "isGoalkeeper": false },
-        { "id": "KIM-M", "name": "Min-jae Kim", "position": "DF", "isGoalkeeper": false },
-        { "id": "KIM-Y", "name": "Young-gyu Kim", "position": "DF", "isGoalkeeper": false },
-        { "id": "LEE-H", "name": "Hansu Lee", "position": "DF", "isGoalkeeper": false },
-        { "id": "KANG-Y", "name": "Yong-woo Kang", "position": "DF", "isGoalkeeper": false },
-        { "id": "SEOL-K", "name": "Ki-hyeon Seol", "position": "DF", "isGoalkeeper": false },
-        { "id": "CHOI-J", "name": "Jae-woo Choi", "position": "DF", "isGoalkeeper": false },
-        { "id": "HWANG-J", "name": "Jae-sung Hwang", "position": "MF", "isGoalkeeper": false },
-        { "id": "LEE-J", "name": "Jae-yong Lee", "position": "MF", "isGoalkeeper": false },
-        { "id": "PARK-J", "name": "Ji-sung Park", "position": "MF", "isGoalkeeper": false },
-        { "id": "IN-B", "name": "Bum-yong In", "position": "MF", "isGoalkeeper": false },
-        { "id": "LEE-S", "name": "Seung-woo Lee", "position": "MF", "isGoalkeeper": false },
-        { "id": "SON-H", "name": "Heung-min Son", "position": "FW", "isGoalkeeper": false },
-        { "id": "HWANG-H", "name": "Hee-chan Hwang", "position": "FW", "isGoalkeeper": false },
-        { "id": "LEE-K", "name": "Kang-in Lee", "position": "FW", "isGoalkeeper": false },
-        { "id": "KIM-JJ", "name": "Jun-ho Kim", "position": "FW", "isGoalkeeper": false },
-        { "id": "CHO-G", "name": "Gyu-won Cho", "position": "FW", "isGoalkeeper": false },
-        { "id": "YANG-J", "name": "Jun-seo Yang", "position": "FW", "isGoalkeeper": false },
-        { "id": "OH-H", "name": "Hyeon-gyu Oh", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "BIH",
-      "name": "Bosnia and Herzegovina",
-      "group": "B",
-      "flag": "🇧🇦",
-      "players": [
-        { "id": "OVIC", "name": "Dennis Haskor", "position": "GK", "isGoalkeeper": true },
-        { "id": "SEHIC", "name": "Ibrahim Sehic", "position": "GK", "isGoalkeeper": true },
-        { "id": "KELES", "name": "Vladimir Keles", "position": "DF", "isGoalkeeper": false },
-        { "id": "ZDJE", "name": "Milan G", "position": "DF", "isGoalkeeper": false },
-        { "id": "BAR", "name": "Saban Bar", "position": "DF", "isGoalkeeper": false },
-        { "id": "TOD", "name": "Milan Tod", "position": "DF", "isGoalkeeper": false },
-        { "id": "DZO", "name": "Senad Dzo", "position": "MF", "isGoalkeeper": false },
-        { "id": "PJAN", "name": "Rijan Pjan", "position": "MF", "isGoalkeeper": false },
-        { "id": "MILAN", "name": "Milan Badel", "position": "MF", "isGoalkeeper": false },
-        { "id": "RADE", "name": "Rade O", "position": "MF", "isGoalkeeper": false },
-        { "id": "ZUK", "name": "Milan Zuk", "position": "MF", "isGoalkeeper": false },
-        { "id": "DZEK", "name": "Edin Dzeko", "position": "FW", "isGoalkeeper": false },
-        { "id": "KOD", "name": "Armin Kodal", "position": "FW", "isGoalkeeper": false },
-        { "id": "PRE", "name": "Luka Pre", "position": "FW", "isGoalkeeper": false },
-        { "id": "VRA", "name": "Nermin Vr", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "MEX-OCHOA",
+          "name": "Guillermo Ochoa",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MEX-RANGEL",
+          "name": "Raul Rangel",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MEX-ACEVEDO",
+          "name": "Carlos Acevedo",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MEX-SANCHEZ-J",
+          "name": "Jorge Sanchez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-MONTES",
+          "name": "Cesar Montes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-ALVAREZ-E",
+          "name": "Edson Alvarez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-VASQUEZ",
+          "name": "Johan Vasquez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-GALLARDO",
+          "name": "Jesus Gallardo",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-REYES",
+          "name": "Israel Reyes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-CHAVEZ-M",
+          "name": "Mateo Chavez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-LIRA",
+          "name": "Erik Lira",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-ROMO",
+          "name": "Luis Romo",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-FIDALGO",
+          "name": "Alvaro Fidalgo",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-PINEDA",
+          "name": "Orbelin Pineda",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-VARGAS",
+          "name": "Obed Vargas",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-MORA-G",
+          "name": "Gilberto Mora",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-CHAVEZ-L",
+          "name": "Luis Chavez",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-GUTIERREZ-B",
+          "name": "Brian Gutierrez",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-JIMENEZ",
+          "name": "Raul Jimenez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-VEGA",
+          "name": "Alexis Vega",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-GIMENEZ",
+          "name": "Santiago Gimenez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-GONZALEZ-A",
+          "name": "Armando Gonzalez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-QUINONES",
+          "name": "Julian Quinones",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-HUERTA",
+          "name": "Cesar Huerta",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-MARTINEZ-G",
+          "name": "Guillermo Martinez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MEX-ALVARADO",
+          "name": "Roberto Alvarado",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -145,47 +170,108 @@
       "group": "B",
       "flag": "🇨🇦",
       "players": [
-        { "id": "BORJAN", "name": "Milan Borjan", "position": "GK", "isGoalkeeper": true },
-        { "id": "ST-LA", "name": "Luca Biello", "position": "GK", "isGoalkeeper": true },
-        { "id": "DAVIES", "name": "Alphonso Davies", "position": "DF", "isGoalkeeper": false },
-        { "id": "JOHNSTON", "name": "Alistair Johnston", "position": "DF", "isGoalkeeper": false },
-        { "id": "MILLER", "name": "Steven Miller", "position": "DF", "isGoalkeeper": false },
-        { "id": "VIT", "name": "Luis Palma", "position": "DF", "isGoalkeeper": false },
-        { "id": "WAI", "name": "Milan Wais", "position": "DF", "isGoalkeeper": false },
-        { "id": "COR", "name": "Marco Cor", "position": "MF", "isGoalkeeper": false },
-        { "id": "HUYG", "name": "Atiba Hutchinson", "position": "MF", "isGoalkeeper": false },
-        { "id": "OSOR", "name": "Santiago Silva", "position": "MF", "isGoalkeeper": false },
-        { "id": "KAYE", "name": "Koby Dixon", "position": "MF", "isGoalkeeper": false },
-        { "id": "BUCH", "name": "Tajon Buchanan", "position": "MF", "isGoalkeeper": false },
-        { "id": "DAVI-J", "name": "Jonathan David", "position": "FW", "isGoalkeeper": false },
-        { "id": "LARI", "name": "Cyle Larin", "position": "FW", "isGoalkeeper": false },
-        { "id": "MILL-J", "name": "Miller Jackson", "position": "FW", "isGoalkeeper": false },
-        { "id": "HYP", "name": "Lucas Hyun-hy", "position": "FW", "isGoalkeeper": false },
-        { "id": "OTUN", "name": "Nforoh Otun", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "QAT",
-      "name": "Qatar",
-      "group": "B",
-      "flag": "🇶🇦",
-      "players": [
-        { "id": "BAR", "name": "Meshaal Barsham", "position": "GK", "isGoalkeeper": true },
-        { "id": "YOU", "name": "Yousef Hassan", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALA", "name": "Almoez Ali", "position": "FW", "isGoalkeeper": false },
-        { "id": "AFIF", "name": "Akram Afif", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALI-H", "name": "Al Hajri", "position": "FW", "isGoalkeeper": false },
-        { "id": "KHO", "name": "Ali Sadig", "position": "MF", "isGoalkeeper": false },
-        { "id": "HAY", "name": "Mohammed Hay", "position": "MF", "isGoalkeeper": false },
-        { "id": "TAM", "name": "Tameem", "position": "MF", "isGoalkeeper": false },
-        { "id": "KAH", "name": "Tarek", "position": "DF", "isGoalkeeper": false },
-        { "id": "HAT", "name": "Bassel", "position": "DF", "isGoalkeeper": false },
-        { "id": "MSH", "name": "Msh", "position": "DF", "isGoalkeeper": false },
-        { "id": "WAT", "name": "Ismaeel Mohammad", "position": "FW", "isGoalkeeper": false },
-        { "id": "YAZ", "name": "Yazan", "position": "GK", "isGoalkeeper": true },
-        { "id": "KHA", "name": "Khaldoun", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALA-B", "name": "Alvaro", "position": "DF", "isGoalkeeper": false },
-        { "id": "MUN", "name": "Muneer", "position": "DF", "isGoalkeeper": false }
+        {
+          "id": "CAN-BORJAN",
+          "name": "Milan Borjan",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "CAN-ST-LA",
+          "name": "Luca Biello",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "CAN-DAVIES",
+          "name": "Alphonso Davies",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-JOHNSTON",
+          "name": "Alistair Johnston",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-MILLER",
+          "name": "Steven Miller",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-VIT",
+          "name": "Luis Palma",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-WAI",
+          "name": "Milan Wais",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-COR",
+          "name": "Marco Cor",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-HUYG",
+          "name": "Atiba Hutchinson",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-OSOR",
+          "name": "Santiago Silva",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-KAYE",
+          "name": "Koby Dixon",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-BUCH",
+          "name": "Tajon Buchanan",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-DAVI-J",
+          "name": "Jonathan David",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-LARI",
+          "name": "Cyle Larin",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-MILL-J",
+          "name": "Miller Jackson",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-HYP",
+          "name": "Lucas Hyun-hy",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "CAN-OTUN",
+          "name": "Nforoh Otun",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -194,28 +280,138 @@
       "group": "B",
       "flag": "🇨🇭",
       "players": [
-        { "id": "SOM", "name": "Yann Sommer", "position": "GK", "isGoalkeeper": true },
-        { "id": "KOB", "name": "Gregory Kobel", "position": "GK", "isGoalkeeper": true },
-        { "id": "AML", "name": "Fabian AML", "position": "GK", "isGoalkeeper": true },
-        { "id": "SCH", "name": "Nico Sch", "position": "DF", "isGoalkeeper": false },
-        { "id": "AK", "name": "Manuel Akanji", "position": "DF", "isGoalkeeper": false },
-        { "id": "ELV", "name": "Nicola Elvedi", "position": "DF", "isGoalkeeper": false },
-        { "id": "RI", "name": "Jordan Rib", "position": "DF", "isGoalkeeper": false },
-        { "id": "WOE", "name": "Silvan Wo", "position": "DF", "isGoalkeeper": false },
-        { "id": "FRE", "name": "Ulisses Fre", "position": "MF", "isGoalkeeper": false },
-        { "id": "XHA", "name": "Granit Xhaka", "position": "MF", "isGoalkeeper": false },
-        { "id": "ZAK", "name": "Denis Zakaria", "position": "MF", "isGoalkeeper": false },
-        { "id": "SEI", "name": "Noah Seiler", "position": "MF", "isGoalkeeper": false },
-        { "id": "FROI", "name": "Remo Fro", "position": "MF", "isGoalkeeper": false },
-        { "id": "SOW", "name": "Jonas So", "position": "MF", "isGoalkeeper": false },
-        { "id": "AEB", "name": "Christian Aebischer", "position": "MF", "isGoalkeeper": false },
-        { "id": "SHA", "name": "Zeki Celikers", "position": "DF", "isGoalkeeper": false },
-        { "id": "VARG", "name": "Luis Varg", "position": "FW", "isGoalkeeper": false },
-        { "id": "EM", "name": "Breel Em", "position": "FW", "isGoalkeeper": false },
-        { "id": "RUB", "name": "Dario Rube", "position": "FW", "isGoalkeeper": false },
-        { "id": "IT", "name": "Renato It", "position": "FW", "isGoalkeeper": false },
-        { "id": "OCA", "name": "Hakan Calhanoglu", "position": "MF", "isGoalkeeper": false },
-        { "id": "AME", "name": "Zeki Am", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "SUI-SOM",
+          "name": "Yann Sommer",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "SUI-KOB",
+          "name": "Gregory Kobel",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "SUI-AML",
+          "name": "Fabian AML",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "SUI-SCH",
+          "name": "Nico Sch",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-AK",
+          "name": "Manuel Akanji",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-ELV",
+          "name": "Nicola Elvedi",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-RI",
+          "name": "Jordan Rib",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-WOE",
+          "name": "Silvan Wo",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-FRE",
+          "name": "Ulisses Fre",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-XHA",
+          "name": "Granit Xhaka",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-ZAK",
+          "name": "Denis Zakaria",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-SEI",
+          "name": "Noah Seiler",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-FROI",
+          "name": "Remo Fro",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-SOW",
+          "name": "Jonas So",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-AEB",
+          "name": "Christian Aebischer",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-SHA",
+          "name": "Zeki Celikers",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-VARG",
+          "name": "Luis Varg",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-EM",
+          "name": "Breel Em",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-RUB",
+          "name": "Dario Rube",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-IT",
+          "name": "Renato It",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-OCA",
+          "name": "Hakan Calhanoglu",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "SUI-AME",
+          "name": "Zeki Am",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -224,52 +420,138 @@
       "group": "C",
       "flag": "🇧🇷",
       "players": [
-        { "id": "ALISSON", "name": "Alisson Becker", "position": "GK", "isGoalkeeper": true },
-        { "id": "EDER", "name": "Ederson", "position": "GK", "isGoalkeeper": true },
-        { "id": "WEVERTON", "name": "Weverton", "position": "GK", "isGoalkeeper": true },
-        { "id": "DANILO", "name": "Danilo", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALEX", "name": "Alex Sandro", "position": "DF", "isGoalkeeper": false },
-        { "id": "MARQUINHOS", "name": "Marquinhos", "position": "DF", "isGoalkeeper": false },
-        { "id": "SILVA", "name": "Thiago Silva", "position": "DF", "isGoalkeeper": false },
-        { "id": "MENDES", "name": "Hugo Mendes", "position": "DF", "isGoalkeeper": false },
-        { "id": "NUNES", "name": "Wagner Nunes", "position": "DF", "isGoalkeeper": false },
-        { "id": "CASEMIRO", "name": "Casemiro", "position": "MF", "isGoalkeeper": false },
-        { "id": "FABINHO", "name": "Fabinho", "position": "MF", "isGoalkeeper": false },
-        { "id": "GUIMARAES", "name": "Bruno Guimaraes", "position": "MF", "isGoalkeeper": false },
-        { "id": "PAQUETA", "name": "Lucas Paqueta", "position": "MF", "isGoalkeeper": false },
-        { "id": "NEVES", "name": "Neymar", "position": "FW", "isGoalkeeper": false },
-        { "id": "VINICIUS", "name": "Vinicius Jr", "position": "FW", "isGoalkeeper": false },
-        { "id": "RODRYGO", "name": "Rodrygo", "position": "FW", "isGoalkeeper": false },
-        { "id": "RICHARLISON", "name": "Richarlison", "position": "FW", "isGoalkeeper": false },
-        { "id": "RAPHA", "name": "Raphinha", "position": "FW", "isGoalkeeper": false },
-        { "id": "PEDRO", "name": "Pedro", "position": "FW", "isGoalkeeper": false },
-        { "id": "ANTONY", "name": "Antony", "position": "FW", "isGoalkeeper": false },
-        { "id": "MARTINELLI", "name": "Gabriel Martinelli", "position": "FW", "isGoalkeeper": false },
-        { "id": "ROBERTO", "name": "Roberto", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "HAI",
-      "name": "Haiti",
-      "group": "C",
-      "flag": "🇭🇹",
-      "players": [
-        { "id": "PLUMM", "name": "Alexandre Plumm", "position": "GK", "isGoalkeeper": true },
-        { "id": "BELL", "name": "Bell", "position": "GK", "isGoalkeeper": true },
-        { "id": "LAL", "name": "Carl Lal", "position": "DF", "isGoalkeeper": false },
-        { "id": "JER", "name": "Jeremy", "position": "DF", "isGoalkeeper": false },
-        { "id": "PIER", "name": "Pierrot", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALEX", "name": "Linus Alex", "position": "DF", "isGoalkeeper": false },
-        { "id": "ANTO", "name": "Bryan Anto", "position": "MF", "isGoalkeeper": false },
-        { "id": "STEE", "name": "Steeven Stee", "position": "MF", "isGoalkeeper": false },
-        { "id": "FRAN", "name": "Franjseco", "position": "MF", "isGoalkeeper": false },
-        { "id": "SMITH", "name": " Derrick Smith", "position": "MF", "isGoalkeeper": false },
-        { "id": "MACE", "name": "Jon Marcel Mace", "position": "MF", "isGoalkeeper": false },
-        { "id": "LOUIS", "name": "Micheal Louis", "position": "FW", "isGoalkeeper": false },
-        { "id": "NOVA", "name": "Juan Nova", "position": "FW", "isGoalkeeper": false },
-        { "id": "JOL", "name": "Kervens Jol", "position": "FW", "isGoalkeeper": false },
-        { "id": "PIER-A", "name": "Nicolas Pier", "position": "FW", "isGoalkeeper": false },
-        { "id": "BOD", "name": "Christophe Bod", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "BRA-ALISSON",
+          "name": "Alisson Becker",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BRA-EDER",
+          "name": "Ederson",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BRA-WEVERTON",
+          "name": "Weverton",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BRA-DANILO",
+          "name": "Danilo",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-ALEX",
+          "name": "Alex Sandro",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-MARQUINHOS",
+          "name": "Marquinhos",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-SILVA",
+          "name": "Thiago Silva",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-MENDES",
+          "name": "Hugo Mendes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-NUNES",
+          "name": "Wagner Nunes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-CASEMIRO",
+          "name": "Casemiro",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-FABINHO",
+          "name": "Fabinho",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-GUIMARAES",
+          "name": "Bruno Guimaraes",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-PAQUETA",
+          "name": "Lucas Paqueta",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-NEVES",
+          "name": "Neymar",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-VINICIUS",
+          "name": "Vinicius Jr",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-RODRYGO",
+          "name": "Rodrygo",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-RICHARLISON",
+          "name": "Richarlison",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-RAPHA",
+          "name": "Raphinha",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-PEDRO",
+          "name": "Pedro",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-ANTONY",
+          "name": "Antony",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-MARTINELLI",
+          "name": "Gabriel Martinelli",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BRA-ROBERTO",
+          "name": "Roberto",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -278,83 +560,138 @@
       "group": "C",
       "flag": "🇲🇦",
       "players": [
-        { "id": "BONO", "name": "Yassine Bounou", "position": "GK", "isGoalkeeper": true },
-        { "id": "TAIR", "name": "Elmehdi Tair", "position": "GK", "isGoalkeeper": true },
-        { "id": "MUNIR", "name": "Munir El Kaj", "position": "GK", "isGoalkeeper": true },
-        { "id": "HAKIMI", "name": "Achraf Hakimi", "position": "DF", "isGoalkeeper": false },
-        { "id": "MAZ", "name": "Jawad Maz", "position": "DF", "isGoalkeeper": false },
-        { "id": "AGUERD", "name": "Nayef Aguerd", "position": "DF", "isGoalkeeper": false },
-        { "id": "SAISS", "name": "Romain Saiss", "position": "DF", "isGoalkeeper": false },
-        { "id": "DAR", "name": "Goussar Dar", "position": "DF", "isGoalkeeper": false },
-        { "id": "YUNES", "name": "Youssef Yunes", "position": "DF", "isGoalkeeper": false },
-        { "id": "AMM", "name": "Youssef Ammoutou", "position": "GK", "isGoalkeeper": true },
-        { "id": "OUNA", "name": "Ayoub El Ouahabi", "position": "MF", "isGoalkeeper": false },
-        { "id": "LOV", "name": "Maxime Lov", "position": "MF", "isGoalkeeper": false },
-        { "id": "HAM", "name": "Ayman Ham", "position": "MF", "isGoalkeeper": false },
-        { "id": "ABDE", "name": "Ez Abde", "position": "FW", "isGoalkeeper": false },
-        { "id": "HARIT", "name": "Youssef Harit", "position": "MF", "isGoalkeeper": false },
-        { "id": "MONT", "name": "Eliesse Ben Seghir", "position": "MF", "isGoalkeeper": false },
-        { "id": "ZIYECH", "name": "Hakim Ziyech", "position": "FW", "isGoalkeeper": false },
-        { "id": "ENNESYRI", "name": "Youssef En-Nesyri", "position": "FW", "isGoalkeeper": false },
-        { "id": "ELKH", "name": "Abdelmalek El Kh", "position": "FW", "isGoalkeeper": false },
-        { "id": "SHA", "name": "Badr Sha", "position": "FW", "isGoalkeeper": false },
-        { "id": "AMAL", "name": "S天山 Amall", "position": "FW", "isGoalkeeper": false },
-        { "id": "RA", "name": "Oussama Ra", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "SCO",
-      "name": "Scotland",
-      "group": "C",
-      "flag": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
-      "players": [
-        { "id": "GUN", "name": "Angus Gunn", "position": "GK", "isGoalkeeper": true },
-        { "id": "CLARK", "name": "Liam Clark", "position": "GK", "isGoalkeeper": true },
-        { "id": "MCG", "name": "Jon McG", "position": "GK", "isGoalkeeper": true },
-        { "id": "ROBERTSON", "name": "Andy Robertson", "position": "DF", "isGoalkeeper": false },
-        { "id": "KITCHEL", "name": "Jack Kitchel", "position": "DF", "isGoalkeeper": false },
-        { "id": "HAN", "name": "Cameron Han", "position": "DF", "isGoalkeeper": false },
-        { "id": "POBOL", "name": "Ryan Polbol", "position": "DF", "isGoalkeeper": false },
-        { "id": "MCGOW", "name": "Greg McGow", "position": "DF", "isGoalkeeper": false },
-        { "id": "TAIT", "name": "Kieran Tai", "position": "DF", "isGoalkeeper": false },
-        { "id": "FLECK", "name": "John Fleck", "position": "MF", "isGoalkeeper": false },
-        { "id": "MCGIN", "name": "Callum McGinn", "position": "MF", "isGoalkeeper": false },
-        { "id": "MCN", "name": "Scott McTominay", "position": "MF", "isGoalkeeper": false },
-        { "id": "SLOAN", "name": "Ryan Sloan", "position": "MF", "isGoalkeeper": false },
-        { "id": "CHRISTIE", "name": "Ross Christie", "position": "MF", "isGoalkeeper": false },
-        { "id": "MCGRATH", "name": "Paul McGrath", "position": "MF", "isGoalkeeper": false },
-        { "id": "DYLAN", "name": "Lewis Dylan", "position": "MF", "isGoalkeeper": false },
-        { "id": "MACK", "name": "Harmon Mack", "position": "FW", "isGoalkeeper": false },
-        { "id": "ADAMS", "name": "Tommy Adams", "position": "FW", "isGoalkeeper": false },
-        { "id": "SHANK", "name": "Ryan Shank", "position": "FW", "isGoalkeeper": false },
-        { "id": "CONN", "name": "Chris Conn", "position": "FW", "isGoalkeeper": false },
-        { "id": "FOREST", "name": "James Forest", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "AUS",
-      "name": "Australia",
-      "group": "D",
-      "flag": "🇦🇺",
-      "players": [
-        { "id": "RYAN", "name": "Mathew Ryan", "position": "GK", "isGoalkeeper": true },
-        { "id": "VUK", "name": "Danny Vuk", "position": "GK", "isGoalkeeper": true },
-        { "id": "GRAY", "name": "Bee Gray", "position": "GK", "isGoalkeeper": true },
-        { "id": "ROW", "name": "Francesco Row", "position": "DF", "isGoalkeeper": false },
-        { "id": "KING", "name": "Kasper King", "position": "DF", "isGoalkeeper": false },
-        { "id": "BUR", "name": "Aziz B", "position": "DF", "isGoalkeeper": false },
-        { "id": "SOUT", "name": "Kye Sout", "position": "DF", "isGoalkeeper": false },
-        { "id": "GER", "name": "G", "position": "DF", "isGoalkeeper": false },
-        { "id": "GING", "name": "Franco Ging", "position": "MF", "isGoalkeeper": false },
-        { "id": "IRVINE", "name": "Jackson Irvine", "position": "MF", "isGoalkeeper": false },
-        { "id": "MOOY", "name": "Aaron Mooy", "position": "MF", "isGoalkeeper": false },
-        { "id": "KASSAN", "name": "Kassan", "position": "MF", "isGoalkeeper": false },
-        { "id": "MABIL", "name": "Awer Mabil", "position": "FW", "isGoalkeeper": false },
-        { "id": "DUKE", "name": "Mitchell Duke", "position": "FW", "isGoalkeeper": false },
-        { "id": "GOODWIN", "name": "Craig Goodwin", "position": "FW", "isGoalkeeper": false },
-        { "id": "BOAT", "name": "Mathew L", "position": "FW", "isGoalkeeper": false },
-        { "id": "TU", "name": "Nik Tu", "position": "FW", "isGoalkeeper": false },
-        { "id": "BOUS", "name": "Yacouba Bous", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "MAR-BONO",
+          "name": "Yassine Bounou",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MAR-TAIR",
+          "name": "Elmehdi Tair",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MAR-MUNIR",
+          "name": "Munir El Kaj",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MAR-HAKIMI",
+          "name": "Achraf Hakimi",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-MAZ",
+          "name": "Jawad Maz",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-AGUERD",
+          "name": "Nayef Aguerd",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-SAISS",
+          "name": "Romain Saiss",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-DAR",
+          "name": "Goussar Dar",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-YUNES",
+          "name": "Youssef Yunes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-AMM",
+          "name": "Youssef Ammoutou",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "MAR-OUNA",
+          "name": "Ayoub El Ouahabi",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-LOV",
+          "name": "Maxime Lov",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-HAM",
+          "name": "Ayman Ham",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-ABDE",
+          "name": "Ez Abde",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-HARIT",
+          "name": "Youssef Harit",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-MONT",
+          "name": "Eliesse Ben Seghir",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-ZIYECH",
+          "name": "Hakim Ziyech",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-ENNESYRI",
+          "name": "Youssef En-Nesyri",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-ELKH",
+          "name": "Abdelmalek El Kh",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-SHA",
+          "name": "Badr Sha",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-AMAL",
+          "name": "S天山 Amall",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "MAR-RA",
+          "name": "Oussama Ra",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -363,52 +700,114 @@
       "group": "D",
       "flag": "🇵🇾",
       "players": [
-        { "id": "SILVA-G", "name": "Gaston Silva", "position": "GK", "isGoalkeeper": true },
-        { "id": "ROJAS", "name": "Alfredo Rojas", "position": "GK", "isGoalkeeper": true },
-        { "id": "AGUILAR", "name": "Carlos Aguilar", "position": "GK", "isGoalkeeper": true },
-        { "id": "DAVI", "name": "David Villas", "position": "DF", "isGoalkeeper": false },
-        { "id": "ESPINO", "name": "Santiago Espino", "position": "DF", "isGoalkeeper": false },
-        { "id": "ARCE", "name": "Gustavo Arce", "position": "DF", "isGoalkeeper": false },
-        { "id": "VAL", "name": "Oscar Val", "position": "DF", "isGoalkeeper": false },
-        { "id": "CUBAS", "name": "Andres Cubas", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALMI", "name": "Miguel Almiron", "position": "MF", "isGoalkeeper": false },
-        { "id": "VILLASANTI", "name": "Mathias Villasanti", "position": "MF", "isGoalkeeper": false },
-        { "id": "MEDINA", "name": "Oscar Medina", "position": "MF", "isGoalkeeper": false },
-        { "id": "ROMERO", "name": "Alvaro Romero", "position": "MF", "isGoalkeeper": false },
-        { "id": "SANABRIA", "name": "Antonio Sanabria", "position": "FW", "isGoalkeeper": false },
-        { "id": "GOMEZ-A", "name": "Alejandro Gomez", "position": "FW", "isGoalkeeper": false },
-        { "id": "BEN", "name": "Derlis Ben", "position": "FW", "isGoalkeeper": false },
-        { "id": "CARD", "name": "Walter Card", "position": "FW", "isGoalkeeper": false },
-        { "id": "SAL", "name": "Alberto Sal", "position": "FW", "isGoalkeeper": false },
-        { "id": "CAB", "name": "Arturo Cab", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "TUR",
-      "name": "Turkey",
-      "group": "D",
-      "flag": "🇹🇷",
-      "players": [
-        { "id": "AK", "name": "Altay Bayindir", "position": "GK", "isGoalkeeper": true },
-        { "id": "SINAN", "name": "Sinan Gumus", "position": "GK", "isGoalkeeper": true },
-        { "id": "DEMIR", "name": "Mert Demir", "position": "GK", "isGoalkeeper": true },
-        { "id": "DEMIRAL", "name": "Caglar Soyuncu", "position": "DF", "isGoalkeeper": false },
-        { "id": "AKAY", "name": "Samet Akay", "position": "DF", "isGoalkeeper": false },
-        { "id": "YILMAZ", "name": "Yusuf Yilmaz", "position": "DF", "isGoalkeeper": false },
-        { "id": "OSE", "name": "Ridvan Yalcin", "position": "DF", "isGoalkeeper": false },
-        { "id": "KAD", "name": "Ferdi Kad", "position": "DF", "isGoalkeeper": false },
-        { "id": "KOK", "name": "Arda Kok", "position": "MF", "isGoalkeeper": false },
-        { "id": "YLDC", "name": "Hakan Calhanoglu", "position": "MF", "isGoalkeeper": false },
-        { "id": "SAHIN", "name": "Nuri Sahin", "position": "MF", "isGoalkeeper": false },
-        { "id": "TORUN", "name": "Oguzhan Torun", "position": "MF", "isGoalkeeper": false },
-        { "id": "YAZ", "name": "Karim Yildirim", "position": "MF", "isGoalkeeper": false },
-        { "id": "AKT", "name": "Mert Akt", "position": "MF", "isGoalkeeper": false },
-        { "id": "YILMAZ-K", "name": "Kerem Yilmaz", "position": "FW", "isGoalkeeper": false },
-        { "id": "UND", "name": "Baris Yildirim", "position": "FW", "isGoalkeeper": false },
-        { "id": "AKBA", "name": "Serdar Dursun", "position": "FW", "isGoalkeeper": false },
-        { "id": "GOK", "name": "Alper Gok", "position": "FW", "isGoalkeeper": false },
-        { "id": "TURK", "name": "Mert Turk", "position": "FW", "isGoalkeeper": false },
-        { "id": "SEN", "name": "Yilmaz Sen", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "PAR-SILVA-G",
+          "name": "Gaston Silva",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "PAR-ROJAS",
+          "name": "Alfredo Rojas",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "PAR-AGUILAR",
+          "name": "Carlos Aguilar",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "PAR-DAVI",
+          "name": "David Villas",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-ESPINO",
+          "name": "Santiago Espino",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-ARCE",
+          "name": "Gustavo Arce",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-VAL",
+          "name": "Oscar Val",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-CUBAS",
+          "name": "Andres Cubas",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-ALMI",
+          "name": "Miguel Almiron",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-VILLASANTI",
+          "name": "Mathias Villasanti",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-MEDINA",
+          "name": "Oscar Medina",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-ROMERO",
+          "name": "Alvaro Romero",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-SANABRIA",
+          "name": "Antonio Sanabria",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-GOMEZ-A",
+          "name": "Alejandro Gomez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-BEN",
+          "name": "Derlis Ben",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-CARD",
+          "name": "Walter Card",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-SAL",
+          "name": "Alberto Sal",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "PAR-CAB",
+          "name": "Arturo Cab",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -417,238 +816,138 @@
       "group": "D",
       "flag": "🇺🇸",
       "players": [
-        { "id": "TURNER", "name": "Matt Turner", "position": "GK", "isGoalkeeper": true },
-        { "id": "SCH", "name": "Marko Sch", "position": "GK", "isGoalkeeper": true },
-        { "id": "SLIS", "name": "Patrick Slis", "position": "GK", "isGoalkeeper": true },
-        { "id": "REYNOLDS", "name": "Bryan Reynolds", "position": "DF", "isGoalkeeper": false },
-        { "id": "DEST", "name": "Sergino Dest", "position": "DF", "isGoalkeeper": false },
-        { "id": "ROBINSON", "name": "Antonee Robinson", "position": "DF", "isGoalkeeper": false },
-        { "id": "LONG", "name": "Walker Zimmerman", "position": "DF", "isGoalkeeper": false },
-        { "id": "REAMS", "name": "Tim Ream", "position": "DF", "isGoalkeeper": false },
-        { "id": "SCALL", "name": "Cameron Scall", "position": "DF", "isGoalkeeper": false },
-        { "id": "CARD", "name": "Miles Card", "position": "DF", "isGoalkeeper": false },
-        { "id": "MCKENNIE", "name": "Weston McKennie", "position": "MF", "isGoalkeeper": false },
-        { "id": "PULISIC", "name": "Christian Pulisic", "position": "FW", "isGoalkeeper": false },
-        { "id": "AAR", "name": "Brenden Aaronson", "position": "MF", "isGoalkeeper": false },
-        { "id": "WEA", "name": "Tim Weah", "position": "FW", "isGoalkeeper": false },
-        { "id": "MUS", "name": "Yunus Musah", "position": "MF", "isGoalkeeper": false },
-        { "id": "CARD-IO", "name": "Giovanni Reyna", "position": "MF", "isGoalkeeper": false },
-        { "id": "MORRIS", "name": "Matthew Morris", "position": "MF", "isGoalkeeper": false },
-        { "id": "BUD", "name": "Paul Bunn", "position": "MF", "isGoalkeeper": false },
-        { "id": "JONES", "name": "Mason Jones", "position": "MF", "isGoalkeeper": false },
-        { "id": "PEP", "name": "Ricardo Pepi", "position": "FW", "isGoalkeeper": false },
-        { "id": "FER", "name": "Josh Fer", "position": "FW", "isGoalkeeper": false },
-        { "id": "HAJI", "name": "Sam Haji", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "CUR",
-      "name": "Curacao",
-      "group": "E",
-      "flag": "🇨🇼",
-      "players": [
-        { "id": "ROOS", "name": "Rainoldo", "position": "GK", "isGoalkeeper": true },
-        { "id": "WOUT", "name": "Wout", "position": "GK", "isGoalkeeper": true },
-        { "id": "BAKE", "name": "Cuco Bake", "position": "FW", "isGoalkeeper": false },
-        { "id": "HOI", "name": "Giovanni", "position": "MF", "isGoalkeeper": false },
-        { "id": "JANGE", "name": "Jarchinio", "position": "MF", "isGoalkeeper": false },
-        { "id": "LO", "name": "Juri Lo", "position": "MF", "isGoalkeeper": false },
-        { "id": "CORD", "name": "Jhor Cord", "position": "DF", "isGoalkeeper": false },
-        { "id": "SAN", "name": "C", "position": "DF", "isGoalkeeper": false },
-        { "id": "MA", "name": "D", "position": "DF", "isGoalkeeper": false },
-        { "id": "KRU", "name": "K", "position": "DF", "isGoalkeeper": false },
-        { "id": "SCH-G", "name": "G", "position": "FW", "isGoalkeeper": false },
-        { "id": "EL", "name": "E", "position": "FW", "isGoalkeeper": false },
-        { "id": "BEN", "name": "J", "position": "GK", "isGoalkeeper": true },
-        { "id": "JONG", "name": "C", "position": "DF", "isGoalkeeper": false },
-        { "id": "AL", "name": "Ken", "position": "MF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "ECU",
-      "name": "Ecuador",
-      "group": "E",
-      "flag": "🇪🇨",
-      "players": [
-        { "id": "GALANDEZ", "name": "Hernan Galdez", "position": "GK", "isGoalkeeper": true },
-        { "id": "MINDA", "name": "Alan Minda", "position": "GK", "isGoalkeeper": true },
-        { "id": "DOMINGUEZ", "name": "Jason Dominguez", "position": "GK", "isGoalkeeper": true },
-        { "id": "PRECIADO", "name": "Angelo Preciado", "position": "DF", "isGoalkeeper": false },
-        { "id": "TOR", "name": "William Pacho", "position": "DF", "isGoalkeeper": false },
-        { "id": "HINC", "name": "Danny Hinc", "position": "DF", "isGoalkeeper": false },
-        { "id": "MENA", "name": "Pervis Estupinan", "position": "DF", "isGoalkeeper": false },
-        { "id": "CAST", "name": "Lucas Cast", "position": "DF", "isGoalkeeper": false },
-        { "id": "CAICEDO", "name": "Moises Caicedo", "position": "MF", "isGoalkeeper": false },
-        { "id": "GUEVARA", "name": "Jose Cifuentes", "position": "MF", "isGoalkeeper": false },
-        { "id": "FRANCO", "name": "Jeremy Sarmiento", "position": "MF", "isGoalkeeper": false },
-        { "id": "ORD", "name": "John Ordo", "position": "MF", "isGoalkeeper": false },
-        { "id": "VALENCIA", "name": "Enner Valencia", "position": "FW", "isGoalkeeper": false },
-        { "id": "RODRIGUEZ", "name": "Kevin Rodriguez", "position": "FW", "isGoalkeeper": false },
-        { "id": "SAR", "name": "Klint Sar", "position": "FW", "isGoalkeeper": false },
-        { "id": "CHAL", "name": "Alan Chal", "position": "FW", "isGoalkeeper": false },
-        { "id": "PLATA", "name": "Angelo Plata", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "GER",
-      "name": "Germany",
-      "group": "E",
-      "flag": "🇩🇪",
-      "players": [
-        { "id": "NEUER", "name": "Manuel Neuer", "position": "GK", "isGoalkeeper": true },
-        { "id": "TER", "name": "Kevin Trapp", "position": "GK", "isGoalkeeper": true },
-        { "id": "BRAND", "name": "Kevin Brand", "position": "GK", "isGoalkeeper": true },
-        { "id": "TA", "name": "Joshua Kimmich", "position": "DF", "isGoalkeeper": false },
-        { "id": "RUDIGER", "name": "Antonio Rudiger", "position": "DF", "isGoalkeeper": false },
-        { "id": "SCHMELZER", "name": "Marcel Schmelzer", "position": "DF", "isGoalkeeper": false },
-        { "id": "KOL", "name": "Matthias Ginter", "position": "DF", "isGoalkeeper": false },
-        { "id": "RAHU", "name": "Thilo Rahue", "position": "DF", "isGoalkeeper": false },
-        { "id": "KROOS", "name": "Toni Kroos", "position": "MF", "isGoalkeeper": false },
-        { "id": "GUNDOGAN", "name": "Ilkay Gundogan", "position": "MF", "isGoalkeeper": false },
-        { "id": "MUSIALA", "name": "Jamal Musiala", "position": "MF", "isGoalkeeper": false },
-        { "id": "GNABRY", "name": "Serge Gnabry", "position": "MF", "isGoalkeeper": false },
-        { "id": "WIRTZ", "name": "Florian Wirtz", "position": "MF", "isGoalkeeper": false },
-        { "id": "KANE", "name": "Harry Kane", "position": "FW", "isGoalkeeper": false },
-        { "id": "SANE", "name": "Leroy Sane", "position": "FW", "isGoalkeeper": false },
-        { "id": "HAVERTZ", "name": "Kai Havertz", "position": "FW", "isGoalkeeper": false },
-        { "id": "MULLER", "name": "Thomas Muller", "position": "FW", "isGoalkeeper": false },
-        { "id": "REUS", "name": "Marco Reus", "position": "FW", "isGoalkeeper": false },
-        { "id": "FUNK", "name": "Lukas Funk", "position": "MF", "isGoalkeeper": false },
-        { "id": "BAUER", "name": "Mats Bauer", "position": "DF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "CIV",
-      "name": "Ivory Coast",
-      "group": "E",
-      "flag": "🇨🇮",
-      "players": [
-        { "id": "TIA", "name": "Sylvain Tiape", "position": "GK", "isGoalkeeper": true },
-        { "id": "SANG", "name": "Mory Dia Sang", "position": "GK", "isGoalkeeper": true },
-        { "id": "TA", "name": "Cedric T", "position": "GK", "isGoalkeeper": true },
-        { "id": "KAL", "name": "Ismail Kal", "position": "DF", "isGoalkeeper": false },
-        { "id": "NG", "name": "Eric K", "position": "DF", "isGoalkeeper": false },
-        { "id": "KAK", "name": "Wilfried", "position": "DF", "isGoalkeeper": false },
-        { "id": "TOURE", "name": "B Tra", "position": "DF", "isGoalkeeper": false },
-        { "id": "A", "name": "S M", "position": "MF", "isGoalkeeper": false },
-        { "id": "KESSIE", "name": "Franck Kessie", "position": "MF", "isGoalkeeper": false },
-        { "id": "SERI", "name": "Jean Michael Seri", "position": "MF", "isGoalkeeper": false },
-        { "id": "PEPE", "name": "Nicolas Pepe", "position": "FW", "isGoalkeeper": false },
-        { "id": "HALLER", "name": "Sebastien Haller", "position": "FW", "isGoalkeeper": false },
-        { "id": "AUBAMEYANG", "name": "Pierre-Emerick Aubameyang", "position": "FW", "isGoalkeeper": false },
-        { "id": "DIAL", "name": "Boulaye Dia", "position": "FW", "isGoalkeeper": false },
-        { "id": "KUDUS", "name": "Mohammed Kudus", "position": "MF", "isGoalkeeper": false },
-        { "id": "GRA", "name": "Sekou Gra", "position": "MF", "isGoalkeeper": false },
-        { "id": "KAMARA", "name": "Pierre K", "position": "MF", "isGoalkeeper": false },
-        { "id": "SING", "name": "Mamadou Sing", "position": "DF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "JPN",
-      "name": "Japan",
-      "group": "F",
-      "flag": "🇯🇵",
-      "players": [
-        { "id": "GONDA", "name": "Eiji Gonda", "position": "GK", "isGoalkeeper": true },
-        { "id": "KAWASH", "name": "Shuichi Kawashima", "position": "GK", "isGoalkeeper": true },
-        { "id": "NAKAGAWA", "name": "Kei Nakagawa", "position": "GK", "isGoalkeeper": true },
-        { "id": "YUTO", "name": "Juri Kant", "position": "DF", "isGoalkeeper": false },
-        { "id": "TAKE", "name": "Takehiro Tomiyasu", "position": "DF", "isGoalkeeper": false },
-        { "id": "ITAKURA", "name": "Ko Itakura", "position": "DF", "isGoalkeeper": false },
-        { "id": "YOSHIDA", "name": "Maya Yoshida", "position": "DF", "isGoalkeeper": false },
-        { "id": "NAGATOMO", "name": "Yuto Nagatomo", "position": "DF", "isGoalkeeper": false },
-        { "id": "ENDO", "name": "Wataru Endo", "position": "MF", "isGoalkeeper": false },
-        { "id": "KAMADA", "name": "Daichi Kamada", "position": "MF", "isGoalkeeper": false },
-        { "id": "MORITA", "name": "Hiroki Morita", "position": "MF", "isGoalkeeper": false },
-        { "id": "NAKAMURA", "name": "Koki Nakamura", "position": "MF", "isGoalkeeper": false },
-        { "id": "ITO", "name": "Junya Ito", "position": "FW", "isGoalkeeper": false },
-        { "id": "MINAMINO", "name": "Takumi Minamino", "position": "FW", "isGoalkeeper": false },
-        { "id": "USHI", "name": "Kaoru Mitoma", "position": "FW", "isGoalkeeper": false },
-        { "id": "MAEDA", "name": "Daizen Maeda", "position": "FW", "isGoalkeeper": false },
-        { "id": "KAWASHIMA", "name": "Takashi Kawashima", "position": "FW", "isGoalkeeper": false },
-        { "id": "UEDA", "name": "Ayase Ueda", "position": "FW", "isGoalkeeper": false },
-        { "id": "KUBO", "name": "Takefusa Kubo", "position": "FW", "isGoalkeeper": false },
-        { "id": "FUKUDA", "name": "Yuki Fukuda", "position": "MF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "NED",
-      "name": "Netherlands",
-      "group": "F",
-      "flag": "🇳🇱",
-      "players": [
-        { "id": "FLEK", "name": "Mark Flekken", "position": "GK", "isGoalkeeper": true },
-        { "id": "CIL", "name": "Justin Bijlow", "position": "GK", "isGoalkeeper": true },
-        { "id": "NK", "name": "Noppert", "position": "GK", "isGoalkeeper": true },
-        { "id": "VAND", "name": "Virgil van Dijk", "position": "DF", "isGoalkeeper": false },
-        { "id": "DUMFRIES", "name": "Denzel Dumfries", "position": "DF", "isGoalkeeper": false },
-        { "id": "AK", "name": "Perr Schuurs", "position": "DF", "isGoalkeeper": false },
-        { "id": "VRIES", "name": "Owen van der Vries", "position": "DF", "isGoalkeeper": false },
-        { "id": "BLIND", "name": "Daley Blind", "position": "DF", "isGoalkeeper": false },
-        { "id": "AI", "name": "Frenkie de Jong", "position": "MF", "isGoalkeeper": false },
-        { "id": "FRIMPONG", "name": "Jeremie Frimpong", "position": "MF", "isGoalkeeper": false },
-        { "id": "VEEN", "name": "Teun Koopmeiners", "position": "MF", "isGoalkeeper": false },
-        { "id": "SCHOUTEN", "name": "Jerdy Schouten", "position": "MF", "isGoalkeeper": false },
-        { "id": "SIMONS", "name": "Xavi Simons", "position": "MF", "isGoalkeeper": false },
-        { "id": "GAKPO", "name": "Cody Gakpo", "position": "FW", "isGoalkeeper": false },
-        { "id": "DEPAY", "name": "Memphis Depay", "position": "FW", "isGoalkeeper": false },
-        { "id": "WEGHORST", "name": "Wout Weghorst", "position": "FW", "isGoalkeeper": false },
-        { "id": "LANG", "name": "Noa Lang", "position": "FW", "isGoalkeeper": false },
-        { "id": "DANJUMA", "name": "Arnaut Danjuma", "position": "FW", "isGoalkeeper": false },
-        { "id": "WIL", "name": "Steven Wil", "position": "MF", "isGoalkeeper": false },
-        { "id": "KLU", "name": "Noah Klu", "position": "GK", "isGoalkeeper": true }
-      ]
-    },
-    {
-      "id": "SWE",
-      "name": "Sweden",
-      "group": "F",
-      "flag": "🇸🇪",
-      "players": [
-        { "id": "OLSEN", "name": "Robin Olsen", "position": "GK", "isGoalkeeper": true },
-        { "id": "LIN", "name": "Johan G", "position": "GK", "isGoalkeeper": true },
-        { "id": "NY", "name": "Stefan N", "position": "GK", "isGoalkeeper": true },
-        { "id": "A", "name": "Pierre B", "position": "DF", "isGoalkeeper": false },
-        { "id": "KRAF", "name": "Johan K", "position": "DF", "isGoalkeeper": false },
-        { "id": "ST", "name": "Filip Helander", "position": "DF", "isGoalkeeper": false },
-        { "id": "DAN", "name": "Victor Nilsson Lindelof", "position": "DF", "isGoalkeeper": false },
-        { "id": "ANG", "name": "Marcus Ang", "position": "DF", "isGoalkeeper": false },
-        { "id": "LAR", "name": "Marcus Rohden", "position": "MF", "isGoalkeeper": false },
-        { "id": "FOR", "name": "Emil Forsberg", "position": "MF", "isGoalkeeper": false },
-        { "id": "EL", "name": "Anthony Elangoy", "position": "MF", "isGoalkeeper": false },
-        { "id": "CHRISTIE", "name": "Johan Von Christie", "position": "MF", "isGoalkeeper": false },
-        { "id": "ISAK", "name": "Alexander Isak", "position": "FW", "isGoalkeeper": false },
-        { "id": "KULUSEVSKI", "name": "Dejan Kulusevski", "position": "FW", "isGoalkeeper": false },
-        { "id": "ZUBIR", "name": "Robin Zubir", "position": "MF", "isGoalkeeper": false },
-        { "id": "HOLM", "name": "Emil Holm", "position": "DF", "isGoalkeeper": false },
-        { "id": "BEN", "name": "Johan Ben", "position": "FW", "isGoalkeeper": false },
-        { "id": "KAS", "name": "Marcus Kas", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "TUN",
-      "name": "Tunisia",
-      "group": "F",
-      "flag": "🇹🇳",
-      "players": [
-        { "id": "BEN", "name": "Farouk Ben Mustapha", "position": "GK", "isGoalkeeper": true },
-        { "id": "MATHLOUTHI", "name": "Aymen Mathlouthi", "position": "GK", "isGoalkeeper": true },
-        { "id": "DA", "name": "Aymen Math", "position": "GK", "isGoalkeeper": true },
-        { "id": "MER", "name": "Yassine Meriah", "position": "DF", "isGoalkeeper": false },
-        { "id": "IF", "name": "Nader G", "position": "DF", "isGoalkeeper": false },
-        { "id": "BR", "name": "Wajdi K", "position": "DF", "isGoalkeeper": false },
-        { "id": "KA", "name": "Seif T", "position": "DF", "isGoalkeeper": false },
-        { "id": "NADER", "name": "Nader Nader", "position": "DF", "isGoalkeeper": false },
-        { "id": "SK", "name": "Hamdi Sliti", "position": "MF", "isGoalkeeper": false },
-        { "id": "LA", "name": "A La", "position": "MF", "isGoalkeeper": false },
-        { "id": "BAD", "name": "Mohamed Ali B", "position": "MF", "isGoalkeeper": false },
-        { "id": "MSA", "name": "Youssef Msakni", "position": "MF", "isGoalkeeper": false },
-        { "id": "SLITI", "name": "Ellyessakni", "position": "FW", "isGoalkeeper": false },
-        { "id": "KHAZRI", "name": "Khazri", "position": "FW", "isGoalkeeper": false },
-        { "id": "JABR", "name": "JabR", "position": "FW", "isGoalkeeper": false },
-        { "id": "LIM", "name": "Lim Lim", "position": "MF", "isGoalkeeper": false },
-        { "id": "SASSI", "name": "Moez Sassi", "position": "DF", "isGoalkeeper": false },
-        { "id": "KRIC", "name": "Youssef Kri", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "USA-TURNER",
+          "name": "Matt Turner",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "USA-SCH",
+          "name": "Marko Sch",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "USA-SLIS",
+          "name": "Patrick Slis",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "USA-REYNOLDS",
+          "name": "Bryan Reynolds",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-DEST",
+          "name": "Sergino Dest",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-ROBINSON",
+          "name": "Antonee Robinson",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-LONG",
+          "name": "Walker Zimmerman",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-REAMS",
+          "name": "Tim Ream",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-SCALL",
+          "name": "Cameron Scall",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-CARD",
+          "name": "Miles Card",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-MCKENNIE",
+          "name": "Weston McKennie",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-PULISIC",
+          "name": "Christian Pulisic",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-AAR",
+          "name": "Brenden Aaronson",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-WEA",
+          "name": "Tim Weah",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-MUS",
+          "name": "Yunus Musah",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-CARD-IO",
+          "name": "Giovanni Reyna",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-MORRIS",
+          "name": "Matthew Morris",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-BUD",
+          "name": "Paul Bunn",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-JONES",
+          "name": "Mason Jones",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-PEP",
+          "name": "Ricardo Pepi",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-FER",
+          "name": "Josh Fer",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "USA-HAJI",
+          "name": "Sam Haji",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -657,26 +956,126 @@
       "group": "G",
       "flag": "🇧🇪",
       "players": [
-        { "id": "COURTOIS", "name": "Thibaut Courtois", "position": "GK", "isGoalkeeper": true },
-        { "id": "MIGN", "name": "Simon Mignolet", "position": "GK", "isGoalkeeper": true },
-        { "id": "KELLE", "name": "Koen Casteels", "position": "GK", "isGoalkeeper": true },
-        { "id": "VERMA", "name": "Bart Verbruggen", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALDER", "name": "Toby Alder", "position": "DF", "isGoalkeeper": false },
-        { "id": "VERTO", "name": "Vertonghen", "position": "DF", "isGoalkeeper": false },
-        { "id": "FAES", "name": "Wout Faes", "position": "DF", "isGoalkeeper": false },
-        { "id": "CAST", "name": "Timothy Castagne", "position": "DF", "isGoalkeeper": false },
-        { "id": "MANG", "name": "Marino Manganga", "position": "DF", "isGoalkeeper": false },
-        { "id": "DEBRUYNE", "name": "Kevin De Bruyne", "position": "MF", "isGoalkeeper": false },
-        { "id": "TIE", "name": "Youri Tielemans", "position": "MF", "isGoalkeeper": false },
-        { "id": "ONANA", "name": "Amadou Onana", "position": "MF", "isGoalkeeper": false },
-        { "id": "DOKU", "name": "Jeremy Doku", "position": "FW", "isGoalkeeper": false },
-        { "id": "TROSSARD", "name": "Leandro Trossard", "position": "FW", "isGoalkeeper": false },
-        { "id": "HAZARD", "name": "Eden Hazard", "position": "FW", "isGoalkeeper": false },
-        { "id": "LUKAKU", "name": "Romelu Lukaku", "position": "FW", "isGoalkeeper": false },
-        { "id": "CAR", "name": "Jeremy Car", "position": "FW", "isGoalkeeper": false },
-        { "id": "MAL", "name": "Adnen Mal", "position": "MF", "isGoalkeeper": false },
-        { "id": "O", "name": "Kylian Mbappe", "position": "FW", "isGoalkeeper": false },
-        { "id": "DEM", "name": "Charles De Ketelaere", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "BEL-COURTOIS",
+          "name": "Thibaut Courtois",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BEL-MIGN",
+          "name": "Simon Mignolet",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BEL-KELLE",
+          "name": "Koen Casteels",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BEL-VERMA",
+          "name": "Bart Verbruggen",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "BEL-ALDER",
+          "name": "Toby Alder",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-VERTO",
+          "name": "Vertonghen",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-FAES",
+          "name": "Wout Faes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-CAST",
+          "name": "Timothy Castagne",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-MANG",
+          "name": "Marino Manganga",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-DEBRUYNE",
+          "name": "Kevin De Bruyne",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-TIE",
+          "name": "Youri Tielemans",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-ONANA",
+          "name": "Amadou Onana",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-DOKU",
+          "name": "Jeremy Doku",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-TROSSARD",
+          "name": "Leandro Trossard",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-HAZARD",
+          "name": "Eden Hazard",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-LUKAKU",
+          "name": "Romelu Lukaku",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-CAR",
+          "name": "Jeremy Car",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-MAL",
+          "name": "Adnen Mal",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-O",
+          "name": "Kylian Mbappe",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "BEL-DEM",
+          "name": "Charles De Ketelaere",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -685,127 +1084,114 @@
       "group": "G",
       "flag": "🇪🇬",
       "players": [
-        { "id": "AB", "name": "Mohamed A", "position": "GK", "isGoalkeeper": true },
-        { "id": "SHENAWY", "name": "Mohamed El Shenawy", "position": "GK", "isGoalkeeper": true },
-        { "id": "SOL", "name": "Mohamed Sol", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALI", "name": "Ali Gabr", "position": "DF", "isGoalkeeper": false },
-        { "id": "MA", "name": "Mahmoud A", "position": "DF", "isGoalkeeper": false },
-        { "id": "HEGAZI", "name": "Ahmed Hegazi", "position": "DF", "isGoalkeeper": false },
-        { "id": "ASH", "name": "Omar W", "position": "DF", "isGoalkeeper": false },
-        { "id": "ABDEL", "name": "Ahmed Abdel", "position": "DF", "isGoalkeeper": false },
-        { "id": "TR", "name": "Trezeguet", "position": "MF", "isGoalkeeper": false },
-        { "id": "ELNENY", "name": "Mohamed Elneny", "position": "MF", "isGoalkeeper": false },
-        { "id": "HA", "name": "Hamdi Fathi", "position": "MF", "isGoalkeeper": false },
-        { "id": "SO", "name": "Ahmed S", "position": "MF", "isGoalkeeper": false },
-        { "id": "SALAH", "name": "Mohamed Salah", "position": "FW", "isGoalkeeper": false },
-        { "id": "MOHAMED", "name": "Mostafa Mohamed", "position": "FW", "isGoalkeeper": false },
-        { "id": "TRES", "name": "Trezeguet", "position": "FW", "isGoalkeeper": false },
-        { "id": "MAR", "name": "Marwan Moh", "position": "FW", "isGoalkeeper": false },
-        { "id": "ZIZO", "name": "Zizo Zizo", "position": "MF", "isGoalkeeper": false },
-        { "id": "KOKA", "name": "Edgar Koka", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "IRN",
-      "name": "Iran",
-      "group": "G",
-      "flag": "🇮🇷",
-      "players": [
-        { "id": "ABEDZADEH", "name": "Amir Abedzadeh", "position": "GK", "isGoalkeeper": true },
-        { "id": "HOM", "name": "Alireza Jahanbakhsh", "position": "GK", "isGoalkeeper": true },
-        { "id": "NOR", "name": "Hosein Nor", "position": "GK", "isGoalkeeper": true },
-        { "id": "KAN", "name": "Milad Mohammadi", "position": "DF", "isGoalkeeper": false },
-        { "id": "HADI", "name": "Hadi H", "position": "DF", "isGoalkeeper": false },
-        { "id": "MANSOURI", "name": "Rouzbeh Cheshmi", "position": "DF", "isGoalkeeper": false },
-        { "id": "MOR", "name": "Majid Hosseini", "position": "DF", "isGoalkeeper": false },
-        { "id": "RAISI", "name": "Alireza Sal", "position": "DF", "isGoalkeeper": false },
-        { "id": "GH", "name": "Ghasem Hadadi", "position": "MF", "isGoalkeeper": false },
-        { "id": "NOURI", "name": "Saeid Ezatolahi", "position": "MF", "isGoalkeeper": false },
-        { "id": "AM", "name": "Ahmad Nourollahi", "position": "MF", "isGoalkeeper": false },
-        { "id": "TAR", "name": "Mehdi Taremi", "position": "FW", "isGoalkeeper": false },
-        { "id": "AZMOON", "name": "Sardar Azmoun", "position": "FW", "isGoalkeeper": false },
-        { "id": "BEIR", "name": "Alireza Jahanbakhsh", "position": "FW", "isGoalkeeper": false },
-        { "id": "GHASEMI", "name": "Mehdi Gh", "position": "MF", "isGoalkeeper": false },
-        { "id": "KARIMI", "name": "Saeid Karim", "position": "MF", "isGoalkeeper": false },
-        { "id": "MOMTAZ", "name": "Allah M", "position": "MF", "isGoalkeeper": false },
-        { "id": "JALALI", "name": "Shoja Jalali", "position": "GK", "isGoalkeeper": true }
-      ]
-    },
-    {
-      "id": "NZL",
-      "name": "New Zealand",
-      "group": "G",
-      "flag": "🇳🇿",
-      "players": [
-        { "id": "SE", "name": "Stefan Marinovic", "position": "GK", "isGoalkeeper": true },
-        { "id": "COOK", "name": "Winston B", "position": "GK", "isGoalkeeper": true },
-        { "id": "ELLE", "name": "Michael Elle", "position": "GK", "isGoalkeeper": true },
-        { "id": "BOXALL", "name": "Michael Boxall", "position": "DF", "isGoalkeeper": false },
-        { "id": "WIN", "name": "Nando P", "position": "DF", "isGoalkeeper": false },
-        { "id": "DUNCAN", "name": "Sam", "position": "DF", "isGoalkeeper": false },
-        { "id": "KERR", "name": "Chris A", "position": "DF", "isGoalkeeper": false },
-        { "id": "STANGER", "name": "Bill G", "position": "MF", "isGoalkeeper": false },
-        { "id": "BELL", "name": "Joe Bell", "position": "MF", "isGoalkeeper": false },
-        { "id": "ROG", "name": "Moses Dyer", "position": "MF", "isGoalkeeper": false },
-        { "id": "SINGH", "name": "Kosta Barbarouses", "position": "FW", "isGoalkeeper": false },
-        { "id": "BELL-M", "name": "Matthew B", "position": "FW", "isGoalkeeper": false },
-        { "id": "WOOD", "name": "Chris Wood", "position": "FW", "isGoalkeeper": false },
-        { "id": "JUST", "name": "Chris Just", "position": "FW", "isGoalkeeper": false },
-        { "id": "MCGRATH", "name": "Stuart McGrath", "position": "MF", "isGoalkeeper": false },
-        { "id": "PAY", "name": "Micheal Pay", "position": "DF", "isGoalkeeper": false },
-        { "id": "CAMP", "name": "Ullem Cam", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "CPV",
-      "name": "Cape Verde",
-      "group": "H",
-      "flag": "🇨🇻",
-      "players": [
-        { "id": "VE", "name": "Hassan D", "position": "GK", "isGoalkeeper": true },
-        { "id": "DJ", "name": "Djoubert", "position": "GK", "isGoalkeeper": true },
-        { "id": "S", "name": "M", "position": "GK", "isGoalkeeper": true },
-        { "id": "RODRIGUES", "name": "Garry Rodrigues", "position": "FW", "isGoalkeeper": false },
-        { "id": "B", "name": "Nuno B", "position": "FW", "isGoalkeeper": false },
-        { "id": "S-M", "name": "Marco S", "position": "MF", "isGoalkeeper": false },
-        { "id": "K", "name": "Kelvin", "position": "MF", "isGoalkeeper": false },
-        { "id": "J", "name": "Joaozinho", "position": "MF", "isGoalkeeper": false },
-        { "id": "M", "name": "Mamadou", "position": "DF", "isGoalkeeper": false },
-        { "id": "F", "name": "Fidel", "position": "DF", "isGoalkeeper": false },
-        { "id": "S-F", "name": "Steven T", "position": "DF", "isGoalkeeper": false },
-        { "id": "AL", "name": "Alvaro", "position": "DF", "isGoalkeeper": false },
-        { "id": "M-F", "name": "M", "position": "FW", "isGoalkeeper": false },
-        { "id": "DJ-E", "name": "Djour", "position": "GK", "isGoalkeeper": true },
-        { "id": "ND", "name": "Nandy Nd", "position": "DF", "isGoalkeeper": false },
-        { "id": "KAL", "name": "K", "position": "MF", "isGoalkeeper": false },
-        { "id": "BAT", "name": "Djaniny", "position": "FW", "isGoalkeeper": false },
-        { "id": "SEM", "name": "Nuno Sem", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "KSA",
-      "name": "Saudi Arabia",
-      "group": "H",
-      "flag": "🇸🇦",
-      "players": [
-        { "id": "ALBUGAIL", "name": "Mohammed Al-Olayan", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALKHAIBARI", "name": "Mohammed Al-Khaibari", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALHABSI", "name": "Ali Al-Habsi", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALBL", "name": "Saud Abdulhamid", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALSH", "name": "Hassan Al-Tambakti", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALSHAHRANI", "name": "Yasir Al-Shahrani", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALBRA", "name": "Ali Al-Bra", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALMU", "name": "Ali Al-Mu", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALJUH", "name": "Abdulrahman Al-Juhair", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALSHH", "name": "Mohammed Al-Shahrani", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALFARAJ", "name": "Mohammed Al-Faraj", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALMUH", "name": "Saudi Al-Mu", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALSHEHRI", "name": "Salem Al-Shehri", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALDaws", "name": "Feras Al-Brikan", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALABSI", "name": "Talal Al-Absi", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALKAN", "name": "Fahad Al-Kan", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALHIN", "name": "Abdulrahman Al-Hin", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALRA", "name": "Ahmed Al-Ra", "position": "MF", "isGoalkeeper": false }
+        {
+          "id": "EGY-AB",
+          "name": "Mohamed A",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "EGY-SHENAWY",
+          "name": "Mohamed El Shenawy",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "EGY-SOL",
+          "name": "Mohamed Sol",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "EGY-ALI",
+          "name": "Ali Gabr",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-MA",
+          "name": "Mahmoud A",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-HEGAZI",
+          "name": "Ahmed Hegazi",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-ASH",
+          "name": "Omar W",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-ABDEL",
+          "name": "Ahmed Abdel",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-TR",
+          "name": "Trezeguet",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-ELNENY",
+          "name": "Mohamed Elneny",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-HA",
+          "name": "Hamdi Fathi",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-SO",
+          "name": "Ahmed S",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-SALAH",
+          "name": "Mohamed Salah",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-MOHAMED",
+          "name": "Mostafa Mohamed",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-TRES",
+          "name": "Trezeguet",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-MAR",
+          "name": "Marwan Moh",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-ZIZO",
+          "name": "Zizo Zizo",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "EGY-KOKA",
+          "name": "Edgar Koka",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -814,55 +1200,132 @@
       "group": "H",
       "flag": "🇪🇸",
       "players": [
-        { "id": "SIMON", "name": "Mikel Simon", "position": "GK", "isGoalkeeper": true },
-        { "id": "RAYA", "name": "David Raya", "position": "GK", "isGoalkeeper": true },
-        { "id": "POR", "name": "Emilio Por", "position": "GK", "isGoalkeeper": true },
-        { "id": "CARVA", "name": "Dani Carvajal", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALBA", "name": "Jordi Alba", "position": "DF", "isGoalkeeper": false },
-        { "id": "LAPORTE", "name": "Aymeric Laporte", "position": "DF", "isGoalkeeper": false },
-        { "id": "INIGO", "name": "Inigo Martinez", "position": "DF", "isGoalkeeper": false },
-        { "id": "NAVARRO", "name": "Pedro Navarro", "position": "DF", "isGoalkeeper": false },
-        { "id": "GAVI", "name": "Gavi", "position": "MF", "isGoalkeeper": false },
-        { "id": "PEDRI", "name": "Pedri", "position": "MF", "isGoalkeeper": false },
-        { "id": "RODRIGO", "name": "Rodrigo", "position": "MF", "isGoalkeeper": false },
-        { "id": "MERINO", "name": "Mikel Merino", "position": "MF", "isGoalkeeper": false },
-        { "id": "OLMO", "name": "Dani Olmo", "position": "MF", "isGoalkeeper": false },
-        { "id": "TORRES", "name": "Ferran Torres", "position": "FW", "isGoalkeeper": false },
-        { "id": "MORATA", "name": "Alvaro Morata", "position": "FW", "isGoalkeeper": false },
-        { "id": "WILLIAM", "name": "Nico Williams", "position": "FW", "isGoalkeeper": false },
-        { "id": "LAMIN", "name": "Lamin Yamal", "position": "FW", "isGoalkeeper": false },
-        { "id": "ZUBIMENDI", "name": "Martin Zubimendi", "position": "MF", "isGoalkeeper": false },
-        { "id": "BAENA", "name": "Alex Baena", "position": "MF", "isGoalkeeper": false },
-        { "id": "CUCURELLA", "name": "Marc Cucurella", "position": "DF", "isGoalkeeper": false },
-        { "id": "GRIMAL", "name": "Bryan Grimal", "position": "DF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "URU",
-      "name": "Uruguay",
-      "group": "H",
-      "flag": "🇺🇾",
-      "players": [
-        { "id": "ROCH", "name": "Sebastian Coates", "position": "DF", "isGoalkeeper": false },
-        { "id": "OLIV", "name": "Martin Olivera", "position": "DF", "isGoalkeeper": false },
-        { "id": "GOD", "name": "Diego Godin", "position": "DF", "isGoalkeeper": false },
-        { "id": "VINA", "name": "Matias Vina", "position": "DF", "isGoalkeeper": false },
-        { "id": "OLAVE", "name": "Jose Olivera", "position": "DF", "isGoalkeeper": false },
-        { "id": "PELL", "name": "Gaston Pell", "position": "MF", "isGoalkeeper": false },
-        { "id": "VAL", "name": "Federico Valverde", "position": "MF", "isGoalkeeper": false },
-        { "id": "BET", "name": "Nicolas De la Cruz", "position": "MF", "isGoalkeeper": false },
-        { "id": "MUSL", "name": "Manuel Ugarte", "position": "MF", "isGoalkeeper": false },
-        { "id": "VECC", "name": "Matias Vecino", "position": "MF", "isGoalkeeper": false },
-        { "id": "ARAMB", "name": "Nicolas Aramburu", "position": "MF", "isGoalkeeper": false },
-        { "id": "RODRIGUEZ", "name": "Santiago Rodriguez", "position": "MF", "isGoalkeeper": false },
-        { "id": "SUAREZ", "name": "Luis Suarez", "position": "FW", "isGoalkeeper": false },
-        { "id": "CAVANI", "name": "Edinson Cavani", "position": "FW", "isGoalkeeper": false },
-        { "id": "NUNEZ", "name": "Darwin Nunez", "position": "FW", "isGoalkeeper": false },
-        { "id": "COR", "name": "Maximilian Cor", "position": "FW", "isGoalkeeper": false },
-        { "id": "ARA", "name": "Cristhian Ara", "position": "FW", "isGoalkeeper": false },
-        { "id": "MUSLERA", "name": "Fernando Muslera", "position": "GK", "isGoalkeeper": true },
-        { "id": "SARKIC", "name": "Milan Sarcic", "position": "GK", "isGoalkeeper": true },
-        { "id": "ROTT", "name": "Santiago Rott", "position": "GK", "isGoalkeeper": true }
+        {
+          "id": "ESP-SIMON",
+          "name": "Mikel Simon",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ESP-RAYA",
+          "name": "David Raya",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ESP-POR",
+          "name": "Emilio Por",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ESP-CARVA",
+          "name": "Dani Carvajal",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-ALBA",
+          "name": "Jordi Alba",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-LAPORTE",
+          "name": "Aymeric Laporte",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-INIGO",
+          "name": "Inigo Martinez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-NAVARRO",
+          "name": "Pedro Navarro",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-GAVI",
+          "name": "Gavi",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-PEDRI",
+          "name": "Pedri",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-RODRIGO",
+          "name": "Rodrigo",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-MERINO",
+          "name": "Mikel Merino",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-OLMO",
+          "name": "Dani Olmo",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-TORRES",
+          "name": "Ferran Torres",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-MORATA",
+          "name": "Alvaro Morata",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-WILLIAM",
+          "name": "Nico Williams",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-LAMIN",
+          "name": "Lamin Yamal",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-ZUBIMENDI",
+          "name": "Martin Zubimendi",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-BAENA",
+          "name": "Alex Baena",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-CUCURELLA",
+          "name": "Marc Cucurella",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ESP-GRIMAL",
+          "name": "Bryan Grimal",
+          "position": "DF",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -871,54 +1334,138 @@
       "group": "I",
       "flag": "🇫🇷",
       "players": [
-        { "id": "LLORIS", "name": "Hugo Lloris", "position": "GK", "isGoalkeeper": true },
-        { "id": "MANDA", "name": "Steve Mandanda", "position": "GK", "isGoalkeeper": true },
-        { "id": "SURNAM", "name": "Alban Lafont", "position": "GK", "isGoalkeeper": true },
-        { "id": "PAVARD", "name": "Benjamin Pavard", "position": "DF", "isGoalkeeper": false },
-        { "id": "VARANE", "name": "Raphael Varane", "position": "DF", "isGoalkeeper": false },
-        { "id": "KIMPEMBE", "name": "Presnel Kimpembe", "position": "DF", "isGoalkeeper": false },
-        { "id": "HERNANDEZ", "name": "Theo Hernandez", "position": "DF", "isGoalkeeper": false },
-        { "id": "DISASI", "name": "Axel Disasi", "position": "DF", "isGoalkeeper": false },
-        { "id": "KONDE", "name": " Jules Kounde", "position": "DF", "isGoalkeeper": false },
-        { "id": "UPAM", "name": "Ibrahima Upamecano", "position": "DF", "isGoalkeeper": false },
-        { "id": "PAUL", "name": "Paul Pogba", "position": "MF", "isGoalkeeper": false },
-        { "id": "KANTE", "name": "N'Golo Kante", "position": "MF", "isGoalkeeper": false },
-        { "id": "RABIOT", "name": "Adrien Rabiot", "position": "MF", "isGoalkeeper": false },
-        { "id": "COMAN", "name": "Kingsley Coman", "position": "MF", "isGoalkeeper": false },
-        { "id": "GRIEZMANN", "name": "Antoine Griezmann", "position": "FW", "isGoalkeeper": false },
-        { "id": "MBAPPE", "name": "Kylian Mbappe", "position": "FW", "isGoalkeeper": false },
-        { "id": "DEMBELE", "name": "Ousmane Dembele", "position": "FW", "isGoalkeeper": false },
-        { "id": "KOLO", "name": "Randal Kolo Muani", "position": "FW", "isGoalkeeper": false },
-        { "id": "THURAM", "name": "Marcus Thuram", "position": "FW", "isGoalkeeper": false },
-        { "id": "GIR", "name": "Olivier Giroud", "position": "FW", "isGoalkeeper": false },
-        { "id": "TCH", "name": "Adrien T", "position": "MF", "isGoalkeeper": false },
-        { "id": "CAM", "name": "Yannick C", "position": "MF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "IRQ",
-      "name": "Iraq",
-      "group": "I",
-      "flag": "🇮🇶",
-      "players": [
-        { "id": "JALAL", "name": "Fahad Jalal", "position": "GK", "isGoalkeeper": true },
-        { "id": "RASHID", "name": "Mohammed Rashid", "position": "GK", "isGoalkeeper": true },
-        { "id": "AMIN", "name": "Jamal Amin", "position": "GK", "isGoalkeeper": true },
-        { "id": "KADHIM", "name": "Ali Adnan", "position": "DF", "isGoalkeeper": false },
-        { "id": "ABBAS", "name": "Safaa Abbas", "position": "DF", "isGoalkeeper": false },
-        { "id": "RAHIM", "name": "Mahdi Rahim", "position": "DF", "isGoalkeeper": false },
-        { "id": "HUSSEIN", "name": "Ali Hussein", "position": "DF", "isGoalkeeper": false },
-        { "id": "FAHAD", "name": "Fahad Fawzi", "position": "DF", "isGoalkeeper": false },
-        { "id": "MAHMOOD", "name": "Ahmed Mahmoood", "position": "MF", "isGoalkeeper": false },
-        { "id": "HADI", "name": "Bashar Hadi", "position": "MF", "isGoalkeeper": false },
-        { "id": "SHWAN", "name": "Aras Shwan", "position": "MF", "isGoalkeeper": false },
-        { "id": "TARIQ", "name": "Abdullah Tariq", "position": "MF", "isGoalkeeper": false },
-        { "id": "BASHAR", "name": "Mohammed Bashar", "position": "FW", "isGoalkeeper": false },
-        { "id": "ABDUL", "name": "Ali Abdul", "position": "FW", "isGoalkeeper": false },
-        { "id": "MUSTAFA", "name": "Ahmad Mustafa", "position": "FW", "isGoalkeeper": false },
-        { "id": "KAREEM", "name": "Mohanad Kareem", "position": "FW", "isGoalkeeper": false },
-        { "id": "HUSSEIN-A", "name": " Hussein A", "position": "MF", "isGoalkeeper": false },
-        { "id": "MAN", "name": "Mohanad Man", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "FRA-LLORIS",
+          "name": "Hugo Lloris",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "FRA-MANDA",
+          "name": "Steve Mandanda",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "FRA-SURNAM",
+          "name": "Alban Lafont",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "FRA-PAVARD",
+          "name": "Benjamin Pavard",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-VARANE",
+          "name": "Raphael Varane",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-KIMPEMBE",
+          "name": "Presnel Kimpembe",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-HERNANDEZ",
+          "name": "Theo Hernandez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-DISASI",
+          "name": "Axel Disasi",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-KONDE",
+          "name": " Jules Kounde",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-UPAM",
+          "name": "Ibrahima Upamecano",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-PAUL",
+          "name": "Paul Pogba",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-KANTE",
+          "name": "N'Golo Kante",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-RABIOT",
+          "name": "Adrien Rabiot",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-COMAN",
+          "name": "Kingsley Coman",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-GRIEZMANN",
+          "name": "Antoine Griezmann",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-MBAPPE",
+          "name": "Kylian Mbappe",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-DEMBELE",
+          "name": "Ousmane Dembele",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-KOLO",
+          "name": "Randal Kolo Muani",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-THURAM",
+          "name": "Marcus Thuram",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-GIR",
+          "name": "Olivier Giroud",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-TCH",
+          "name": "Adrien T",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "FRA-CAM",
+          "name": "Yannick C",
+          "position": "MF",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -927,78 +1474,114 @@
       "group": "I",
       "flag": "🇳🇴",
       "players": [
-        { "id": "NY", "name": "Stefan N", "position": "GK", "isGoalkeeper": true },
-        { "id": "ROS", "name": "Aoalsteinn Ros", "position": "GK", "isGoalkeeper": true },
-        { "id": "NYGAARD", "name": "Jacob Nygaard", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALES", "name": "Olav A", "position": "DF", "isGoalkeeper": false },
-        { "id": "ST", "name": "Kristoffer O", "position": "DF", "isGoalkeeper": false },
-        { "id": "KITS", "name": "Hjalmar E", "position": "DF", "isGoalkeeper": false },
-        { "id": "MOE", "name": "Vegar Eggen Hedenstad", "position": "DF", "isGoalkeeper": false },
-        { "id": "EGIL", "name": "Ole E", "position": "DF", "isGoalkeeper": false },
-        { "id": "SORLOT", "name": "Martin Odegaard", "position": "MF", "isGoalkeeper": false },
-        { "id": "BER", "name": "Jorgen L", "position": "MF", "isGoalkeeper": false },
-        { "id": "EL", "name": "Patrick D", "position": "MF", "isGoalkeeper": false },
-        { "id": "NORD", "name": "Ole S", "position": "MF", "isGoalkeeper": false },
-        { "id": "HAALAND", "name": "Erling Haaland", "position": "FW", "isGoalkeeper": false },
-        { "id": "SIV", "name": "Joshua K", "position": "FW", "isGoalkeeper": false },
-        { "id": "BERGL", "name": "Jorgen Berge", "position": "MF", "isGoalkeeper": false },
-        { "id": "MORT", "name": "Morten Mort", "position": "MF", "isGoalkeeper": false },
-        { "id": "KAM", "name": "Stefan Kam", "position": "FW", "isGoalkeeper": false },
-        { "id": "SVER", "name": "Oscar Sver", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "SEN",
-      "name": "Senegal",
-      "group": "I",
-      "flag": "🇸🇳",
-      "players": [
-        { "id": "MENDY-E", "name": "Edouard Mendy", "position": "GK", "isGoalkeeper": true },
-        { "id": "MENDY-A", "name": "Alphonse Mendy", "position": "GK", "isGoalkeeper": true },
-        { "id": "GOMIS", "name": "Aldo Gomis", "position": "GK", "isGoalkeeper": true },
-        { "id": "KULIBALY", "name": "Kalidou Koulibaly", "position": "DF", "isGoalkeeper": false },
-        { "id": "CISS", "name": "Pape Ciss", "position": "DF", "isGoalkeeper": false },
-        { "id": "Ballo", "name": "Ballo", "position": "DF", "isGoalkeeper": false },
-        { "id": "JAKOBS", "name": "Jakobs", "position": "DF", "isGoalkeeper": false },
-        { "id": "NDIA", "name": "Mamadou Ndiaye", "position": "DF", "isGoalkeeper": false },
-        { "id": "SARR", "name": "Ismaila Sarr", "position": "MF", "isGoalkeeper": false },
-        { "id": "GUEYE", "name": "Idrissa Gana Gueye", "position": "MF", "isGoalkeeper": false },
-        { "id": "GUEYE-P", "name": "Pape Gueye", "position": "MF", "isGoalkeeper": false },
-        { "id": "SARR-B", "name": "Boulaye Dia", "position": "MF", "isGoalkeeper": false },
-        { "id": "NDOYE", "name": "Cheikhou Ndouye", "position": "MF", "isGoalkeeper": false },
-        { "id": "DABO", "name": "Lamine Dabo", "position": "MF", "isGoalkeeper": false },
-        { "id": "MANE", "name": "Sadio Mane", "position": "FW", "isGoalkeeper": false },
-        { "id": "DIA-L", "name": "Boulaye Dia", "position": "FW", "isGoalkeeper": false },
-        { "id": "SEME", "name": "Nicolas Jackson", "position": "FW", "isGoalkeeper": false },
-        { "id": "FATI", "name": "Nicolas Fati", "position": "FW", "isGoalkeeper": false },
-        { "id": "KAMARA", "name": "Moussa Kamara", "position": "MF", "isGoalkeeper": false },
-        { "id": "DIAT", "name": "Ismaila Sarr", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "ALG",
-      "name": "Algeria",
-      "group": "J",
-      "flag": "🇩🇿",
-      "players": [
-        { "id": "M", "name": "Raïs M", "position": "GK", "isGoalkeeper": true },
-        { "id": "MANDI", "name": "A Mandi", "position": "DF", "isGoalkeeper": false },
-        { "id": "T", "name": "A Mandi", "position": "DF", "isGoalkeeper": false },
-        { "id": "MN", "name": "R B", "position": "DF", "isGoalkeeper": false },
-        { "id": "B", "name": "B Ab", "position": "DF", "isGoalkeeper": false },
-        { "id": "S", "name": "S M", "position": "MF", "isGoalkeeper": false },
-        { "id": "Z", "name": "Yacine Brahimi", "position": "MF", "isGoalkeeper": false },
-        { "id": "A", "name": "Andy D", "position": "MF", "isGoalkeeper": false },
-        { "id": "BEL", "name": "Ismaila Bennacer", "position": "MF", "isGoalkeeper": false },
-        { "id": "ZERR", "name": "Riyad Mahrez", "position": "FW", "isGoalkeeper": false },
-        { "id": "BOU", "name": "Seydou B", "position": "FW", "isGoalkeeper": false },
-        { "id": "SOU", "name": "Adam Soui", "position": "FW", "isGoalkeeper": false },
-        { "id": "RAH", "name": "Anthony M", "position": "GK", "isGoalkeeper": true },
-        { "id": "AT", "name": "Abdelkader Bed", "position": "MF", "isGoalkeeper": false },
-        { "id": "BEN", "name": "Farid Ben", "position": "MF", "isGoalkeeper": false },
-        { "id": "BRA", "name": "Ismaila Bra", "position": "MF", "isGoalkeeper": false },
-        { "id": "GU", "name": "Moussa Gu", "position": "DF", "isGoalkeeper": false },
-        { "id": "HAKIMI", "name": "Riyad Hakimi", "position": "DF", "isGoalkeeper": false }
+        {
+          "id": "NOR-NY",
+          "name": "Stefan N",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "NOR-ROS",
+          "name": "Aoalsteinn Ros",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "NOR-NYGAARD",
+          "name": "Jacob Nygaard",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "NOR-ALES",
+          "name": "Olav A",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-ST",
+          "name": "Kristoffer O",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-KITS",
+          "name": "Hjalmar E",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-MOE",
+          "name": "Vegar Eggen Hedenstad",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-EGIL",
+          "name": "Ole E",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-SORLOT",
+          "name": "Martin Odegaard",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-BER",
+          "name": "Jorgen L",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-EL",
+          "name": "Patrick D",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-NORD",
+          "name": "Ole S",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-HAALAND",
+          "name": "Erling Haaland",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-SIV",
+          "name": "Joshua K",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-BERGL",
+          "name": "Jorgen Berge",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-MORT",
+          "name": "Morten Mort",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-KAM",
+          "name": "Stefan Kam",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "NOR-SVER",
+          "name": "Oscar Sver",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -1007,81 +1590,138 @@
       "group": "J",
       "flag": "🇦🇷",
       "players": [
-        { "id": "MESSI", "name": "Lionel Messi", "position": "FW", "isGoalkeeper": false },
-        { "id": "MARTINEZ-E", "name": "Emiliano Martinez", "position": "GK", "isGoalkeeper": true },
-        { "id": "MORO", "name": "Franco Moroto", "position": "GK", "isGoalkeeper": true },
-        { "id": "RINAL", "name": "Juan Musso", "position": "GK", "isGoalkeeper": true },
-        { "id": "OTAMENDI", "name": "Nicolas Otamendi", "position": "DF", "isGoalkeeper": false },
-        { "id": "MOLINA", "name": "Nahuel Molina", "position": "DF", "isGoalkeeper": false },
-        { "id": "LISANDRO", "name": "Lisandro Martinez", "position": "DF", "isGoalkeeper": false },
-        { "id": "ACUNA", "name": "Marcos Acuna", "position": "DF", "isGoalkeeper": false },
-        { "id": "FIOR", "name": "Nicolas Fior", "position": "DF", "isGoalkeeper": false },
-        { "id": "COR", "name": "Gonzalo Montiel", "position": "DF", "isGoalkeeper": false },
-        { "id": "DEPaul", "name": "Rodrigo De Paul", "position": "MF", "isGoalkeeper": false },
-        { "id": "MACALLISTER", "name": "Alexis Mac Allister", "position": "MF", "isGoalkeeper": false },
-        { "id": "FERNANDEZ-E", "name": "Enzo Fernandez", "position": "MF", "isGoalkeeper": false },
-        { "id": "PAREDES", "name": "Leandro Paredes", "position": "MF", "isGoalkeeper": false },
-        { "id": "LOZANO", "name": "Giovanni Lo Celso", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALVAREZ", "name": "Julian Alvarez", "position": "FW", "isGoalkeeper": false },
-        { "id": "DIMARIA", "name": "Angel Di Maria", "position": "FW", "isGoalkeeper": false },
-        { "id": "CORREA", "name": "Angel Correa", "position": "FW", "isGoalkeeper": false },
-        { "id": "PALA", "name": "Exequiel Palavecino", "position": "MF", "isGoalkeeper": false },
-        { "id": "MARTINEZ-L", "name": "Lautaro Martinez", "position": "FW", "isGoalkeeper": false },
-        { "id": "GOMEZ-P", "name": "Paulo Gomez", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALLENDE", "name": "Thiago Allende", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "AUT",
-      "name": "Austria",
-      "group": "J",
-      "flag": "🇦🇹",
-      "players": [
-        { "id": "PENTZ", "name": "Heinz Lindner", "position": "GK", "isGoalkeeper": true },
-        { "id": "BACHMANN", "name": "Daniel Bachmann", "position": "GK", "isGoalkeeper": true },
-        { "id": "SCHW", "name": "Timo Schuh", "position": "GK", "isGoalkeeper": true },
-        { "id": "POCH", "name": "Martin Hinter", "position": "DF", "isGoalkeeper": false },
-        { "id": "DAN", "name": "David Dan", "position": "DF", "isGoalkeeper": false },
-        { "id": "WOB", "name": "Philipp Wober", "position": "DF", "isGoalkeeper": false },
-        { "id": "TRA", "name": "Maximilian Wobra", "position": "DF", "isGoalkeeper": false },
-        { "id": "FING", "name": "Andreas Fing", "position": "DF", "isGoalkeeper": false },
-        { "id": "LAZ", "name": "Florian Lazaro", "position": "MF", "isGoalkeeper": false },
-        { "id": "GRILL", "name": "Marcel Sabitzer", "position": "MF", "isGoalkeeper": false },
-        { "id": "SCHL", "name": "Lukas Schlager", "position": "MF", "isGoalkeeper": false },
-        { "id": "PRO", "name": "Thomas Prömel", "position": "MF", "isGoalkeeper": false },
-        { "id": "BAU", "name": "Nicolas Bau", "position": "MF", "isGoalkeeper": false },
-        { "id": "ARN", "name": "Marko Arnautovic", "position": "FW", "isGoalkeeper": false },
-        { "id": "GREG", "name": "Sasa Kalajdzic", "position": "FW", "isGoalkeeper": false },
-        { "id": "ONISI", "name": "Mikael Onisi", "position": "FW", "isGoalkeeper": false },
-        { "id": "PAV", "name": "Patrick Pav", "position": "FW", "isGoalkeeper": false },
-        { "id": "KAIN", "name": "Conrad Kain", "position": "FW", "isGoalkeeper": false },
-        { "id": "WIM", "name": "Marco Wim", "position": "MF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "JOR",
-      "name": "Jordan",
-      "group": "J",
-      "flag": "🇯🇴",
-      "players": [
-        { "id": "SHAB", "name": "Yazan Abuz", "position": "GK", "isGoalkeeper": true },
-        { "id": "RAZZ", "name": "Ahmad Razz", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALTA", "name": "Mohammad Al-Ta", "position": "GK", "isGoalkeeper": true },
-        { "id": "ALFAI", "name": "Yazan Al-Fai", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALDE", "name": "Saoud Al-De", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALRAW", "name": "Firas Al-Raw", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALEIS", "name": "Bara Aleis", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALSAL", "name": " Salem Al-Sal", "position": "DF", "isGoalkeeper": false },
-        { "id": "ALSAR", "name": "Sharif Al-Sar", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALMJA", "name": "Amer Al-Mja", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALZA", "name": "Khalid Al-Za", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALSAB", "name": "Mohanad Al-Sab", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALSHA", "name": "Yazan Al-Sha", "position": "MF", "isGoalkeeper": false },
-        { "id": "ALSHE", "name": "Omar Al-She", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALMA", "name": "Ali Al-Ma", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALAB", "name": "Mousa Al-Ab", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALSER", "name": "Yazan Al-Ser", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALTAJ", "name": "Abdullah Al-Taj", "position": "MF", "isGoalkeeper": false }
+        {
+          "id": "ARG-MESSI",
+          "name": "Lionel Messi",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-MARTINEZ-E",
+          "name": "Emiliano Martinez",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ARG-MORO",
+          "name": "Franco Moroto",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ARG-RINAL",
+          "name": "Juan Musso",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ARG-OTAMENDI",
+          "name": "Nicolas Otamendi",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-MOLINA",
+          "name": "Nahuel Molina",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-LISANDRO",
+          "name": "Lisandro Martinez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-ACUNA",
+          "name": "Marcos Acuna",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-FIOR",
+          "name": "Nicolas Fior",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-COR",
+          "name": "Gonzalo Montiel",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-DEPaul",
+          "name": "Rodrigo De Paul",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-MACALLISTER",
+          "name": "Alexis Mac Allister",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-FERNANDEZ-E",
+          "name": "Enzo Fernandez",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-PAREDES",
+          "name": "Leandro Paredes",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-LOZANO",
+          "name": "Giovanni Lo Celso",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-ALVAREZ",
+          "name": "Julian Alvarez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-DIMARIA",
+          "name": "Angel Di Maria",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-CORREA",
+          "name": "Angel Correa",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-PALA",
+          "name": "Exequiel Palavecino",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-MARTINEZ-L",
+          "name": "Lautaro Martinez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-GOMEZ-P",
+          "name": "Paulo Gomez",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ARG-ALLENDE",
+          "name": "Thiago Allende",
+          "position": "FW",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -1090,51 +1730,120 @@
       "group": "K",
       "flag": "🇨🇴",
       "players": [
-        { "id": "VARGAS", "name": "Camilo Vargas", "position": "GK", "isGoalkeeper": true },
-        { "id": "OSPINA", "name": "David Ospina", "position": "GK", "isGoalkeeper": true },
-        { "id": "CUELLAR", "name": "David Cuellar", "position": "GK", "isGoalkeeper": true },
-        { "id": "MUANOS", "name": "Davinson Sanchez", "position": "DF", "isGoalkeeper": false },
-        { "id": "VEGA-M", "name": "Mateo V", "position": "DF", "isGoalkeeper": false },
-        { "id": "LONG", "name": "Kevin Long", "position": "DF", "isGoalkeeper": false },
-        { "id": "CARBON", "name": "Wilmar Carbon", "position": "DF", "isGoalkeeper": false },
-        { "id": "MURIEL", "name": "Luis Muriel", "position": "FW", "isGoalkeeper": false },
-        { "id": "QUINTERO", "name": "Juan Fernando Quintero", "position": "MF", "isGoalkeeper": false },
-        { "id": "Lerma", "name": "Jefferson Lerma", "position": "MF", "isGoalkeeper": false },
-        { "id": "DIAZ-J", "name": "Julian Diaz", "position": "DF", "isGoalkeeper": false },
-        { "id": "RODRIGUEZ-J", "name": "James Rodriguez", "position": "MF", "isGoalkeeper": false },
-        { "id": "CUETO", "name": "Johan Carbon", "position": "MF", "isGoalkeeper": false },
-        { "id": "LONDONO", "name": "Kevin Long", "position": "DF", "isGoalkeeper": false },
-        { "id": "ZAPATA", "name": "Duvan Zapata", "position": "FW", "isGoalkeeper": false },
-        { "id": "BORR", "name": "Julián Borr", "position": "FW", "isGoalkeeper": false },
-        { "id": "SINISTERRA", "name": "Jhon Sinisterra", "position": "FW", "isGoalkeeper": false },
-        { "id": "MORENO", "name": "Juan Moreno", "position": "MF", "isGoalkeeper": false },
-        { "id": "ARIAS", "name": "Juan Arias", "position": "DF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "COD",
-      "name": "DR Congo",
-      "group": "K",
-      "flag": "🇨🇩",
-      "players": [
-        { "id": "MATA", "name": "Lionel Maba", "position": "GK", "isGoalkeeper": true },
-        { "id": "NYB", "name": "Bale Nyb", "position": "GK", "isGoalkeeper": true },
-        { "id": "MAB", "name": "Joakim M", "position": "GK", "isGoalkeeper": true },
-        { "id": "KAL", "name": "Chancel K", "position": "DF", "isGoalkeeper": false },
-        { "id": "MBA", "name": "Wilfried M", "position": "DF", "isGoalkeeper": false },
-        { "id": "UCH", "name": "Merveille U", "position": "DF", "isGoalkeeper": false },
-        { "id": "NG", "name": "Arthur K", "position": "DF", "isGoalkeeper": false },
-        { "id": "KAT", "name": "Gedeon Ka", "position": "DF", "isGoalkeeper": false },
-        { "id": "MK", "name": "Samuel M", "position": "MF", "isGoalkeeper": false },
-        { "id": "KAB", "name": "Kester Kab", "position": "MF", "isGoalkeeper": false },
-        { "id": "ELO", "name": "Christian Elo", "position": "MF", "isGoalkeeper": false },
-        { "id": "BET", "name": "Jean-Pierre B", "position": "MF", "isGoalkeeper": false },
-        { "id": "OK", "name": "Michy B", "position": "FW", "isGoalkeeper": false },
-        { "id": "EDE", "name": "Ladji Ede", "position": "FW", "isGoalkeeper": false },
-        { "id": "LOM", "name": "Theodore Lom", "position": "FW", "isGoalkeeper": false },
-        { "id": "TSH", "name": "Cédric Tsh", "position": "FW", "isGoalkeeper": false },
-        { "id": "MAN", "name": "Ariane Man", "position": "FW", "isGoalkeeper": false },
-        { "id": "AK", "name": "Meschak El", "position": "MF", "isGoalkeeper": false }
+        {
+          "id": "COL-VARGAS",
+          "name": "Camilo Vargas",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "COL-OSPINA",
+          "name": "David Ospina",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "COL-CUELLAR",
+          "name": "David Cuellar",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "COL-MUANOS",
+          "name": "Davinson Sanchez",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-VEGA-M",
+          "name": "Mateo V",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-LONG",
+          "name": "Kevin Long",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-CARBON",
+          "name": "Wilmar Carbon",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-MURIEL",
+          "name": "Luis Muriel",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-QUINTERO",
+          "name": "Juan Fernando Quintero",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-Lerma",
+          "name": "Jefferson Lerma",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-DIAZ-J",
+          "name": "Julian Diaz",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-RODRIGUEZ-J",
+          "name": "James Rodriguez",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-CUETO",
+          "name": "Johan Carbon",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-LONDONO",
+          "name": "Kevin Long",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-ZAPATA",
+          "name": "Duvan Zapata",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-BORR",
+          "name": "Julián Borr",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-SINISTERRA",
+          "name": "Jhon Sinisterra",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-MORENO",
+          "name": "Juan Moreno",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "COL-ARIAS",
+          "name": "Juan Arias",
+          "position": "DF",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -1143,80 +1852,126 @@
       "group": "K",
       "flag": "🇵🇹",
       "players": [
-        { "id": "COSTA", "name": "Diogo Costa", "position": "GK", "isGoalkeeper": true },
-        { "id": "SA", "name": "Jose Sa", "position": "GK", "isGoalkeeper": true },
-        { "id": "PAT", "name": "Antonio Silva", "position": "GK", "isGoalkeeper": true },
-        { "id": "DIAS", "name": "Ruben Dias", "position": "DF", "isGoalkeeper": false },
-        { "id": "CANCELO", "name": "Joao Cancelo", "position": "DF", "isGoalkeeper": false },
-        { "id": "DALOT", "name": "Diogo Dalot", "position": "DF", "isGoalkeeper": false },
-        { "id": "NUNES", "name": "Nuno Mendes", "position": "DF", "isGoalkeeper": false },
-        { "id": "ANTUNES", "name": "Nuno Antunes", "position": "DF", "isGoalkeeper": false },
-        { "id": "FERNANDES", "name": "Bruno Fernandes", "position": "MF", "isGoalkeeper": false },
-        { "id": "B.SILVA", "name": "Bernardo Silva", "position": "MF", "isGoalkeeper": false },
-        { "id": "NEVES", "name": "Ruben Neves", "position": "MF", "isGoalkeeper": false },
-        { "id": "OTAVIO", "name": "Otavio", "position": "MF", "isGoalkeeper": false },
-        { "id": "CARVALHO", "name": "Fabio Carvalho", "position": "MF", "isGoalkeeper": false },
-        { "id": "LEAO", "name": "Rafael Leao", "position": "FW", "isGoalkeeper": false },
-        { "id": "RONALDO", "name": "Cristiano Ronaldo", "position": "FW", "isGoalkeeper": false },
-        { "id": "FELIX", "name": "Joao Felix", "position": "FW", "isGoalkeeper": false },
-        { "id": "LEAL", "name": "Goncalo Guedes", "position": "FW", "isGoalkeeper": false },
-        { "id": "RAMOS", "name": "Gonzalo Ramos", "position": "FW", "isGoalkeeper": false },
-        { "id": "DIAS-N", "name": "Nelson Dias", "position": "MF", "isGoalkeeper": false },
-        { "id": "Semedo", "name": "Nuno Semedo", "position": "DF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "UZB",
-      "name": "Uzbekistan",
-      "group": "K",
-      "flag": "🇺🇿",
-      "players": [
-        { "id": "IST", "name": "Ignatiy", "position": "GK", "isGoalkeeper": true },
-        { "id": "AMONOV", "name": "Sanjay D", "position": "GK", "isGoalkeeper": true },
-        { "id": "NEMAT", "name": "Utkir Nemat", "position": "GK", "isGoalkeeper": true },
-        { "id": "RUS", "name": "Rustamjon", "position": "DF", "isGoalkeeper": false },
-        { "id": "KHO", "name": "Khojiakbar", "position": "DF", "isGoalkeeper": false },
-        { "id": "IS", "name": "Islom", "position": "DF", "isGoalkeeper": false },
-        { "id": "JAF", "name": "Jafong", "position": "DF", "isGoalkeeper": false },
-        { "id": "GO", "name": "God", "position": "DF", "isGoalkeeper": false },
-        { "id": "A", "name": "Azizbek Amonov", "position": "MF", "isGoalkeeper": false },
-        { "id": "O", "name": "Odil E", "position": "MF", "isGoalkeeper": false },
-        { "id": "Q", "name": "Quvvonch", "position": "MF", "isGoalkeeper": false },
-        { "id": "J", "name": "Jasurbek Y", "position": "MF", "isGoalkeeper": false },
-        { "id": "SHUKUR", "name": "Eldor Shomurodov", "position": "FW", "isGoalkeeper": false },
-        { "id": "ALIKHANOV", "name": "Otabek Alikhanov", "position": "MF", "isGoalkeeper": false },
-        { "id": "HAKIMOV", "name": "Jasur Hakimov", "position": "MF", "isGoalkeeper": false },
-        { "id": "KURBONOV", "name": "Shukhrat Kurbonov", "position": "MF", "isGoalkeeper": false },
-        { "id": "JALALOV", "name": "Jaloliddin Jalalov", "position": "FW", "isGoalkeeper": false },
-        { "id": "NARZULOV", "name": "Bobur Narzulov", "position": "FW", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "CRO",
-      "name": "Croatia",
-      "group": "L",
-      "flag": "🇭🇷",
-      "players": [
-        { "id": "LIVAKOVIC", "name": "Dominik Livakovic", "position": "GK", "isGoalkeeper": true },
-        { "id": "KAL", "name": "Nino K", "position": "GK", "isGoalkeeper": true },
-        { "id": "LABRO", "name": "Ivan Labro", "position": "GK", "isGoalkeeper": true },
-        { "id": "Gvardiol", "name": "Josko Gvardiol", "position": "DF", "isGoalkeeper": false },
-        { "id": "SOSA", "name": "Josip Sosa", "position": "DF", "isGoalkeeper": false },
-        { "id": "STANIS", "name": "Luka Stanic", "position": "DF", "isGoalkeeper": false },
-        { "id": "ERLIC", "name": "Josip Erlic", "position": "DF", "isGoalkeeper": false },
-        { "id": "JURAV", "name": "Domagoj Juravic", "position": "DF", "isGoalkeeper": false },
-        { "id": "MODRIC", "name": "Luka Modric", "position": "MF", "isGoalkeeper": false },
-        { "id": "KOVACIC", "name": "Mateo Kovacic", "position": "MF", "isGoalkeeper": false },
-        { "id": "BROZOVIC", "name": "Marcelo Brozovic", "position": "MF", "isGoalkeeper": false },
-        { "id": "PAS", "name": "Luka Pasal", "position": "MF", "isGoalkeeper": false },
-        { "id": "VLA", "name": "Mario Vlasic", "position": "MF", "isGoalkeeper": false },
-        { "id": "PERISIC", "name": "Ivan Perisic", "position": "FW", "isGoalkeeper": false },
-        { "id": "KRAMARIC", "name": "Andrej Kramaric", "position": "FW", "isGoalkeeper": false },
-        { "id": "PETKOVIC", "name": "Bruno Petkovic", "position": "FW", "isGoalkeeper": false },
-        { "id": "LIVaja", "name": "Marko Livaja", "position": "FW", "isGoalkeeper": false },
-        { "id": "MAJET", "name": "Mario Majeti", "position": "FW", "isGoalkeeper": false },
-        { "id": "BARISIC", "name": "Borna Barisic", "position": "DF", "isGoalkeeper": false },
-        { "id": "SUTAL", "name": "Dario Smit", "position": "DF", "isGoalkeeper": false }
+        {
+          "id": "POR-COSTA",
+          "name": "Diogo Costa",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "POR-SA",
+          "name": "Jose Sa",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "POR-PAT",
+          "name": "Antonio Silva",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "POR-DIAS",
+          "name": "Ruben Dias",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-CANCELO",
+          "name": "Joao Cancelo",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-DALOT",
+          "name": "Diogo Dalot",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-NUNES",
+          "name": "Nuno Mendes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-ANTUNES",
+          "name": "Nuno Antunes",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-FERNANDES",
+          "name": "Bruno Fernandes",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-B.SILVA",
+          "name": "Bernardo Silva",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-NEVES",
+          "name": "Ruben Neves",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-OTAVIO",
+          "name": "Otavio",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-CARVALHO",
+          "name": "Fabio Carvalho",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-LEAO",
+          "name": "Rafael Leao",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-RONALDO",
+          "name": "Cristiano Ronaldo",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-FELIX",
+          "name": "Joao Felix",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-LEAL",
+          "name": "Goncalo Guedes",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-RAMOS",
+          "name": "Gonzalo Ramos",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-DIAS-N",
+          "name": "Nelson Dias",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "POR-Semedo",
+          "name": "Nuno Semedo",
+          "position": "DF",
+          "isGoalkeeper": false
+        }
       ]
     },
     {
@@ -1225,80 +1980,138 @@
       "group": "L",
       "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       "players": [
-        { "id": "PICKFORD", "name": "Jordan Pickford", "position": "GK", "isGoalkeeper": true },
-        { "id": "POPE", "name": "Nick Pope", "position": "GK", "isGoalkeeper": true },
-        { "id": "RAMS", "name": "Aaron Ramsdale", "position": "GK", "isGoalkeeper": true },
-        { "id": "WALKER", "name": "Kyle Walker", "position": "DF", "isGoalkeeper": false },
-        { "id": "STONES", "name": "John Stones", "position": "DF", "isGoalkeeper": false },
-        { "id": "MAGUIRE", "name": "Harry Maguire", "position": "DF", "isGoalkeeper": false },
-        { "id": "SHAW", "name": "Luke Shaw", "position": "DF", "isGoalkeeper": false },
-        { "id": "TRENT", "name": "Trent Alexander-Arnold", "position": "DF", "isGoalkeeper": false },
-        { "id": "DUNK", "name": "Lewis Dunk", "position": "DF", "isGoalkeeper": false },
-        { "id": "RICE", "name": "Declan Rice", "position": "MF", "isGoalkeeper": false },
-        { "id": "MOUNT", "name": "Mason Mount", "position": "MF", "isGoalkeeper": false },
-        { "id": "FODEN", "name": "Phil Foden", "position": "MF", "isGoalkeeper": false },
-        { "id": "BELLINGHAM", "name": "Jude Bellingham", "position": "MF", "isGoalkeeper": false },
-        { "id": "Saka", "name": "Bukayo Saka", "position": "FW", "isGoalkeeper": false },
-        { "id": "STERLING", "name": "Raheem Sterling", "position": "FW", "isGoalkeeper": false },
-        { "id": "KANE", "name": "Harry Kane", "position": "FW", "isGoalkeeper": false },
-        { "id": "SAR", "name": "Marcus Rashford", "position": "FW", "isGoalkeeper": false },
-        { "id": "GREALISH", "name": "Jack Grealish", "position": "FW", "isGoalkeeper": false },
-        { "id": "KANE-H", "name": "Harry Kane", "position": "FW", "isGoalkeeper": false },
-        { "id": "WELBECK", "name": "Danny Welbeck", "position": "FW", "isGoalkeeper": false },
-        { "id": "MADDISON", "name": "James Maddison", "position": "MF", "isGoalkeeper": false },
-        { "id": "HENDERSON", "name": "Jordan Henderson", "position": "MF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "GHA",
-      "name": "Ghana",
-      "group": "L",
-      "flag": "🇬🇭",
-      "players": [
-        { "id": "WOLLACOTT", "name": "Joe Wollacott", "position": "GK", "isGoalkeeper": true },
-        { "id": "ATI", "name": "Lawrence Ati", "position": "GK", "isGoalkeeper": true },
-        { "id": "NANA", "name": "Ab好笑", "position": "GK", "isGoalkeeper": true },
-        { "id": "AMARTEY", "name": "Daniel Amartey", "position": "DF", "isGoalkeeper": false },
-        { "id": "BABA", "name": "Iddrisu", "position": "DF", "isGoalkeeper": false },
-        { "id": "OW", "name": "Jordan", "position": "DF", "isGoalkeeper": false },
-        { "id": "MUD", "name": "Mud", "position": "DF", "isGoalkeeper": false },
-        { "id": "DJ", "name": "Abdul Samed", "position": "MF", "isGoalkeeper": false },
-        { "id": "KUDUS", "name": "Mohammed Kudus", "position": "MF", "isGoalkeeper": false },
-        { "id": "BABA-P", "name": "Iddrisu Baba", "position": "MF", "isGoalkeeper": false },
-        { "id": "KESSIE", "name": "Franck Kessie", "position": "MF", "isGoalkeeper": false },
-        { "id": "LAMPTEY", "name": "Tariq Lamptey", "position": "MF", "isGoalkeeper": false },
-        { "id": "AUBAMEYANG", "name": "Pierre-Emerick Aubameyang", "position": "FW", "isGoalkeeper": false },
-        { "id": "AYEW", "name": "Jordan Ayew", "position": "FW", "isGoalkeeper": false },
-        { "id": "JAY", "name": "Samuel Jay", "position": "FW", "isGoalkeeper": false },
-        { "id": "WILLIAMS", "name": "Joe Wollacott", "position": "GK", "isGoalkeeper": true },
-        { "id": "FATAWU", "name": "Osman Fatawu", "position": "FW", "isGoalkeeper": false },
-        { "id": "SEM", "name": "Kwame Sem", "position": "MF", "isGoalkeeper": false }
-      ]
-    },
-    {
-      "id": "PAN",
-      "name": "Panama",
-      "group": "L",
-      "flag": "🇵🇦",
-      "players": [
-        { "id": "ME", "name": "Jaime Penedo", "position": "GK", "isGoalkeeper": true },
-        { "id": "RO", "name": "Luis R", "position": "GK", "isGoalkeeper": true },
-        { "id": "VA", "name": "Carlos Val", "position": "GK", "isGoalkeeper": true },
-        { "id": "CUMMINGS", "name": "Harold Cummings", "position": "DF", "isGoalkeeper": false },
-        { "id": "MAC", "name": "Felipe A", "position": "DF", "isGoalkeeper": false },
-        { "id": "ES", "name": "Adolfo Machado", "position": "DF", "isGoalkeeper": false },
-        { "id": "B", "name": "Luis M", "position": "DF", "isGoalkeeper": false },
-        { "id": "C", "name": "Aldredo T", "position": "DF", "isGoalkeeper": false },
-        { "id": "GOD", "name": "Alberto G", "position": "MF", "isGoalkeeper": false },
-        { "id": "PIMENT", "name": "Omar P", "position": "MF", "isGoalkeeper": false },
-        { "id": "NAR", "name": "Juan C", "position": "MF", "isGoalkeeper": false },
-        { "id": "FAJARDO-J", "name": "Jose Fajardo", "position": "FW", "isGoalkeeper": false },
-        { "id": "CEJUDO", "name": "Eddie Cejudo", "position": "FW", "isGoalkeeper": false },
-        { "id": "CAR", "name": "Eddie Cejudo", "position": "FW", "isGoalkeeper": false },
-        { "id": "BAT", "name": "Michael Bat", "position": "MF", "isGoalkeeper": false },
-        { "id": "GORDON", "name": "Jose Gordon", "position": "MF", "isGoalkeeper": false },
-        { "id": "NICHOLS", "name": "Ricardo Nichols", "position": "GK", "isGoalkeeper": true },
-        { "id": "CARRASQUIL", "name": "Eddie Carrasquil", "position": "FW", "isGoalkeeper": false }
+        {
+          "id": "ENG-PICKFORD",
+          "name": "Jordan Pickford",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ENG-POPE",
+          "name": "Nick Pope",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ENG-RAMS",
+          "name": "Aaron Ramsdale",
+          "position": "GK",
+          "isGoalkeeper": true
+        },
+        {
+          "id": "ENG-WALKER",
+          "name": "Kyle Walker",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-STONES",
+          "name": "John Stones",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-MAGUIRE",
+          "name": "Harry Maguire",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-SHAW",
+          "name": "Luke Shaw",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-TRENT",
+          "name": "Trent Alexander-Arnold",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-DUNK",
+          "name": "Lewis Dunk",
+          "position": "DF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-RICE",
+          "name": "Declan Rice",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-MOUNT",
+          "name": "Mason Mount",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-FODEN",
+          "name": "Phil Foden",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-BELLINGHAM",
+          "name": "Jude Bellingham",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-Saka",
+          "name": "Bukayo Saka",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-STERLING",
+          "name": "Raheem Sterling",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-KANE",
+          "name": "Harry Kane",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-SAR",
+          "name": "Marcus Rashford",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-GREALISH",
+          "name": "Jack Grealish",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-KANE-H",
+          "name": "Harry Kane",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-WELBECK",
+          "name": "Danny Welbeck",
+          "position": "FW",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-MADDISON",
+          "name": "James Maddison",
+          "position": "MF",
+          "isGoalkeeper": false
+        },
+        {
+          "id": "ENG-HENDERSON",
+          "name": "Jordan Henderson",
+          "position": "MF",
+          "isGoalkeeper": false
+        }
       ]
     }
   ]

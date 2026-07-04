@@ -50,7 +50,7 @@ interface PointsSelectorProps {
 
 function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): React.JSX.Element {
   const decrease = (): void => {
-    if (value > 2) {
+    if (value > 0) {
       onChange(awardType, value - 1);
     }
   };
@@ -69,7 +69,7 @@ function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): Re
           <button
             type="button"
             onClick={decrease}
-            disabled={value <= 2}
+            disabled={value <= 0}
             className="w-8 h-8 rounded-lg bg-[#FB8500] text-white font-bold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#e67d00] transition-colors"
           >
             -
@@ -96,7 +96,7 @@ function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): Re
 /**
  * Form for making award predictions (champion, top scorer, best goalkeeper).
  */
-export function AwardPredictionForm({ onPredictionMade }: AwardPredictionFormProps): React.JSX.Element {
+export function AwardPredictionForm({ onPredictionMade, onPointsChange }: AwardPredictionFormProps): React.JSX.Element {
   const [teams, setTeams] = useState<Team[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
   const [availablePoints, setAvailablePoints] = useState<number>(0);
@@ -110,9 +110,9 @@ export function AwardPredictionForm({ onPredictionMade }: AwardPredictionFormPro
   const [topScorer, setTopScorer] = useState<string>('');
   const [bestGoalkeeper, setBestGoalkeeper] = useState<string>('');
   const [pointsWagered, setPointsWagered] = useState<Record<string, number>>({
-    champion: 2,
-    top_scorer: 2,
-    best_goalkeeper: 2
+    champion: 0,
+    top_scorer: 0,
+    best_goalkeeper: 0
   });
 
   const [existingPredictions, setExistingPredictions] = useState<Record<string, ExistingPrediction>>({});
@@ -307,7 +307,7 @@ export function AwardPredictionForm({ onPredictionMade }: AwardPredictionFormPro
         <button
           type="button"
           onClick={() => handleSubmit('champion', champion)}
-          disabled={!champion || submitting}
+          disabled={!champion || pointsWagered.champion === 0 || submitting}
           className="w-full mt-4 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#FFB703] to-[#FB8500] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
           {submitting ? 'Guardando...' : 'Apostar'}
@@ -354,7 +354,7 @@ export function AwardPredictionForm({ onPredictionMade }: AwardPredictionFormPro
         <button
           type="button"
           onClick={() => handleSubmit('top_scorer', topScorer)}
-          disabled={!topScorer || submitting}
+          disabled={!topScorer || pointsWagered.top_scorer === 0 || submitting}
           className="w-full mt-4 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#FFB703] to-[#FB8500] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
           {submitting ? 'Guardando...' : 'Apostar'}
@@ -402,7 +402,7 @@ export function AwardPredictionForm({ onPredictionMade }: AwardPredictionFormPro
         <button
           type="button"
           onClick={() => handleSubmit('best_goalkeeper', bestGoalkeeper)}
-          disabled={!bestGoalkeeper || submitting}
+          disabled={!bestGoalkeeper || pointsWagered.best_goalkeeper === 0 || submitting}
           className="w-full mt-4 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-[#FFB703] to-[#FB8500] disabled:opacity-50 disabled:cursor-not-allowed transition-all"
         >
           {submitting ? 'Guardando...' : 'Apostar'}
