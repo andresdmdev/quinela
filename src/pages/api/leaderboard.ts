@@ -123,6 +123,28 @@ export const GET: APIRoute = async () => {
       if (upsertError) {
         return new Response(JSON.stringify({ error: upsertError.message }), { status: 500 });
       }
+
+      const userMatchPoints: Record<string, number> = {};
+      for (const entry of pointsUpsert) {
+        userMatchPoints[entry.user_id] = (userMatchPoints[entry.user_id] ?? 0) + entry.points;
+      }
+
+      for (const [userId, pointsEarned] of Object.entries(userMatchPoints)) {
+        if (pointsEarned > 0) {
+          const { data: profile } = await supabaseAdmin
+            .from('profiles')
+            .select('available_points')
+            .eq('id', userId)
+            .single();
+
+          if (profile) {
+            await supabaseAdmin
+              .from('profiles')
+              .update({ available_points: (profile.available_points ?? 0) + pointsEarned })
+              .eq('id', userId);
+          }
+        }
+      }
     }
 
     const leaderboard: LeaderboardEntry[] = Object.values(scoreByUser).sort(
