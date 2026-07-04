@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { supabaseAdmin } from '../../lib/supabase';
+import { supabaseAdmin } from '../../../lib/supabase';
 
 const ADMIN_EMAIL = 'andresdmf55@gmail.com';
 const AWARD_MULTIPLIER = 3;
