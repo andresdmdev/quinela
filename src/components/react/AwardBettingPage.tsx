@@ -1,0 +1,48 @@
+import { useState } from 'react';
+import { AwardSummary } from './AwardSummary';
+import { AwardPredictionForm } from './AwardPredictionForm';
+
+const INITIAL_POINTS = 15;
+const INITIAL_WAGERED = {
+  champion: 2,
+  top_scorer: 2,
+  best_goalkeeper: 2
+};
+
+export function AwardBettingPage(): React.JSX.Element {
+  const [pointsWagered, setPointsWagered] = useState<Record<string, number>>(INITIAL_WAGERED);
+  const [availablePoints, setAvailablePoints] = useState<number>(INITIAL_POINTS);
+
+  const totalWagered = Object.values(pointsWagered).reduce((sum, p) => sum + p, 0);
+  const potentialWinnings = totalWagered * 3;
+
+  const handlePointsChange = (newPointsWagered: Record<string, number>, newAvailablePoints: number): void => {
+    setPointsWagered(newPointsWagered);
+    setAvailablePoints(newAvailablePoints);
+  };
+
+  const handlePredictionMade = (): void => {
+    void fetch('/api/profile/me')
+      .then((res) => res.json())
+      .then((data: { available_points?: number }) => {
+        if (data.available_points !== undefined) {
+          setAvailablePoints(data.available_points);
+        }
+      })
+      .catch(() => {});
+  };
+
+  return (
+    <div className="mb-8">
+      <AwardSummary
+        availablePoints={availablePoints}
+        totalWagered={totalWagered}
+        potentialWinnings={potentialWinnings}
+      />
+      <AwardPredictionForm
+        onPointsChange={handlePointsChange}
+        onPredictionMade={handlePredictionMade}
+      />
+    </div>
+  );
+}

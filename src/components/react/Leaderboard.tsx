@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { EmptyState } from './ui/EmptyState';
 import { UserPredictionsModal } from './UserPredictionsModal';
+import { AwardPredictionsModal } from './AwardPredictionsModal';
 
 export interface LeaderboardEntry {
   userId: string;
   displayName: string;
   avatarUrl: string | null;
   totalPoints: number;
+  matchPoints: number;
+  awardPoints: number;
   exactScores: number;
   trends: number;
 }
@@ -14,6 +17,8 @@ export interface LeaderboardEntry {
 interface LeaderboardResponse {
   leaderboard: LeaderboardEntry[];
 }
+
+const LOCALSTORAGE_KEY = 'quinela_ranking';
 
 /**
  * Displays the leaderboard with a visual cutoff line after the second place.
@@ -23,6 +28,7 @@ export function Leaderboard(): React.JSX.Element {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedUser, setSelectedUser] = useState<LeaderboardEntry | null>(null);
+  const [selectedUserForAwards, setSelectedUserForAwards] = useState<LeaderboardEntry | null>(null);
 
   useEffect((): void => {
     async function loadLeaderboard(): Promise<void> {
@@ -34,7 +40,14 @@ export function Leaderboard(): React.JSX.Element {
           throw new Error('Error loading leaderboard');
         }
 
-        setLeaderboard(data.leaderboard);
+        const newLeaderboard = data.leaderboard;
+        setLeaderboard(newLeaderboard);
+
+        try {
+          localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(newLeaderboard));
+        } catch {
+          // localStorage not available
+        }
       } catch (err) {
         const message = err instanceof Error ? err.message : 'Error desconocido';
         setError(message);
@@ -116,14 +129,29 @@ export function Leaderboard(): React.JSX.Element {
               <p className="font-bold text-[#1A1A2E] truncate">{entry.displayName}</p>
               <p className="text-xs text-[#6B7280]">
                 {entry.exactScores} exactos · {entry.trends} tendencias
+                {entry.awardPoints > 0 && (
+                  <span className="ml-1 text-[#FB8500]">· 🎯 {entry.awardPoints} pts awards</span>
+                )}
               </p>
             </div>
 
-            <div className="text-right">
-              <span className="text-2xl font-black tabular-nums text-[#1A1A2E]">
-                {entry.totalPoints}
-              </span>
-              <p className="text-xs text-[#6B7280] font-medium">pts</p>
+            <div className="flex items-center gap-3">
+              <div className="text-right">
+                <span className="text-2xl font-black tabular-nums text-[#1A1A2E]">
+                  {entry.totalPoints}
+                </span>
+                <p className="text-xs text-[#6B7280] font-medium">pts</p>
+              </div>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setSelectedUserForAwards(entry);
+                }}
+                className="w-10 h-10 rounded-xl bg-[rgba(251,133,0,0.1)] flex items-center justify-center text-[#FB8500] hover:bg-[rgba(251,133,0,0.2)] transition-colors"
+              >
+                🎯
+              </button>
             </div>
 
             {index === 1 && !isLast && (
@@ -141,6 +169,13 @@ export function Leaderboard(): React.JSX.Element {
         user={selectedUser}
         isOpen={selectedUser !== null}
         onClose={() => setSelectedUser(null)}
+      />
+
+      <AwardPredictionsModal
+        userId={selectedUserForAwards?.userId ?? ''}
+        userName={selectedUserForAwards?.displayName ?? ''}
+        isOpen={selectedUserForAwards !== null}
+        onClose={() => setSelectedUserForAwards(null)}
       />
     </div>
   );

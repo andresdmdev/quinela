@@ -2,6 +2,7 @@
 import LayoutApp from '../layouts/LayoutApp.astro';
 import { MatchList } from '../components/react/MatchList';
 import { Leaderboard } from '../components/react/Leaderboard';
+import { CountdownTimer } from '../components/react/CountdownTimer';
 
 const user = Astro.locals.user;
 const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
@@ -22,6 +23,10 @@ const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
       </a>
     </div>
   </header>
+
+  <section class="mb-6">
+    <CountdownTimer className="" client:load />
+  </section>
 
   <section class="mb-6">
     <div class="bg-gradient-to-br from-[#023047] to-[#03496b] rounded-3xl p-6 text-white shadow-lg shadow-[rgba(2,48,71,0.25)]">

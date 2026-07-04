@@ -5,6 +5,7 @@ create table profiles (
   display_name text,
   avatar_url text,
   is_enabled boolean default false,
+  available_points int default 0,
   created_at timestamptz default now()
 );
 
@@ -121,3 +122,53 @@ using (bucket_id = 'avatars' and auth.uid() = owner);
 create policy "Avatars are publicly viewable"
 on storage.objects for select
 using (bucket_id = 'avatars');
+
+-- Teams table
+create table if not exists teams (
+  id text primary key,
+  name text not null,
+  group_name text,
+  flag_emoji text
+);
+
+-- Players table
+create table if not exists players (
+  id text primary key,
+  team_id text references teams(id),
+  name text not null,
+  position text,
+  is_goalkeeper boolean default false
+);
+
+-- Award predictions table
+create table if not exists award_predictions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references profiles(id),
+  award_type text not null check (award_type in ('champion', 'top_scorer', 'best_goalkeeper')),
+  prediction text not null,
+  points_wagered int not null check (points_wagered >= 2 and points_wagered <= 5),
+  is_winner boolean default null,
+  settled_at timestamptz,
+  created_at timestamptz default now(),
+  unique(user_id, award_type)
+);
+
+-- Row Level Security for new tables
+alter table teams enable row level security;
+alter table players enable row level security;
+alter table award_predictions enable row level security;
+
+create policy "Teams are publicly viewable"
+on teams for select using (true);
+
+create policy "Players are publicly viewable"
+on players for select using (true);
+
+create policy "Users can view own award predictions"
+on award_predictions for select using (auth.uid() = user_id);
+
+create policy "Users can insert own award predictions"
+on award_predictions for insert with check (auth.uid() = user_id);
+
+create policy "Users can update own award predictions"
+on award_predictions for update using (auth.uid() = user_id);

@@ -47,6 +47,7 @@ export function BottomNav(): React.JSX.Element {
     { href: '/', label: 'Inicio', icon: '🏠' },
     { href: '/pronosticar', label: 'Pronosticar', icon: '⚽' },
     { href: '/ranking', label: 'Ranking', icon: '🏆' },
+    { href: '/premios', label: 'Premios', icon: '🎯' },
     { href: '/historial', label: 'Historial', icon: '📜' }
   ];
 

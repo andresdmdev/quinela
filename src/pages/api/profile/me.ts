@@ -10,6 +10,7 @@ export interface ProfileMeResponse {
   avatar_url: string | null;
   is_enabled: boolean;
   is_admin: boolean;
+  available_points: number;
 }
 
 /**
@@ -38,7 +39,7 @@ export const GET: APIRoute = async ({ cookies }) => {
 
   const { data: profile, error } = await supabaseAdmin
     .from('profiles')
-    .select('id, email, display_name, avatar_url, is_enabled')
+    .select('id, email, display_name, avatar_url, is_enabled, available_points')
     .eq('id', user.id)
     .single() as { data: Omit<ProfileMeResponse, 'is_admin'> | null; error: Error | null };
 
