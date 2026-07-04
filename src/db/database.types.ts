@@ -15,6 +15,7 @@ export interface Database {
           email: string | null;
           display_name: string | null;
           avatar_url: string | null;
+          available_points: number;
           created_at: string;
         };
         Insert: {
@@ -22,6 +23,7 @@ export interface Database {
           email?: string | null;
           display_name?: string | null;
           avatar_url?: string | null;
+          available_points?: number;
           created_at?: string;
         };
         Update: {
@@ -29,6 +31,7 @@ export interface Database {
           email?: string | null;
           display_name?: string | null;
           avatar_url?: string | null;
+          available_points?: number;
           created_at?: string;
         };
       };
@@ -140,6 +143,81 @@ export interface Database {
           points?: number | null;
           exact_score?: boolean | null;
           trend?: boolean | null;
+          created_at?: string;
+        };
+      };
+      teams: {
+        Row: {
+          id: string;
+          name: string;
+          group_name: string | null;
+          flag_emoji: string | null;
+        };
+        Insert: {
+          id: string;
+          name: string;
+          group_name?: string | null;
+          flag_emoji?: string | null;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          group_name?: string | null;
+          flag_emoji?: string | null;
+        };
+      };
+      players: {
+        Row: {
+          id: string;
+          team_id: string | null;
+          name: string;
+          position: string | null;
+          is_goalkeeper: boolean;
+        };
+        Insert: {
+          id: string;
+          team_id?: string | null;
+          name: string;
+          position?: string | null;
+          is_goalkeeper?: boolean;
+        };
+        Update: {
+          id?: string;
+          team_id?: string | null;
+          name?: string;
+          position?: string | null;
+          is_goalkeeper?: boolean;
+        };
+      };
+      award_predictions: {
+        Row: {
+          id: string;
+          user_id: string;
+          award_type: string;
+          prediction: string;
+          points_wagered: number;
+          is_winner: boolean | null;
+          settled_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          award_type: string;
+          prediction: string;
+          points_wagered: number;
+          is_winner?: boolean | null;
+          settled_at?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          award_type?: string;
+          prediction?: string;
+          points_wagered?: number;
+          is_winner?: boolean | null;
+          settled_at?: string | null;
           created_at?: string;
         };
       };

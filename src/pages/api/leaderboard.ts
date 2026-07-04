@@ -9,6 +9,8 @@ export interface LeaderboardEntry {
   displayName: string;
   avatarUrl: string | null;
   totalPoints: number;
+  matchPoints: number;
+  awardPoints: number;
   exactScores: number;
   trends: number;
 }
@@ -47,6 +49,22 @@ export const GET: APIRoute = async () => {
     const allPredictions: PredictionRecord[] = predictions ?? [];
     const allProfiles = profiles ?? [];
 
+    const { data: awardPredictions, error: awardError } = await supabaseAdmin
+      .from('award_predictions')
+      .select('user_id, award_type, prediction, points_wagered, is_winner')
+      .not('is_winner', 'is', null);
+
+    if (awardError) {
+      return new Response(JSON.stringify({ error: awardError.message }), { status: 500 });
+    }
+
+    const awardPointsByUser: Record<string, number> = {};
+    for (const ap of awardPredictions ?? []) {
+      if (ap.is_winner === true) {
+        awardPointsByUser[ap.user_id] = (awardPointsByUser[ap.user_id] ?? 0) + ap.points_wagered * 5;
+      }
+    }
+
     const pointsUpsert: {
       user_id: string;
       match_id: string;
@@ -58,11 +76,14 @@ export const GET: APIRoute = async () => {
     const scoreByUser: Record<string, LeaderboardEntry> = {};
 
     for (const profile of allProfiles) {
+      const awardPoints = awardPointsByUser[profile.id] ?? 0;
       scoreByUser[profile.id] = {
         userId: profile.id,
         displayName: profile.display_name ?? 'Jugador',
         avatarUrl: profile.avatar_url,
-        totalPoints: 0,
+        totalPoints: awardPoints,
+        matchPoints: 0,
+        awardPoints: awardPoints,
         exactScores: 0,
         trends: 0
       };
@@ -86,6 +107,7 @@ export const GET: APIRoute = async () => {
 
         const entry = scoreByUser[prediction.user_id];
         if (entry) {
+          entry.matchPoints += result.points;
           entry.totalPoints += result.points;
           if (result.exactScore) entry.exactScores += 1;
           if (result.trend && !result.exactScore) entry.trends += 1;

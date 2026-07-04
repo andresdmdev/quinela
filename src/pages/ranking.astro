@@ -1,6 +1,7 @@
 ---
 import LayoutApp from '../layouts/LayoutApp.astro';
 import { Leaderboard } from '../components/react/Leaderboard';
+import { CountdownTimer } from '../components/react/CountdownTimer';
 ---
 
 <LayoutApp title="Ranking - Quiniela Mundial 2026">
@@ -11,6 +12,10 @@ import { Leaderboard } from '../components/react/Leaderboard';
       Top 2 en dorado ganan, el resto paga la cuenta.
     </p>
   </header>
+
+  <section class="mb-6">
+    <CountdownTimer className="" client:load />
+  </section>
 
   <Leaderboard client:load />
 </LayoutApp>
