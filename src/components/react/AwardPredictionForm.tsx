@@ -195,10 +195,15 @@ export function AwardPredictionForm({
         })
       });
 
-      const data = (await response.json()) as { error?: string; success?: boolean };
+      let data: { error?: string; success?: boolean } = {};
+      try {
+        data = (await response.json()) as { error?: string; success?: boolean };
+      } catch {
+        // Response body was not valid JSON
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || 'Error al guardar la predicción');
+        throw new Error(data.error || `Error ${response.status}: Error al guardar la predicción`);
       }
 
       setSuccess('¡Predicción guardada!');
