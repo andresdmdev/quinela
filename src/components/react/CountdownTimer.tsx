@@ -131,7 +131,7 @@ export function CountdownTimer({ className = '' }: CountdownTimerProps): React.J
         </div>
         <div className="bg-white/20 rounded-xl px-3 py-2">
           <p className="text-white text-xs font-medium">8avos</p>
-          <p className="text-white/80 text-[10px]">4 Jul 1:00pm</p>
+          <p className="text-white/80 text-[10px]">4 Jul 5:00pm</p>
         </div>
       </div>
     </a>

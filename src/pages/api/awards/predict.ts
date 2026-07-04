@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { supabaseAdmin } from '../../../lib/supabase';
 
-const WINDOW_CLOSE_TIMESTAMP = new Date('2026-07-04T18:00:00Z').getTime();
+const WINDOW_CLOSE_TIMESTAMP = new Date('2026-07-04T22:00:00Z').getTime();
 const MIN_POINTS = 2;
 const MAX_POINTS = 5;
 const VALID_AWARD_TYPES = ['champion', 'top_scorer', 'best_goalkeeper'];

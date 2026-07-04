@@ -48,7 +48,7 @@ interface PointsSelectorProps {
 
 function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): React.JSX.Element {
   const decrease = (): void => {
-    if (value > 1) {
+    if (value > 2) {
       onChange(awardType, value - 1);
     }
   };
