@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { supabase, supabaseAdmin } from '../../../lib/supabase';
+import { supabaseAdmin } from '../../../lib/supabase';
 import worldCupData from '../../../data/worldcup-2026.json';
 
 interface AwardPrediction {
@@ -39,24 +39,14 @@ interface WorldCupData {
  * Query params:
  *   - user_id: to view another user's predictions (admin only)
  */
-export const GET: APIRoute = async ({ cookies, url }) => {
-  const accessToken: string | undefined = cookies.get('sb-access-token')?.value;
-  const refreshToken: string | undefined = cookies.get('sb-refresh-token')?.value;
+export const GET: APIRoute = async ({ locals, url }) => {
+  const user = locals.user;
 
-  if (!accessToken || !refreshToken) {
+  if (!user) {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
-    access_token: accessToken,
-    refresh_token: refreshToken
-  });
-
-  if (sessionError || !sessionData.session) {
-    return new Response('Unauthorized', { status: 401 });
-  }
-
-  const targetUserId = url.searchParams.get('user_id') || sessionData.session.user.id;
+  const targetUserId = url.searchParams.get('user_id') || user.id;
 
   const { data: predictions, error } = await supabaseAdmin
     .from('award_predictions')

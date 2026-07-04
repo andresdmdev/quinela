@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { supabase, supabaseAdmin } from '../../../lib/supabase';
+import { supabaseAdmin } from '../../../lib/supabase';
 
 interface SettleBody {
   champion: string;
@@ -15,24 +15,14 @@ const MULTIPLIER = 3;
  * Settles all award predictions. Admin only.
  * Body: { champion: string, topScorer: string, bestGoalkeeper: string }
  */
-export const POST: APIRoute = async ({ request, cookies }) => {
-  const accessToken: string | undefined = cookies.get('sb-access-token')?.value;
-  const refreshToken: string | undefined = cookies.get('sb-refresh-token')?.value;
+export const POST: APIRoute = async ({ request, locals }) => {
+  const user = locals.user;
 
-  if (!accessToken || !refreshToken) {
+  if (!user) {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
-    access_token: accessToken,
-    refresh_token: refreshToken
-  });
-
-  if (sessionError || !sessionData.session) {
-    return new Response('Unauthorized', { status: 401 });
-  }
-
-  if (sessionData.session.user.email !== ADMIN_EMAIL) {
+  if (user.email !== ADMIN_EMAIL) {
     return new Response('Admin only', { status: 403 });
   }
 

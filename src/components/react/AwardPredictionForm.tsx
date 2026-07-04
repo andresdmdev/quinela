@@ -40,6 +40,7 @@ interface ProfileResponse {
 interface AwardPredictionFormProps {
   onPredictionMade?: () => void;
   onPointsChange?: (pointsWagered: Record<string, number>, availablePoints: number) => void;
+  onProfileLoaded?: (availablePoints: number) => void;
 }
 
 interface PointsSelectorProps {
@@ -96,7 +97,7 @@ function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): Re
 /**
  * Form for making award predictions (champion, top scorer, best goalkeeper).
  */
-export function AwardPredictionForm({ onPredictionMade, onPointsChange }: AwardPredictionFormProps): React.JSX.Element {
+export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfileLoaded }: AwardPredictionFormProps): React.JSX.Element {
   const [teams, setTeams] = useState<Team[]>([]);
   const [players, setPlayers] = useState<Player[]>([]);
   const [availablePoints, setAvailablePoints] = useState<number>(0);
@@ -137,7 +138,9 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange }: AwardP
         setTeams(teamsData.teams);
         setPlayers(playersData.players);
         setIsOpen(statusData.isOpen);
-        setAvailablePoints(profileData.available_points ?? 0);
+        const loadedAvailablePoints = profileData.available_points ?? 0;
+        setAvailablePoints(loadedAvailablePoints);
+        onProfileLoaded?.(loadedAvailablePoints);
 
         const predictionsMap: Record<string, ExistingPrediction> = {};
         for (const pred of predictionsData.predictions) {
@@ -169,11 +172,9 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange }: AwardP
   }, []);
 
   const handlePointsChange = (awardType: string, points: number): void => {
-    setPointsWagered((prev) => {
-      const newPoints = { ...prev, [awardType]: points };
-      onPointsChange?.(newPoints, availablePoints);
-      return newPoints;
-    });
+    const newPoints = { ...pointsWagered, [awardType]: points };
+    setPointsWagered(newPoints);
+    onPointsChange?.(newPoints, availablePoints);
   };
 
   const handleSubmit = async (awardType: string, prediction: string): Promise<void> => {
@@ -218,6 +219,7 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange }: AwardP
       const newAvailablePoints = profileData.available_points ?? 0;
       setAvailablePoints(newAvailablePoints);
       onPointsChange?.(pointsWagered, newAvailablePoints);
+      onProfileLoaded?.(newAvailablePoints);
 
       onPredictionMade?.();
     } catch (err) {

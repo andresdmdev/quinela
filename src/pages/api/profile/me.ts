@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { supabase, supabaseAdmin } from '../../../lib/supabase';
+import { supabaseAdmin } from '../../../lib/supabase';
 
 const ADMIN_EMAIL = 'andresdmf55@gmail.com';
 
@@ -17,24 +17,13 @@ export interface ProfileMeResponse {
  * Returns the current user's minimal profile information.
  * Used by client components like the bottom navigation bar.
  */
-export const GET: APIRoute = async ({ cookies }) => {
-  const accessToken: string | undefined = cookies.get('sb-access-token')?.value;
-  const refreshToken: string | undefined = cookies.get('sb-refresh-token')?.value;
+export const GET: APIRoute = async ({ locals }) => {
+  const user = locals.user;
 
-  if (!accessToken || !refreshToken) {
+  if (!user) {
     return new Response('Unauthorized', { status: 401 });
   }
 
-  const { data, error: sessionError } = await supabase.auth.setSession({
-    access_token: accessToken,
-    refresh_token: refreshToken
-  });
-
-  if (sessionError || !data.session) {
-    return new Response('Unauthorized', { status: 401 });
-  }
-
-  const user = data.session.user;
   const isAdmin = user.email === ADMIN_EMAIL;
 
   const { data: profile, error } = await supabaseAdmin
