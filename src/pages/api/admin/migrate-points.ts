@@ -3,22 +3,7 @@ import { supabaseAdmin } from '../../lib/supabase';
 
 const ADMIN_EMAIL = 'andresdmf55@gmail.com';
 
-/**
- * POST /api/admin/migrate-points
- * Admin-only endpoint to synchronize available_points with match_points + award_winnings.
- * This fixes any discrepancies between the two point systems.
- */
-export const POST: APIRoute = async ({ locals }) => {
-  const user = locals.user;
-
-  if (!user) {
-    return new Response('Unauthorized', { status: 401 });
-  }
-
-  if (user.email !== ADMIN_EMAIL) {
-    return new Response('Admin only', { status: 403 });
-  }
-
+async function runMigration(): Promise<Response> {
   try {
     const { data: profiles, error: profilesError } = await supabaseAdmin
       .from('profiles')
@@ -97,4 +82,41 @@ export const POST: APIRoute = async ({ locals }) => {
     const message: string = error instanceof Error ? error.message : 'Unknown error';
     return new Response(JSON.stringify({ error: message }), { status: 500 });
   }
+}
+
+/**
+ * GET/POST /api/admin/migrate-points
+ * Admin-only endpoint to synchronize available_points with match_points + award_winnings.
+ * Use GET from browser (no auth required since admin email is hardcoded check).
+ */
+export const GET: APIRoute = async ({ locals }) => {
+  const user = locals.user;
+
+  if (!user) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
+  if (user.email !== ADMIN_EMAIL) {
+    return new Response('Admin only', { status: 403 });
+  }
+
+  return runMigration();
+};
+
+/**
+ * POST /api/admin/migrate-points
+ * Admin-only endpoint to synchronize available_points with match_points + award_winnings.
+ */
+export const POST: APIRoute = async ({ locals }) => {
+  const user = locals.user;
+
+  if (!user) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+
+  if (user.email !== ADMIN_EMAIL) {
+    return new Response('Admin only', { status: 403 });
+  }
+
+  return runMigration();
 };
