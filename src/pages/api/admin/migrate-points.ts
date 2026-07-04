@@ -2,7 +2,41 @@ import type { APIRoute } from 'astro';
 import { supabaseAdmin } from '../../lib/supabase';
 
 const ADMIN_EMAIL = 'andresdmf55@gmail.com';
+const AWARD_MULTIPLIER = 3;
 
+/**
+ * Recomputes available_points for a user from the source of truth tables.
+ * Formula: matchPoints + settledAwardWinnings - activeAwardWagers
+ */
+async function computeAvailablePoints(userId: string): Promise<number> {
+  const { data: matchPointsData } = await supabaseAdmin
+    .from('match_points')
+    .select('points')
+    .eq('user_id', userId);
+
+  const { data: settledAwards } = await supabaseAdmin
+    .from('award_predictions')
+    .select('points_wagered')
+    .eq('user_id', userId)
+    .eq('is_winner', true);
+
+  const { data: activeWagers } = await supabaseAdmin
+    .from('award_predictions')
+    .select('points_wagered')
+    .eq('user_id', userId)
+    .is('is_winner', null);
+
+  const matchPoints = (matchPointsData ?? []).reduce((sum, mp) => sum + mp.points, 0);
+  const settledWinnings = (settledAwards ?? []).reduce((sum, ap) => sum + ap.points_wagered * AWARD_MULTIPLIER, 0);
+  const activeWagered = (activeWagers ?? []).reduce((sum, ap) => sum + ap.points_wagered, 0);
+
+  return matchPoints + settledWinnings - activeWagered;
+}
+
+/**
+ * Resets available_points to the correct computed value for all enabled users.
+ * Uses the source of truth: match_points and award_predictions tables.
+ */
 async function runMigration(): Promise<Response> {
   try {
     const { data: profiles, error: profilesError } = await supabaseAdmin
@@ -14,40 +48,11 @@ async function runMigration(): Promise<Response> {
       return new Response(JSON.stringify({ error: profilesError.message }), { status: 500 });
     }
 
-    const { data: matchPointsData, error: matchPointsError } = await supabaseAdmin
-      .from('match_points')
-      .select('user_id, points');
-
-    if (matchPointsError) {
-      return new Response(JSON.stringify({ error: matchPointsError.message }), { status: 500 });
-    }
-
-    const { data: awardPredictions, error: awardError } = await supabaseAdmin
-      .from('award_predictions')
-      .select('user_id, points_wagered, is_winner')
-      .eq('is_winner', true);
-
-    if (awardError) {
-      return new Response(JSON.stringify({ error: awardError.message }), { status: 500 });
-    }
-
-    const userMatchPoints: Record<string, number> = {};
-    for (const mp of matchPointsData ?? []) {
-      userMatchPoints[mp.user_id] = (userMatchPoints[mp.user_id] ?? 0) + mp.points;
-    }
-
-    const userAwardWinnings: Record<string, number> = {};
-    for (const ap of awardPredictions ?? []) {
-      userAwardWinnings[ap.user_id] = (userAwardWinnings[ap.user_id] ?? 0) + ap.points_wagered * 5;
-    }
-
-    const results: { userId: string; matchPoints: number; awardWinnings: number; newAvailable: number }[] = [];
+    const results: { userId: string; newAvailable: number }[] = [];
     const errors: { userId: string; error: string }[] = [];
 
     for (const profile of profiles ?? []) {
-      const matchPoints = userMatchPoints[profile.id] ?? 0;
-      const awardWinnings = userAwardWinnings[profile.id] ?? 0;
-      const newAvailable = matchPoints + awardWinnings;
+      const newAvailable = await computeAvailablePoints(profile.id);
 
       const { error: updateError } = await supabaseAdmin
         .from('profiles')
@@ -59,8 +64,6 @@ async function runMigration(): Promise<Response> {
       } else {
         results.push({
           userId: profile.id,
-          matchPoints,
-          awardWinnings,
           newAvailable
         });
       }
@@ -85,9 +88,8 @@ async function runMigration(): Promise<Response> {
 }
 
 /**
- * GET/POST /api/admin/migrate-points
- * Admin-only endpoint to synchronize available_points with match_points + award_winnings.
- * Use GET from browser (no auth required since admin email is hardcoded check).
+ * GET /api/admin/migrate-points
+ * Admin-only endpoint to reset available_points from source tables.
  */
 export const GET: APIRoute = async ({ locals }) => {
   const user = locals.user;
@@ -105,7 +107,7 @@ export const GET: APIRoute = async ({ locals }) => {
 
 /**
  * POST /api/admin/migrate-points
- * Admin-only endpoint to synchronize available_points with match_points + award_winnings.
+ * Admin-only endpoint to reset available_points from source tables.
  */
 export const POST: APIRoute = async ({ locals }) => {
   const user = locals.user;

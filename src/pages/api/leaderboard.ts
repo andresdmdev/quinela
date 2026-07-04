@@ -15,8 +15,11 @@ export interface LeaderboardEntry {
   trends: number;
 }
 
+const AWARD_MULTIPLIER = 3;
+
 /**
- * Calculates points for all finished matches and returns the leaderboard.
+ * Calculates points for all finished matches, updates match_points,
+ * and synchronizes available_points for all users.
  */
 export const GET: APIRoute = async () => {
   try {
@@ -49,19 +52,22 @@ export const GET: APIRoute = async () => {
     const allPredictions: PredictionRecord[] = predictions ?? [];
     const allProfiles = profiles ?? [];
 
-    const { data: awardPredictions, error: awardError } = await supabaseAdmin
+    const { data: allAwardPredictions, error: awardError } = await supabaseAdmin
       .from('award_predictions')
-      .select('user_id, award_type, prediction, points_wagered, is_winner')
-      .not('is_winner', 'is', null);
+      .select('user_id, points_wagered, is_winner');
 
     if (awardError) {
       return new Response(JSON.stringify({ error: awardError.message }), { status: 500 });
     }
 
     const awardPointsByUser: Record<string, number> = {};
-    for (const ap of awardPredictions ?? []) {
+    const activeWagersByUser: Record<string, number> = {};
+
+    for (const ap of allAwardPredictions ?? []) {
       if (ap.is_winner === true) {
-        awardPointsByUser[ap.user_id] = (awardPointsByUser[ap.user_id] ?? 0) + ap.points_wagered * 5;
+        awardPointsByUser[ap.user_id] = (awardPointsByUser[ap.user_id] ?? 0) + ap.points_wagered * AWARD_MULTIPLIER;
+      } else if (ap.is_winner === null) {
+        activeWagersByUser[ap.user_id] = (activeWagersByUser[ap.user_id] ?? 0) + ap.points_wagered;
       }
     }
 
@@ -74,6 +80,7 @@ export const GET: APIRoute = async () => {
     }[] = [];
 
     const scoreByUser: Record<string, LeaderboardEntry> = {};
+    const matchPointsByUser: Record<string, number> = {};
 
     for (const profile of allProfiles) {
       const awardPoints = awardPointsByUser[profile.id] ?? 0;
@@ -87,6 +94,7 @@ export const GET: APIRoute = async () => {
         exactScores: 0,
         trends: 0
       };
+      matchPointsByUser[profile.id] = 0;
     }
 
     for (const match of allMatches) {
@@ -109,6 +117,7 @@ export const GET: APIRoute = async () => {
         if (entry) {
           entry.matchPoints += result.points;
           entry.totalPoints += result.points;
+          matchPointsByUser[prediction.user_id] = (matchPointsByUser[prediction.user_id] ?? 0) + result.points;
           if (result.exactScore) entry.exactScores += 1;
           if (result.trend && !result.exactScore) entry.trends += 1;
         }
@@ -123,28 +132,20 @@ export const GET: APIRoute = async () => {
       if (upsertError) {
         return new Response(JSON.stringify({ error: upsertError.message }), { status: 500 });
       }
+    }
 
-      const userMatchPoints: Record<string, number> = {};
-      for (const entry of pointsUpsert) {
-        userMatchPoints[entry.user_id] = (userMatchPoints[entry.user_id] ?? 0) + entry.points;
-      }
+    // Synchronize available_points for all users using the source of truth formula:
+    // available_points = matchPoints + settledAwardWinnings - activeAwardWagers
+    for (const profile of allProfiles) {
+      const matchPoints = matchPointsByUser[profile.id] ?? 0;
+      const awardWinnings = awardPointsByUser[profile.id] ?? 0;
+      const activeWagers = activeWagersByUser[profile.id] ?? 0;
+      const newAvailable = matchPoints + awardWinnings - activeWagers;
 
-      for (const [userId, pointsEarned] of Object.entries(userMatchPoints)) {
-        if (pointsEarned > 0) {
-          const { data: profile } = await supabaseAdmin
-            .from('profiles')
-            .select('available_points')
-            .eq('id', userId)
-            .single();
-
-          if (profile) {
-            await supabaseAdmin
-              .from('profiles')
-              .update({ available_points: (profile.available_points ?? 0) + pointsEarned })
-              .eq('id', userId);
-          }
-        }
-      }
+      await supabaseAdmin
+        .from('profiles')
+        .update({ available_points: newAvailable })
+        .eq('id', profile.id);
     }
 
     const leaderboard: LeaderboardEntry[] = Object.values(scoreByUser).sort(
