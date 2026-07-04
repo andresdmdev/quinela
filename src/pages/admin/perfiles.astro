@@ -1,13 +1,6 @@
 ---
 import LayoutApp from '../../layouts/LayoutApp.astro';
 import { AdminProfilesList } from '../../components/react/AdminProfilesList';
-
-const user = Astro.locals.user;
-const isAdmin = user?.email === 'andresdmf55@gmail.com';
-
-if (!isAdmin) {
-  return Astro.redirect('/');
-}
 ---
 
 <LayoutApp title="Administrar perfiles - Quiniela Mundial 2026">

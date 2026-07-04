@@ -2,6 +2,15 @@ import type { APIRoute } from 'astro';
 import { supabase, supabaseAdmin } from '../../../lib/supabase';
 
 const ADMIN_EMAIL = 'andresdmf55@gmail.com';
+const GUEST_PROFILE = {
+  id: 'guest-anonymous',
+  email: null,
+  display_name: 'Invitado',
+  avatar_url: null,
+  is_enabled: true,
+  is_admin: false,
+  available_points: 15
+};
 
 export interface ProfileMeResponse {
   id: string;
@@ -15,14 +24,17 @@ export interface ProfileMeResponse {
 
 /**
  * Returns the current user's minimal profile information.
- * Used by client components like the bottom navigation bar.
+ * Returns a guest profile if no session exists.
  */
 export const GET: APIRoute = async ({ cookies }) => {
   const accessToken: string | undefined = cookies.get('sb-access-token')?.value;
   const refreshToken: string | undefined = cookies.get('sb-refresh-token')?.value;
 
   if (!accessToken || !refreshToken) {
-    return new Response('Unauthorized', { status: 401 });
+    return new Response(JSON.stringify(GUEST_PROFILE as ProfileMeResponse), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   const { data, error: sessionError } = await supabase.auth.setSession({
@@ -31,7 +43,10 @@ export const GET: APIRoute = async ({ cookies }) => {
   });
 
   if (sessionError || !data.session) {
-    return new Response('Unauthorized', { status: 401 });
+    return new Response(JSON.stringify(GUEST_PROFILE as ProfileMeResponse), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   const user = data.session.user;

@@ -1,10 +1,11 @@
 import type { APIRoute } from 'astro';
-import { supabase, supabaseAdmin } from '../../../lib/supabase';
+import { supabaseAdmin } from '../../../lib/supabase';
 
 const WINDOW_CLOSE_TIMESTAMP = new Date('2026-07-04T00:00:00Z').getTime();
 const MIN_POINTS = 2;
 const MAX_POINTS = 5;
 const VALID_AWARD_TYPES = ['champion', 'top_scorer', 'best_goalkeeper'];
+const GUEST_USER_ID = 'guest-anonymous';
 
 interface PredictBody {
   awardType: string;
@@ -12,25 +13,38 @@ interface PredictBody {
   pointsWagered: number;
 }
 
+function getUserIdFromCookies(cookies: { get: (name: string) => { value?: string } | undefined }): string {
+  const guestIdCookie = cookies.get('guest_id');
+  if (guestIdCookie?.value) {
+    return guestIdCookie.value;
+  }
+  return GUEST_USER_ID;
+}
+
 /**
  * POST /api/awards/predict
- * Creates or updates an award prediction for the authenticated user.
+ * Creates or updates an award prediction.
+ * Uses guest ID if no auth session exists.
  */
 export const POST: APIRoute = async ({ request, cookies }) => {
   const accessToken: string | undefined = cookies.get('sb-access-token')?.value;
   const refreshToken: string | undefined = cookies.get('sb-refresh-token')?.value;
 
-  if (!accessToken || !refreshToken) {
-    return new Response('Unauthorized', { status: 401 });
-  }
+  let userId: string;
 
-  const { data: sessionData, error: sessionError } = await supabase.auth.setSession({
-    access_token: accessToken,
-    refresh_token: refreshToken
-  });
+  if (accessToken && refreshToken) {
+    const { data, error } = await supabase.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken
+    });
 
-  if (sessionError || !sessionData.session) {
-    return new Response('Unauthorized', { status: 401 });
+    if (error || !data.session) {
+      userId = getUserIdFromCookies(cookies);
+    } else {
+      userId = data.session.user.id;
+    }
+  } else {
+    userId = getUserIdFromCookies(cookies);
   }
 
   const now = Date.now();
@@ -67,7 +81,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const { data: profile, error: profileError } = await supabaseAdmin
     .from('profiles')
     .select('available_points')
-    .eq('id', sessionData.session.user.id)
+    .eq('id', userId)
     .single();
 
   if (profileError || !profile) {
@@ -77,7 +91,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
   const { data: existingPrediction } = await supabaseAdmin
     .from('award_predictions')
     .select('points_wagered')
-    .eq('user_id', sessionData.session.user.id)
+    .eq('user_id', userId)
     .eq('award_type', awardType)
     .single();
 
@@ -98,7 +112,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const { error: deductError } = await supabaseAdmin
       .from('profiles')
       .update({ available_points: availablePoints - pointsNeeded })
-      .eq('id', sessionData.session.user.id);
+      .eq('id', userId);
 
     if (deductError) {
       return new Response(JSON.stringify({ error: deductError.message }), { status: 500 });
@@ -108,7 +122,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     const { error: refundError } = await supabaseAdmin
       .from('profiles')
       .update({ available_points: (profile.available_points ?? 0) + refund })
-      .eq('id', sessionData.session.user.id);
+      .eq('id', userId);
 
     if (refundError) {
       return new Response(JSON.stringify({ error: refundError.message }), { status: 500 });
@@ -119,7 +133,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     .from('award_predictions')
     .upsert(
       {
-        user_id: sessionData.session.user.id,
+        user_id: userId,
         award_type: awardType,
         prediction,
         points_wagered: pointsWagered

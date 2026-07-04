@@ -3,9 +3,6 @@ import LayoutApp from '../layouts/LayoutApp.astro';
 import { MatchList } from '../components/react/MatchList';
 import { Leaderboard } from '../components/react/Leaderboard';
 import { CountdownTimer } from '../components/react/CountdownTimer';
-
-const user = Astro.locals.user;
-const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
 ---
 
 <LayoutApp title="Inicio - Quiniela Mundial 2026">
@@ -13,14 +10,8 @@ const displayName = user?.user_metadata?.full_name ?? user?.email ?? 'Jugador';
     <div class="flex items-center justify-between">
       <div>
         <p class="text-sm font-medium text-[#FB8500] mb-1">FIFA World Cup 2026</p>
-        <h1 class="text-2xl font-black text-[#1A1A2E]">Hola, {displayName}</h1>
+        <h1 class="text-2xl font-black text-[#1A1A2E]">Quiniela Mundial 2026</h1>
       </div>
-      <a
-        href="/perfil"
-        class="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFB703] to-[#FB8500] flex items-center justify-center text-white font-bold shadow-md shadow-[rgba(251,133,0,0.3)]"
-      >
-        {displayName.charAt(0).toUpperCase()}
-      </a>
     </div>
   </header>
 
