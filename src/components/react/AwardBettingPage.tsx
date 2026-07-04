@@ -8,45 +8,27 @@ const INITIAL_WAGERED = {
   best_goalkeeper: 0
 };
 
-interface LeaderboardEntry {
-  userId: string;
-  totalPoints: number;
-  matchPoints: number;
-  awardPoints: number;
-}
-
 export function AwardBettingPage(): React.JSX.Element {
   const [pointsWagered, setPointsWagered] = useState<Record<string, number>>(INITIAL_WAGERED);
-  const [totalEarned, setTotalEarned] = useState<number>(0);
+  const [availablePoints, setAvailablePoints] = useState<number>(0);
   const [profileLoaded, setProfileLoaded] = useState<boolean>(false);
 
   const totalWagered = Object.values(pointsWagered).reduce((sum, p) => sum + p, 0);
   const potentialWinnings = totalWagered * 3;
 
   useEffect(() => {
-    async function loadRankingPoints(): Promise<void> {
+    async function loadAvailablePoints(): Promise<void> {
       try {
         const profileRes = await fetch('/api/profile/me');
         if (!profileRes.ok) return;
-        const profileData = await profileRes.json() as { id?: string };
-        const userId = profileData.id;
-
-        if (!userId) return;
-
-        const leaderboardRes = await fetch('/api/leaderboard');
-        if (!leaderboardRes.ok) return;
-        const leaderboardData = await leaderboardRes.json() as { leaderboard: LeaderboardEntry[] };
-
-        const userEntry = leaderboardData.leaderboard.find((entry) => entry.userId === userId);
-        if (userEntry) {
-          setTotalEarned(userEntry.matchPoints + userEntry.awardPoints);
-        }
+        const profileData = await profileRes.json() as { available_points?: number };
+        setAvailablePoints(profileData.available_points ?? 0);
       } catch {
         // Silently fail
       }
     }
 
-    void loadRankingPoints();
+    void loadAvailablePoints();
   }, []);
 
   const handlePointsChange = (newPointsWagered: Record<string, number>, newAvailablePoints: number): void => {
@@ -60,38 +42,16 @@ export function AwardBettingPage(): React.JSX.Element {
   const handlePredictionMade = (): void => {
     void fetch('/api/profile/me')
       .then((res) => res.json())
-      .then(() => {
-        void loadRankingPoints();
+      .then((data) => {
+        setAvailablePoints(data.available_points ?? 0);
       })
       .catch(() => {});
-  };
-
-  const loadRankingPoints = async (): Promise<void> => {
-    try {
-      const profileRes = await fetch('/api/profile/me');
-      if (!profileRes.ok) return;
-      const profileData = await profileRes.json() as { id?: string };
-      const userId = profileData.id;
-
-      if (!userId) return;
-
-      const leaderboardRes = await fetch('/api/leaderboard');
-      if (!leaderboardRes.ok) return;
-      const leaderboardData = await leaderboardRes.json() as { leaderboard: LeaderboardEntry[] };
-
-      const userEntry = leaderboardData.leaderboard.find((entry) => entry.userId === userId);
-      if (userEntry) {
-        setTotalEarned(userEntry.matchPoints + userEntry.awardPoints);
-      }
-    } catch {
-      // Silently fail
-    }
   };
 
   return (
     <div className="mb-8">
       <AwardSummary
-        availablePoints={totalEarned}
+        availablePoints={availablePoints}
         totalWagered={totalWagered}
         potentialWinnings={potentialWinnings}
       />

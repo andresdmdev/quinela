@@ -33,14 +33,9 @@ interface StatusResponse {
   nowTimestamp: number;
 }
 
-interface LeaderboardEntry {
-  userId: string;
-  matchPoints: number;
-  awardPoints: number;
-}
-
 interface ProfileResponse {
   id?: string;
+  available_points: number;
 }
 
 interface AwardPredictionFormProps {
@@ -57,7 +52,7 @@ interface PointsSelectorProps {
 
 function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): React.JSX.Element {
   const decrease = (): void => {
-    if (value > 0) {
+    if (value > 1) {
       onChange(awardType, value - 1);
     }
   };
@@ -76,7 +71,7 @@ function PointsSelector({ awardType, value, onChange }: PointsSelectorProps): Re
           <button
             type="button"
             onClick={decrease}
-            disabled={value <= 0}
+            disabled={value <= 1}
             className="w-8 h-8 rounded-lg bg-[#FB8500] text-white font-bold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#e67d00] transition-colors"
           >
             -
@@ -127,13 +122,12 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfil
   useEffect((): void => {
     async function loadData(): Promise<void> {
       try {
-        const [teamsRes, playersRes, statusRes, predictionsRes, profileRes, leaderboardRes] = await Promise.all([
+        const [teamsRes, playersRes, statusRes, predictionsRes, profileRes] = await Promise.all([
           fetch('/api/awards/teams'),
           fetch('/api/awards/players'),
           fetch('/api/awards/status'),
           fetch('/api/awards/predictions'),
-          fetch('/api/profile/me'),
-          fetch('/api/leaderboard')
+          fetch('/api/profile/me')
         ]);
 
         const teamsData = (await teamsRes.json()) as { teams: Team[] };
@@ -141,17 +135,12 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfil
         const statusData = (await statusRes.json()) as StatusResponse;
         const predictionsData = (await predictionsRes.json()) as { predictions: ExistingPrediction[] };
         const profileData = (await profileRes.json()) as ProfileResponse;
-        const leaderboardData = (await leaderboardRes.json()) as { leaderboard: LeaderboardEntry[] };
-
-        const userId = profileData.id;
-        const userEntry = leaderboardData.leaderboard.find((entry) => entry.userId === userId);
-        const totalEarned = userEntry ? userEntry.matchPoints + userEntry.awardPoints : 0;
 
         setTeams(teamsData.teams);
         setPlayers(playersData.players);
         setIsOpen(statusData.isOpen);
-        setAvailablePoints(totalEarned);
-        onProfileLoaded?.(totalEarned);
+        setAvailablePoints(profileData.available_points ?? 0);
+        onProfileLoaded?.(profileData.available_points ?? 0);
 
         const predictionsMap: Record<string, ExistingPrediction> = {};
         for (const pred of predictionsData.predictions) {
@@ -225,15 +214,9 @@ export function AwardPredictionForm({ onPredictionMade, onPointsChange, onProfil
       }
       setExistingPredictions(predictionsMap);
 
-      const [profileRes, leaderboardRes] = await Promise.all([
-        fetch('/api/profile/me'),
-        fetch('/api/leaderboard')
-      ]);
+      const profileRes = await fetch('/api/profile/me');
       const profileData = (await profileRes.json()) as ProfileResponse;
-      const leaderboardData = (await leaderboardRes.json()) as { leaderboard: LeaderboardEntry[] };
-      const userId = profileData.id;
-      const userEntry = leaderboardData.leaderboard.find((entry) => entry.userId === userId);
-      const newAvailablePoints = userEntry ? userEntry.matchPoints + userEntry.awardPoints : 0;
+      const newAvailablePoints = profileData.available_points ?? 0;
       setAvailablePoints(newAvailablePoints);
       onPointsChange?.(pointsWagered, newAvailablePoints);
       onProfileLoaded?.(newAvailablePoints);
